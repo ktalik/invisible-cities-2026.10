@@ -1,0 +1,20 @@
+// Usage: node scripts/ui.mjs <out.png> <url-suffix> [waitMs] [w] [h] [js]
+import { chromium } from 'playwright-core';
+const [out, suffix, wait = '3000', w = '1440', h = '900', js = ''] = process.argv.slice(2);
+const browser = await chromium.launch({ executablePath: '/usr/bin/chromium', args: ['--use-angle=vulkan', '--enable-gpu', '--ignore-gpu-blocklist'] });
+const page = await browser.newPage({ viewport: { width: +w, height: +h } });
+const logs = [];
+page.on('console', (m) => { if (m.type() === 'error') logs.push(`[${m.type()}] ${m.text()}`); });
+page.on('pageerror', (e) => logs.push(`[pageerror] ${e.message}`));
+const t0 = Date.now();
+await page.goto(`http://localhost:5199/${suffix}`);
+await page.waitForFunction(() => window.__ready === true, null, { timeout: 180000 });
+console.log('ready in', Date.now() - t0, 'ms');
+if (js) await page.evaluate(js);
+await page.waitForTimeout(+wait);
+await page.screenshot({ path: out });
+console.log(JSON.stringify(await page.evaluate(() => window.__info())));
+const fps = await page.evaluate(() => new Promise((r) => { let n = 0; const t0 = performance.now(); const f = () => { n++; if (performance.now() - t0 < 2000) requestAnimationFrame(f); else r(n / 2); }; requestAnimationFrame(f); }));
+console.log('fps', fps);
+logs.forEach((l) => console.log(l));
+await browser.close();

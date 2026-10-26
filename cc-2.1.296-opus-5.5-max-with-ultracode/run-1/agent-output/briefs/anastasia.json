@@ -1,0 +1,39 @@
+{
+  "id": "anastasia",
+  "essence": "A treacherous city that, when described, wakes desires one at a time only to make you stifle them, but in its heart wakes them all at once and enjoys them in your place, while those who cut its agate, onyx and chrysoprase eight hours a day mistake their servitude for pleasure.",
+  "textDetails": [
+    "Reached after three days' travel toward the south.",
+    "Concentric canals water the city, and kites fly above it.",
+    "Wares worth buying there: agate, onyx, chrysoprase and other varieties of chalcedony.",
+    "Golden pheasant is roasted over flames of seasoned cherry wood and dusted generously with herbs (sweet marjoram in Weaver's English, oregano in the Italian).",
+    "Marco has watched women bathing in a garden pool; rumour has it they sometimes ask a passing stranger to strip and join them, chasing them in the water.",
+    "He insists that such reports would not convey the city's true essence.",
+    "Described, Anastasia rouses desires one by one, only to force you to smother each.",
+    "Whoever is in the heart of the city one morning feels every desire wake at once and close around him.",
+    "The city seems a single whole where no desire goes to waste, and you belong to it.",
+    "Since the city enjoys everything you are denied, all that is left to you is to dwell in this desire and be content.",
+    "Its power is called now malignant, now benign; Anastasia is the deceiving city.",
+    "For whoever cuts agate, onyx and chrysoprase eight hours a day, the work that shapes desire is itself shaped by desire.",
+    "The cutter thinks he is enjoying all of Anastasia when in truth he is merely its slave."
+  ],
+  "visualConcept": "Anastasia is built as a cut and polished agate: from above, its concentric rings of land and water are the bands of a chalcedony nodule sliced open (honey, carnelian, milk-white and grey-blue, edged with thin onyx-black lines), so the whole city reads as the jewel it sells. The disc floats in bright morning air, and its rim shows the same banded stone in cross-section, like the edge of a gem slab. Four concentric canals of translucent chrysoprase-green water separate a garden heart with its bathing pool, a ring of gem stalls heaped with faceted stones, a ring of open hearths where golden pheasants turn over cherry-wood fires, and an outer ring of long workshops where tiny cutters bend over spinning grinding wheels. About a hundred kites, diamond and hexagonal, in carnelian, saffron, chrysoprase and milk-white, ride the wind above it all, trailing long ribbon tails. In the default described state the city lies veiled and half desaturated, and only one desire at a time is lit and then smothered. Waking all desires floods every ring with colour and light at once and draws the kites into a slow vortex around the viewer, and in that same raking light the kite strings appear: hundreds of fine glinting lines descending to the outer ring, each tied to a cutter's reel, so the glorious sky is visibly held up by the men at the wheels (an interpretive image for the text's final twist). The bathers stay tiny and abstract, heads and shoulders in rippling water, suggestive rather than literal.",
+  "layout": "Floating banded-agate disc, radius 22.5, thickness 3, its side face striped with stone bands. Rings from the centre (radii in units; the placement of wares, hearths and pool is interpretive): heart garden 0-3.4 with a round bathing pool of radius 1.6, 12 round-crowned trees and 6 tiny bathers; canal 1 at 3.4-4.4; gem bazaar 4.4-8.2 with 40 radial stalls under carnelian awnings and ~1,500 instanced faceted gems in four colourways (banded orange agate, black-and-white onyx, apple-green chrysoprase, milky blue chalcedony); canal 2 at 8.2-9.2; kitchen ring 9.2-13.2 with 24 open hearths (flame cones, 6 real point lights), spits of golden pheasants and pergola tables; canal 3 at 13.2-14.2; workshop ring 14.2-19 with 48 long low sheds set radially (2.4 x 1 x 0.7, open toward the centre), each with two cutters at grinding wheels (radius 0.14) and a rooftop reel; canal 4 at 19-20.2; outer promenade 20.2-22.5 with a balustrade. Eight radial lines of small bridges, every 45 degrees, cross all four canals like facet lines on the jewel. Low houses of 1-2 storeys (0.5-0.9 tall, terraced flat roofs) fill the gaps on every land ring, paved in that ring's band colour. Kites: 96 (two per workshop), 0.9-1.5 across, at heights 10-24 over radius 0-26, tails of 8-12 ribbon segments; strings, visible only when desires wake, are catenary lines from each kite to its reel. Optional: eight bronze hour marks on the outer balustrade swept by a moving shadow, a quiet nod to the eight working hours.",
+  "signatureMotion": "1) One desire at a time (default): the city rests veiled and pale; a pool of warmth and saturation wakes a single station (the gem stalls flash with sparkles, or the hearths flare and the pheasants glisten, or the garden pool brightens and splashes, or one flock of kites blazes), holds it about 4 seconds, then smothers it as the colour drains and the light contracts like a snuffed flame, and the next desire wakes elsewhere. 2) All at once (toggle): every station ignites together, saturation rises to full, the kites sink and swirl in a slow vortex around the heart so the viewer is surrounded, and the rings seem to turn gently around you. 3) The tether: in the same light the kite strings glint into view, converging on the workshops, where the grinding wheels spin, sparks rise into the golden haze, and each kite tugs in rhythm with the cutters' strokes.",
+  "interactionLabel": "Wake All Desires",
+  "interactionDescription": "Toggles from the described city, where a single desire is lit and then stifled in turn, to a morning in its heart: the camera sinks into the central garden, every gem, fire, pool and kite blazes at once, and the kites wheel around you. In that same light the strings become visible, all running down to stone-cutters bent over their wheels on the outer ring. Toggling back drains the colour and returns to the one-by-one cycle.",
+  "mood": "A bright, breezy southern morning with the sun about 35 degrees high in the south-east; crisp light, a wind steady enough for kites, water glittering with sun-points. Described state: a thin milky veil over the sun, colours muted to about 40 percent, a tantalising half-light. Awakened state: clear, saturated, honeyed light, gem sparkle and fire glow blooming, a festive and faintly dizzying abundance with an undertow of unease.",
+  "palette": {
+    "skyTop": "#4f93cf",
+    "skyHorizon": "#f5e6cf",
+    "fog": "#e8e2d6",
+    "ground": "#b5703c",
+    "primary": "#efd8b2",
+    "secondary": "#74c7a2",
+    "accent": "#d9612f",
+    "glow": "#ffb24f"
+  },
+  "caption": "Three days south, Anastasia lies in rings of water like an agate sliced open, and kites ride the wind above it. Described stone by stone, fire by fire, pool by pool, it wakes one longing at a time and makes you smother each. Stand in its heart one morning and all of them wake together; the city enjoys them for you. The cutter shaping its stones eight hours a day believes he possesses it, and is possessed.",
+  "motto": "The stone you polish all day is polishing you.",
+  "camera": "Default: elevated three-quarter view, distance ~50, elevation ~55 degrees, target the pool at (0, 0, 0), so the rings read as the concentric bands of a gem; a few near kites drift through the foreground for depth. Wake All Desires: a 5 s glide down into the heart garden, camera at about (0, 3.2, 2.5) looking outward and up at ~20 degrees, FOV widened to ~60, slowly orbiting the pool (one revolution per ~90 s) so the rings and kites wheel around the viewer.",
+  "series": "desire"
+}

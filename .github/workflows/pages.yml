@@ -1,0 +1,95 @@
+# Publishes each run's prebuilt dist/ to GitHub Pages, untouched:
+#   /                          landing page linking to every run
+#   /<cc-run-dir>/             that run's agent-output/dist/
+# Both builds use Vite's relative base ('./'), so they work from any sub-path.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Assemble site
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          items=""
+          for run in cc-*/; do
+            run="${run%/}"
+            dist="$run/run-1/agent-output/dist"
+            if [ ! -f "$dist/index.html" ]; then
+              echo "::warning::$dist/index.html not found, skipping $run"
+              continue
+            fi
+            cp -r "$dist" "_site/$run"
+            shot=""
+            if [ -f "$run/run-1/screenshot.png" ]; then
+              cp "$run/run-1/screenshot.png" "_site/$run/screenshot.png"
+              shot="<img src=\"$run/screenshot.png\" alt=\"\" loading=\"lazy\">"
+            fi
+            items="$items<li><a href=\"$run/\">$shot<span>$run</span></a></li>"
+          done
+          if [ -z "$items" ]; then
+            echo "::error::No dist folders found"
+            exit 1
+          fi
+          cat > _site/index.html <<EOF
+          <!doctype html>
+          <html lang="en">
+          <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>Invisible Cities, one shot</title>
+          <style>
+            :root { color-scheme: light dark; --bg: #f6f3ee; --fg: #1d1a16; --muted: #6b645b; --card: #fff; }
+            @media (prefers-color-scheme: dark) { :root { --bg: #14110e; --fg: #eee7dc; --muted: #a39a8d; --card: #1f1b17; } }
+            body { margin: 0; padding: 32px 16px; background: var(--bg); color: var(--fg); font: 16px/1.5 system-ui, sans-serif; }
+            main { max-width: 960px; margin: 0 auto; }
+            h1 { font-weight: 600; margin: 0 0 4px; }
+            p { color: var(--muted); margin: 0 0 24px; }
+            ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+            a { display: block; background: var(--card); border-radius: 8px; overflow: hidden; color: inherit; text-decoration: none; }
+            a:hover span { text-decoration: underline; }
+            img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+            span { display: block; padding: 12px 14px; font-family: ui-monospace, monospace; font-size: 14px; overflow-wrap: anywhere; }
+          </style>
+          </head>
+          <body>
+          <main>
+          <h1>Invisible Cities, one shot</h1>
+          <p>Two Claude Code runs of the same one-shot prompt (October 2026).</p>
+          <ul>$items</ul>
+          </main>
+          </body>
+          </html>
+          EOF
+          ls -la _site
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

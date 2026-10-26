@@ -1,0 +1,14 @@
+# Dependencies, restored with `pnpm install` from each pnpm-lock.yaml
+node_modules/
+
+# OS and editor clutter
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# In case someone runs the projects locally
+*.log
+.vite/
+*.tsbuildinfo

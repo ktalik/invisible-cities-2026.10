@@ -1,0 +1,37 @@
+{
+  "id": "ersilia",
+  "essence": "A city whose inhabitants stretch coloured strings between the corners of their houses to mark every bond of blood, trade, authority and agency, and which, when the web grows too dense to pass, is dismantled and rebuilt farther away, leaving behind webs of poles and strings that are the real city.",
+  "textDetails": [
+    "To establish the relationships that keep the city alive, the inhabitants stretch strings from the corners of the houses.",
+    "The strings are white, black, grey or black-and-white according to whether they mark a relationship of blood, trade, authority or agency (in the Italian: kinship, exchange, authority, representation); the parallel order implies white for blood, black for trade, grey for authority, black-and-white for agency.",
+    "When the strings become so many that one can no longer pass among them, the inhabitants leave.",
+    "The houses are taken apart; only the strings and their supports remain.",
+    "From a mountainside where they camp with their household goods, the refugees gaze at the maze of taut strings and poles rising from the plain.",
+    "That maze is still Ersilia, while the people by themselves are nothing.",
+    "They rebuild Ersilia somewhere else, weaving a similar pattern of strings that they want more complex and at the same time more regular than the last.",
+    "Then they abandon that one too and carry themselves and their houses still farther away.",
+    "Travelling in the territory, one meets the ruins of abandoned Ersilias, without walls, which do not last, and without the bones of the dead, which the wind rolls away.",
+    "The ruins are described as spiderwebs of intricate relationships seeking a form.",
+    "Not in the text: the number of houses, building materials, the number of earlier cities, or their placement in the plain."
+  ],
+  "visualConcept": "A wide dun plain under an overcast silver sky, closed on the north-east by a dark mountainside with a bare terrace where refugees will camp. On the plain stands the living Ersilia: a cluster of plain whitewashed houses, each with tall poles at its four corners, tied to one another by hundreds of taut strings in four tones (bone white, black, grey, and a twisted black-and-white) crossing at every height, so dense that the tiny inhabitants must duck and weave through them. Beyond it, receding along an arc into the north-western fog, stand the cities it used to be: no walls, no people, only forests of poles and their webs, each older one sparser and more chaotic, each newer one more intricate and more regular, like successive drafts of one drawing. The strings are the protagonists: thin, slightly glossy lines that catch the low light like spider silk, with slow beads of light travelling along some of them as relationships are exercised. Dust and small pale fragments roll across the plain between the ruins in the wind, and nothing else survives there. The idea reads instantly: houses and people are temporary, the knots are the city. Implementation: strings as fat lines (LineSegments2, 1 to 1.6 px at default zoom) or instanced thin quads, with a dashed shader for black-and-white; poles as instanced cylinders.",
+  "layout": "North = -z. Plain disc radius 26, nearly flat (relief 0.2) with sparse grass tufts, fading into fog. North-east rim: a mountainside spanning roughly north-north-east to east, rising from y=0 at radius 17 to y=9 at the rim, with a flat terrace cut into the slope at about (15.5, 4.2, -14.5) for the camp. Living city centred at (2, 0, 5): 24 whitewashed houses (cubes 0.9 to 1.2 wide, 0.8 to 1.0 tall, flat roofs, dark doorways) on a loose hexagonal grid of spacing 2.2 within radius 6.5; each house has 4 corner poles 1.8 to 3.2 tall (0.04 thick); strings join pole points (tops and two lower ties per pole) of houses up to 6 units apart, growing from about 80 to about 900 segments. Abandoned webs (poles and strings only) on an arc toward the west and north-west, each farther, slightly smaller, older and less ordered: A at (-8, 0, -2), radius 4.5, 70 poles, about 600 strings in a near-regular radial lattice; B at (-15, 0, -7), radius 4, 60 poles, about 400 strings, semi-regular; C at (-18, 0, -15), radius 3.5, 50 poles, about 250 strings, irregular; D at (-11, 0, -21), radius 3, 40 poles, about 150 strings, chaotic, some slack or fallen, half lost in fog. String mix everywhere: about 35% white, 25% black, 25% grey, 15% black-and-white. People: about 60 citizens (0.25 tall), each able to carry a bundle.",
+  "signatureMotion": "1) Weaving: in the living city a new string is cast about every 0.4 s: a small shuttle-bead flies from one pole to another trailing the line, which snaps taut with a short damped vibration (amplitude 0.05, decay 0.8 s); density visibly climbs over about 90 s while the figures slow, stoop and squeeze between the strings. 2) Life along the lines: soft beads of light travel along random strings in their own tone (a pale glint on white, a dim gold on black) as relationships are exercised, and gusts from the west make bundles of strings shiver like harp strings and set the abandoned webs swaying. 3) Wind across the ruins: dust streaks and small pale fragments roll eastward across the plain between the webs, so that nothing but poles and threads stays put.",
+  "interactionLabel": "Dismantle the houses",
+  "interactionDescription": "Plays the exodus: the walls of each house hinge down flat and stack into bundles that the citizens load onto handcarts; they file out through the web and climb to the mountainside terrace, where tents go up and they sit among their household goods looking down. The houses are gone, the poles and strings stay exactly as they were and brighten slightly: this is the city. Toggling back walks the people down again and raises the houses inside the web.",
+  "mood": "Overcast late afternoon on a dry highland plain: diffuse silver light with a low break of warm sun in the west catching the strings, a cool steady wind, dust haze softening the distant ruins; austere, quiet and contemplative, almost monochrome except for the warm dun ground and the refugees' madder and indigo blankets.",
+  "palette": {
+    "skyTop": "#5e6670",
+    "skyHorizon": "#dcd6c8",
+    "fog": "#bdb6a7",
+    "ground": "#a69474",
+    "primary": "#f3efe6",
+    "secondary": "#26272d",
+    "accent": "#9b4a33",
+    "glow": "#f2deaa"
+  },
+  "caption": "In Ersilia every bond is a string: white, black, grey or striped, for kinship, commerce, command or representation, knotted from the corner of one house to the corner of another. When the threads grow too thick to walk through, the people take down their walls and leave. From the hillside they look back at the web standing alone in the plain, and know that it, not they, is Ersilia. Farther on they weave it again, denser and more orderly.",
+  "motto": "The houses were only pegs; the city was the string.",
+  "camera": "Three-quarter view from the south-south-east, distance about 46 units, elevation about 28 degrees, target between the living city and the newest ruin (about (-2, 1.2, 1)): the dense living web fills the lower middle, older webs recede to the upper left into fog, the mountainside terrace sits at upper right; with the toggle on, the camera may ease to a view over the refugees' shoulders from the terrace, looking down at about 20 degrees.",
+  "series": "trading"
+}

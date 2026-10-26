@@ -1,0 +1,39 @@
+{
+  "id": "zirma",
+  "essence": "A redundant city that repeats each of its images until something lodges in the mind, remembered by a memory that is itself redundant, multiplying signs so that the city can begin to exist.",
+  "textDetails": [
+    "Travelers come back with distinct memories: a blind black man shouting in the crowd, a lunatic teetering on a skyscraper's cornice, a girl walking a puma on a leash.",
+    "In fact many of the blind men who tap their canes on Zirma's cobblestones are black (the streets are cobbled).",
+    "In every skyscraper someone is going mad, and all the lunatics spend hours on the cornices.",
+    "There is no puma that some girl has not raised, on a whim.",
+    "The city is redundant, repeating itself so that something will lodge in the mind.",
+    "The narrator's own memory: dirigibles flying in all directions at window level.",
+    "Streets of shops where tattoos are drawn on sailors' skin.",
+    "Underground trains crammed with obese women suffering from the humidity.",
+    "His traveling companions swear they saw only one dirigible, hovering among the city's spires.",
+    "Only one tattoo artist, laying out needles, inks and pierced patterns (perforated stencils) on his bench.",
+    "Only one fat woman, fanning herself on a train platform.",
+    "Memory is redundant as well, repeating signs so that the city can start to exist.",
+    "Not in the text: colours, sizes, counts, a harbor or any layout; the vocabulary (skyscrapers with cornices and spires, an underground railway, dirigibles) is openly modern and anachronistic for Marco Polo."
+  ],
+  "visualConcept": "Zirma is a dense, anachronistic Art Deco metropolis built from only three tower designs stamped out again and again, so the skyline itself stutters: stepped setback towers with heavy cornices and needle spires, finned slabs, and crowned drum towers, rotated and repeated across a tight grid. At window level a swarm of silver dirigibles with vermilion bands crosses between the towers in every direction at once, their shadows sliding over the facades, and on every cornice of every tower a tiny lunatic teeters, so the whole skyline is punctuated by the same swaying figure. Down on the cobbled streets the motifs repeat at human scale: blind men tapping canes, girls leading tawny pumas on leashes, and one long street of identical tattoo parlours whose ink-blue windows show sailors bent under the needle. The diorama sits on a thick square plinth whose front face is cut away like an architectural section, revealing two subway tubes where steaming, overpacked trains shuttle back and forth in a humid green-gold light. Repetition is also a rendering motif: moving things leave short echo trails of two or three fading copies, like a multiple exposure, and periodic pulses make every instance of a motif act in unison. The single toggle collapses the redundancy into the companions' sworn version of the city: one of each, inside the same skyline.",
+  "layout": "Convention: +X east, -Z north. Base: floating square plinth 32 x 32 units with chamfered corners, top at y=0, 4 units thick, its south face cut open as a glazed section. Grid: 7 x 7 blocks at a pitch of 4.2 (lot 3.0, street 1.2, small-sett cobble pattern). Towers: one per lot (49, a few lots split into two thin slabs), three archetypes: A stepped ziggurat (base 2.8, setbacks at 45 and 75 percent of height, a cornice ledge at each setback), B finned slab (2.2 x 3.0), C crowned drum (radius 1.3); heights 7 to 17 rising gently toward the centre, spires 1.5 to 3.5 on about 30 towers. Lunatics: one figure on a cornice of every tower, slightly oversized (0.3) with pale clothing so they read as a pattern along the ledges. Dirigibles: 24 in redundant mode, hulls 1.6 to 2.2 long, flying straight paths at heights 4 to 10 on 8 headings, wrapping at the plinth bounds and threading between towers; in 'one of each' mode a single 2.6-long dirigible hovers among the central spires at about y=14. Streets: about 30 blind men with canes, 14 girl-and-puma pairs (puma 0.35 long), about 120 generic pedestrians; the easternmost avenue is the tattoo street, 14 identical shopfronts with lit windows and seated sailors. Underground, seen through the cutaway: two east-west tubes at y=-1.0 and y=-2.6, each with a 5-car train (cars 2.0 long) packed with rounded figures, one tiled platform at y=-1.0 near the front left with benches, steam particles drifting in both tubes.",
+  "signatureMotion": "1) Dirigibles drift on crossing headings at window level, gently pitching and bobbing, with short echo trails and soft shadows sweeping over the facades. 2) The lunatics teeter on their cornices with individual phase offsets; every 12 to 15 s a repetition pulse makes all of them lean out together while every tattoo window flickers and every cane taps at the same instant, as if the city were rehearsing itself. 3) In the cutaway, packed trains shuttle through the tubes, steam puffing at the platform, a faint heat-shimmer distortion over the humid tunnels.",
+  "interactionLabel": "One of each",
+  "interactionDescription": "Switches from the narrator's redundant Zirma to the city his companions swear they saw. The dirigible swarm converges, copy by copy, into a single dirigible hovering among the spires; the tattoo street dims to one lit bench where a lone artist lays out needles, inks and perforated patterns; the crammed trains empty until only one fat woman remains, fanning herself on the platform; the many lunatics, blind men and puma girls fold into the single trio that travelers bring home. The skyline stays, quieter but still there. Toggle back and each lone figure splits into its echoes again.",
+  "mood": "A humid summer dusk: thick, warm air, apricot haze pooling between the towers while the upper sky deepens to indigo; identical grids of window lights coming on together; silver dirigible hulls catching the last warm light; below ground a sticky greenish-gold glow with drifting steam.",
+  "palette": {
+    "skyTop": "#26365a",
+    "skyHorizon": "#eaa477",
+    "fog": "#c99786",
+    "ground": "#4b4643",
+    "primary": "#d9cbab",
+    "secondary": "#3d7f78",
+    "accent": "#cc4f38",
+    "glow": "#ffd07c"
+  },
+  "caption": "Ask anyone who has been to Zirma and they will describe the same three things: a shouting blind man, a madman swaying on a cornice, a girl leading a puma. The city makes sure of it, multiplying each image until it cannot be forgotten. You remember dirigibles drifting past every window; your companions insist there was only one. Somewhere between their single sign and your hundred, Zirma starts to exist.",
+  "motto": "A city must say everything twice before anyone remembers it once.",
+  "camera": "Three-quarter view from the south-east corner, distance about 40 units, elevation about 22 degrees, target at (0, 6, 0): low enough that the dirigibles read at window height against facades and sky, high enough to see into the cobbled streets, and angled so the cut-away south face of the plinth with its subway tubes fills the lower part of the frame.",
+  "series": "signs"
+}

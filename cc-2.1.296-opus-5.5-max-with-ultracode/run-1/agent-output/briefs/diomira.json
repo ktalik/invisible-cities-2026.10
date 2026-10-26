@@ -1,0 +1,39 @@
+{
+  "id": "diomira",
+  "essence": "A city of catalogued marvels the traveler has already seen in other cities, whose one singular gift is a September evening that makes him envy those who believe they have lived it once before, and were happy then.",
+  "textDetails": [
+    "Reached by travelling three days toward the east (the Italian: three days' journey 'verso levante').",
+    "Sixty silver domes.",
+    "Bronze statues of all the gods (no number is given).",
+    "Streets paved with lead in William Weaver's English; the Italian original says tin ('stagno').",
+    "A theatre made of crystal.",
+    "A golden cock that crows every morning on top of a tower.",
+    "All these beauties are already familiar to the visitor, who has met them in other cities too.",
+    "The city's special quality belongs to whoever arrives on a September evening, when the days are getting shorter.",
+    "At that hour multicoloured lamps are lit all together at the doors of the food stalls (the Italian appears to name fry-shops, 'friggitorie'; not verified).",
+    "From a terrace a woman's voice cries out an exclamation ('ooh!' in Weaver).",
+    "The arriving man envies the people who are now convinced they once lived an evening exactly like this one.",
+    "Those people think that, on that earlier occasion, they were happy.",
+    "No walls, street plan, population or colours are described beyond these materials: layout and palette are design choices."
+  ],
+  "visualConcept": "A round miniature city on a disc plinth paved entirely in soft grey metal (lead in Weaver's English, tin in the Italian), so every street shines like a dull mirror under a September dusk. Sixty polished silver domes in three concentric rings crown pale limestone buildings around a central crystal theatre: a transparent, faceted horseshoe of tiers ringed by crystal pillars that glows from within like a lantern. Bronze statues of the gods, each a different silhouette, line the radial avenues, and a slender tower on the eastern side carries a golden weathervane cock, the last thing to hold the sunset. A ring of food stalls hung with multicoloured lamps (vermilion, jade, saffron, cobalt, violet, rose) waits dark, and a single woman stands on a roof terrace above them. The marvels are deliberately presented as a familiar catalogue, evenly spaced and almost generic, so the eye slides over them; what is unmistakable is the instant when every lamp ignites in the same frame, the woman's cry ripples outward as a ring of light, and the whole city briefly doubles like a double exposure. That ghost double, the identical evening others believe they have already lived, is the true subject: memory laid over the present like a second, happier print. A lone traveler stands at the western gate, at the end of the road he came by, outside the warmth.",
+  "layout": "Plan convention: +X east, -Z north, y up. Disc plinth radius 21, top at y=0, 0.8 thick, bevelled lead-grey rim, underside tapering into a soft cone of haze. Paving: procedural slab grid (0.6 x 0.4) of grey metal, metalness 0.6, roughness varied 0.3-0.5 per slab. Streets: 8 radial avenues (width 1.4) and ring streets at r = 7, 12 and 17. Centre: crystal theatre, a horseshoe cavea of 7 tiers (outer r 3.2, rising to 1.6) opening east, ringed by 12 faceted crystal pillars 2.2 tall; transmissive physical material with slight iridescence and a warm point light inside. Domes, exactly 60: 6 large (dome r 1.5 on drum buildings 2.4 tall) at r = 5.5 every 60 deg; 18 medium (dome r 0.95 on buildings 1.6-2.0 tall) at r = 10.5; 36 small (dome r 0.6 on buildings 1.0-1.4 tall) at r = 15.5; slightly onion-shaped, mirror silver (metalness 1, roughness 0.12). Infill: about 180 flat-roofed limestone houses (0.5-1.3 tall), instanced. Statues: about 48 bronze gods, 6 per avenue, 0.5-0.7 tall on 0.3 plinths, each built from 3-6 primitives with a distinct attribute (raised arm, staff, wings, horns, many arms, disc halo), verdigris in the crevices. Tower: square shaft 1.1 x 1.1, height 11, at (7.5, 0, -2.7), open lantern at the top and a gold cock weathervane 0.9 tall. Market: 40 stalls (0.6 x 0.5 x 0.55, striped awnings) along both sides of the r = 12 ring, each with 1-3 lamp spheres (r 0.06) at its door, about 90 lamps plus 6 lamp strings across the street. Terrace: one 3-storey house (1.4 tall) on the r = 12 ring at about (-4, 0, 11.3) with a balustraded roof terrace and one woman figure (0.25 tall, pale dress). People: about 120 figures, densest along the market ring. Road: a causeway 2 wide entering from due west (-X), running 3 units past the rim before fading into haze, with the lone traveler standing at the gate.",
+  "signatureMotion": "1) The identical evening, a 70-second loop repeated exactly: the low sun sinks behind the viewer in the west, the shadow line climbs the domes and the tower until only the golden cock still burns; then, in a single frame, every stall lamp and window switches on (emissive 0 to full in 0.15 s, with a bloom swell) and one thin ring of light expands from the woman's terrace across the metal paving, her cry made visible. Night holds about 20 s, then the scene dissolves like a remembered image back into the start of the same dusk; optionally the sun sets a little earlier on each loop, the days growing shorter, resetting after 8 loops. 2) Deja vu flicker: at the instant of ignition a translucent duplicate of the whole city flashes for half a second, offset 0.3 units, as if the moment had already happened. 3) Small life: the weathervane cock veers slowly in the breeze, strollers drift along the market ring, lamp strings sway.",
+  "interactionLabel": "Lived it before",
+  "interactionDescription": "Shows the remembered evening the traveler envies. On: a warm gold ghost of the entire city fades in over 2 s (additive fresnel material, about 25 percent opacity, offset 0.4 up and scaled 1.02), running the same evening a few seconds ahead with its lamps already lit; the inhabitants gain soft amber halos, the ones who believe they were happy that other time, while the lone traveler at the west gate stays cool and unhaloed. Off: only the present evening remains, single and unrepeatable.",
+  "mood": "A September evening as the days shorten: the last low sun from the west, behind the viewer, an apricot afterglow fading upward into deep indigo, and on the eastern horizon a rose band over the blue earth-shadow. Clear, still, faintly hazy air; silver domes turning from rose-gold to moon-cool; then the sudden festive warmth of the coloured lamps against the dusk. Wistful and familiar, almost too familiar.",
+  "palette": {
+    "skyTop": "#272b5c",
+    "skyHorizon": "#eba27a",
+    "fog": "#8b7a9e",
+    "ground": "#5d636d",
+    "primary": "#d3d8e2",
+    "secondary": "#9a6334",
+    "accent": "#e2533f",
+    "glow": "#ffc75e"
+  },
+  "caption": "Three days' journey eastward, Diomira lays out its marvels: sixty silver domes, bronze effigies of every god, streets paved in grey metal, a theatre of crystal, a golden cock on its tower. You have met them all in other cities. What undoes you is a September dusk, when every stall's lamps kindle in one instant and a woman cries out from a terrace, and you envy whoever is sure they lived this exact evening once before, and were happy.",
+  "motto": "You envy not their happiness, but their memory of it.",
+  "camera": "From the west, behind and above the traveler on the arrival road: position about (-40, 18, 6), distance 44, elevation 24 deg, looking east at the crystal theatre (target 0, 1.5, 0), with the golden-cock tower right of centre against the darkening eastern sky. Slow auto-orbit of +/-20 deg about the west axis, never turning to face the sunset.",
+  "series": "memory"
+}

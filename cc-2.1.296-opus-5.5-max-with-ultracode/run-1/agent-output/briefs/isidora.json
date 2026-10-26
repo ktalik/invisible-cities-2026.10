@@ -1,0 +1,38 @@
+{
+  "id": "isidora",
+  "essence": "Isidora is, detail for detail, the city a young man desired, but he reaches it only in old age, so he can join it solely as a spectator on the old men's wall: his desires have already turned into memories.",
+  "textDetails": [
+    "A man who has ridden for a long time across wild country begins to long for a city; that is how one comes to Isidora.",
+    "Its buildings have spiral staircases encrusted with spiral seashells (apparently a pun in the Italian, where 'chiocciola' is both a spiral stair and a snail shell).",
+    "Telescopes are made there to perfection.",
+    "Violins are made there to perfection.",
+    "A stranger who cannot choose between two women invariably runs into a third.",
+    "Cockfights turn into bloody fights among the people betting on them.",
+    "These were exactly the things the traveler had in mind when he longed for a city: Isidora is the city of his dreams.",
+    "The single difference: in his dream he was young there, but he actually arrives as an old man.",
+    "The square has a wall on which old men sit and watch young people pass.",
+    "He is seated in the row with them.",
+    "The section closes on the idea that desires have already become memories.",
+    "No colours, numbers or street plan are given: the spiral plan, shell towers and palette are design interpretation."
+  ],
+  "visualConcept": "A pearl-and-rose city of spirals on a floating island, ringed by a band of wild, rocky scrubland crossed by one long winding road, the long ride that makes a man long for a city. Every building wears an external spiral staircase whose railings are crusted with thousands of tiny spiral seashells in iridescent nacre, and seven tall shell towers twist double helixes of stairs up to conch-like finials; the main street itself winds inward as a nautilus spiral (a design interpretation, not in the text), so the eye travels toward the centre as a life travels toward age. Brass telescopes on tripods point skyward from rooftop terraces, an arcade of violin makers hangs amber-varnished violins under its arches, a sunken cockpit seethes with bettors on the edge of a brawl, and beside a fountain a foreigner turns between two women while a third approaches. At the heart, in the round central square, a low curved wall holds a row of seated old men, white-haired and dark-coated, whose heads turn slowly to follow the young promenading around them. The traveler is the last man in that row. The idea reads in one glance: a dazzling, youthful city in full motion and, at its still centre, the man who desired it, now able only to watch; the city is identical to his dream, and only he has changed.",
+  "layout": "Plan convention: +X east, -Z north, y up. Floating island radius 23, top at y=0, rocky underside tapering to a point 9 below. Outer ring r 16-23: wild land with noise relief (0-1.2), ochre and sage, about 300 instanced thorn shrubs and 60 boulders; one dirt road (width 0.8) enters at the south-west rim and winds one full turn through the wild ring to the city gate on the west. City plateau r < 16, raised 0.6 behind a low rampart (0.5 high). Streets: one main street as a logarithmic spiral of 1.75 turns from the gate (r 15) to the central square (r 3.5), plus 6 short radial lanes. Buildings: about 90 houses of 2-4 storeys (0.8-1.8 tall), nacre-white walls and dusty-rose tile roofs, each with a helical stair (cylinder r 0.25-0.45, 1-2 turns) clinging to one corner; 7 shell towers 4-7 tall at r 6-11 with double helix stairs and conch finials. Shells: about 2500 instances (0.03-0.08 long: cone spirals, nautilus discs, small conches) along every stair railing, physical material with iridescence. Telescopes: 3 rooftop terraces with 2-3 brass telescopes each (0.6-1.2 long) on tripods. Violin arcade: 8 arches on the spiral street at r 9, with 12 hanging violins (0.12 long) and one large violin sign (0.6). Central square r 3.5 with spiral mosaic paving; on its north edge a curved wall (length 5, height 0.3, depth 0.35) with 7 seated old men plus the traveler as the 8th; 18 young figures promenading. Cockpit: sunken ring r 0.9 in a side plaza east of the square, 2 cocks and 14 bettors. Fountain vignette on the spiral street at r 7: a small round fountain, the foreigner, two women, and a side lane from which the third appears.",
+  "signatureMotion": "1) The long arrival, about 40 s on entering, then the scene rests: a rider gallops the winding road across the wild ring, dismounts at the gate and walks the spiral inward, slowing, his back bending and his hair whitening by degrees, until he sits down as the last man on the wall. 2) Youth in motion around a still wall: young figures promenade endlessly around the square and up the helical stairs while the old men's heads turn to follow them; shell iridescence shimmers as the light moves; telescopes sweep the sky in slow unison; a violinist bows on a balcony. 3) Recurring vignettes: every 25 s the crowd at the cockpit surges into a jostling brawl with puffs of red dust before settling; at the fountain the foreigner turns from one woman to the other and a third steps out of a side lane to meet him.",
+  "interactionLabel": "As he dreamed it",
+  "interactionDescription": "Switches between the Isidora he dreamed and the Isidora he reaches. The architecture never changes: not one stair, shell or violin moves. Dreamed: fresh high morning light, saturated pearl, rose and azure, and the traveler as a young man walking among the promenading youth. Reached (default): low golden late-afternoon light with a faint amber-sepia veil, and the traveler white-haired, seated in the row of old men on the wall. The only difference between dream and city is the man.",
+  "mood": "Default: the late afternoon of a life, a low warm sun from the west, long shadows across the spiral, dust from the wild lands hanging gold in the air, nacre glinting pink and green. Dreamed mode: a clean, dewy morning with high light and a cool pearl sky. Tender, bittersweet, unhurried.",
+  "palette": {
+    "skyTop": "#6e7db4",
+    "skyHorizon": "#f4c8a4",
+    "fog": "#e2d1cc",
+    "ground": "#c2a27c",
+    "primary": "#f2e8de",
+    "secondary": "#a24f2a",
+    "accent": "#c9a34c",
+    "glow": "#ffd8a0"
+  },
+  "caption": "A long ride through wild country leaves you hungry for a city, and Isidora is the very one you hungered for: stairs that wind like the shells crusted along them, workshops perfecting telescopes and violins, cockfights that end with the gamblers bleeding, a stranger who wavers between two women and meets a third. Nothing has changed since you dreamed it; only the dreamer has. You take your seat on the wall in the square, among the old men, while the young stroll past.",
+  "motto": "The dream kept its youth; the dreamer spent his.",
+  "camera": "Three-quarter view from the south-south-west, distance 40, elevation 38 deg, target the central square (0, 0.5, 0), so the spiral street unwinds toward the viewer and the wall of old men sits just below frame centre, with the wild ring and the winding road in the lower foreground. Gentle orbit of +/-25 deg; in dreamed mode the camera may drift a little lower and closer.",
+  "series": "memory"
+}

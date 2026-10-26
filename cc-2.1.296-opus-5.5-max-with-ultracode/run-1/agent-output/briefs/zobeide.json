@@ -1,0 +1,41 @@
+{
+  "id": "zobeide",
+  "essence": "A white city under the moon whose streets, coiled like a skein, were laid by men of many nations along the paths of a shared dream to trap the woman who escaped them; she never returns, the dream is forgotten, and newcomers keep perfecting the trap.",
+  "textDetails": [
+    "It is reached after six days and seven nights of travel.",
+    "Zobeide is a white city, well turned toward the moon.",
+    "Its streets coil back on themselves like thread wound in a ball (a skein; Italian 'gomitolo').",
+    "Founding legend: men of different nations all had the same dream.",
+    "The dream: a woman fleeing by night through a city none of them knew, glimpsed only from behind, with long hair, naked.",
+    "Each dreamed he was chasing her, and each lost her somewhere among the turns.",
+    "Awake, they searched for the dream city in vain, but in searching they met one another.",
+    "Together they resolved to build the dreamed city themselves.",
+    "Each man laid out streets along the route of his own pursuit.",
+    "Wherever a man had lost track of her, he changed the layout of open spaces and walls from what the dream showed, so that she could not get away again.",
+    "They settled there and waited for the scene to come back some night, but not one of them, in dreams or awake, saw her again.",
+    "In time the streets were just their daily routes to work, unconnected to the chase, which they had long forgotten.",
+    "New men came from other countries having had the same kind of dream, and recognised something of the dream's streets in Zobeide.",
+    "They moved arcades and stairways so the streets would follow the woman's route more closely and leave her no way out where she had vanished.",
+    "The original settlers were baffled by what attracted these newcomers to such an ugly city, to what they saw as a trap."
+  ],
+  "visualConcept": "On a dark plain silvered by a huge moon, Zobeide rises as a low white hill wound in streets like a ball of yarn: some eighteen white street-ribbons arc over a gentle dome at many inclinations, crossing over and under one another on arcades and linked by stairways, their edges lined with small whitewashed houses whose roofs give the strands a beaded texture. Every strand is one dreamer's pursuit, and every strand ends abruptly in a blank white wall or a closed court, the spot where he lost her, so that seen as a whole the skein is a net of dead ends. By night the city glows almost self-luminous in the moonlight, and the dream replays: a pale wisp of light trailing long hair-like filaments (always seen from behind, never a figure in detail) runs along the strands, while small lantern-bearing pursuers in many colours, the many nations, chase it and drop away one by one at the turns, a new wall rising at each place she slips through. She dissolves into moonlight at the crest and is never caught. Now and then a stair flight swings or an arcade slides to a new position with a puff of dust: newcomers reshaping the trap. In the waking state the moon is gone, the white turns chalky and stained under flat dawn light, and hundreds of tiny workers walk the same strands to their jobs, oblivious, so the dream city is revealed as what its first settlers saw: an ugly tangle, a trap.",
+  "layout": "Base: an endless dark plain to the fog horizon, faintly silvered, with sparse stones and pale dust. The skein-hill (its dome form is interpretive): an ellipsoidal dome of radius 15 and height 7 centred at the origin. Streets: 18 ribbons 0.9 wide with 0.25-high parapets, each a great-circle arc over the dome at a random tilt, plus 3 lower spiral loops winding around the flank; each starts on the plain (radius 15-19, a loose end like a yarn tail) and ends part-way at a dead-end wall 1.4 high or a 1.6 x 1.6 walled court. At each crossing (roughly 60-80) the upper strand lifts 0.9 on an arcade of 3-5 round arches; at about 20 crossings a stair flight of 8-12 steps links the two levels. Houses: ~2,200 instanced white cubes (0.35-0.6 footprint, 0.3-0.7 high, flat roofs, a few small domes, arched door recesses) lining both sides of each strand. Moon: a large disc (apparent diameter ~7 degrees) at elevation ~30 degrees, upper left of the default frame, the dome's moon-facing flank fully lit. Figures: the wisp 0.28 long with a 40-segment hair trail; 9 pursuers 0.25 tall with lanterns in distinct colours (amber, saffron, rose, teal, violet, green, white, copper, blue); in waking mode ~600 grey-clad workers and occasional small groups of newcomers with bundles.",
+  "signatureMotion": "1) The chase (night, ~35 s loop): coloured lanterns arrive from different horizons across the plain and meet at the foot of the hill; the wisp appears at the base of a strand and races up and across the skein, switching strands at stairways; at each turn one pursuer runs straight on, loses her, halts with his lantern guttering, and a white wall extrudes from the street at that spot in 0.8 s with a puff of dust; at the crest the wisp scatters into motes that drift up toward the moon. 2) Newcomers' adjustments: every 20-30 s an arcade segment slides 1-3 units along its strand or a stair flight swings to a new landing, closing one more gap. 3) Waking: the moon sinks, the sky flattens to chalky grey, the glow drains away, and lines of tiny workers shuffle along the strands in steady loops, turning back at the dead ends.",
+  "interactionLabel": "Dream / Wake",
+  "interactionDescription": "Toggles between the dream and the waking city. Dream (default): moonlit night, white walls glowing, the pale wisp and the coloured lanterns of the pursuers replaying the chase as walls rise where she escapes. Wake: dawn flattens the light, the glow and the chase vanish, the camera lifts to a higher, map-like angle that shows the skein as a net of dead ends, and workers trudge streets that nobody remembers were once a pursuit, while stairs and arcades keep quietly shifting.",
+  "mood": "Deep night under a huge full moon: cold silver-blue light, crisp black shadows, white walls glowing almost from within, low mist pooling in the lower streets, faint stars, a hush, soft dream-bloom and a slight shimmer on highlights. Waking: a chalky overcast dawn, shadowless and flat, the white turned dingy and blotched, an atmosphere of routine and confinement.",
+  "palette": {
+    "skyTop": "#140f33",
+    "skyHorizon": "#2d3a6c",
+    "fog": "#343e6a",
+    "ground": "#1b2041",
+    "primary": "#efebe2",
+    "secondary": "#8fa3cf",
+    "accent": "#f0a058",
+    "glow": "#ffe5d0"
+  },
+  "caption": "Six days and seven nights away, Zobeide lies white and open to the moon, its lanes coiling over one another like thread on a ball. Men of many nations once dreamed the same long-haired runner, seen only from behind, and lost her at the turns; awake, they built her streets and walled every place she had slipped away. She never came back. They walk those streets to work now, while newcomers with the same dream keep moving the stairs to close the trap.",
+  "motto": "A city built to catch a dream catches only its dreamers.",
+  "camera": "Default: distance ~44, elevation ~30 degrees, azimuth about 70 degrees away from the moon so the dome is side-lit with long shadows and the moon sits in the upper left of the frame; target (0, 2.5, 0), FOV ~40, the whole skein centred slightly low. Wake: a 5 s rise to elevation ~65 degrees at distance ~40, centred, a near-plan view in which the strands read as a net of dead ends.",
+  "series": "desire"
+}

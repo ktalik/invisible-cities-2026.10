@@ -1,0 +1,39 @@
+{
+  "id": "eutropia",
+  "essence": "Eutropia is many identical cities scattered over a plateau, only one inhabited at a time; when weariness sets in the whole population moves to the next, everyone taking a new job, spouse and view, so that the city changes endlessly and stays forever the same.",
+  "textDetails": [
+    "Entering the territory whose capital is Eutropia, the traveller sees not one city but many, of equal size and much alike, scattered over a vast rolling plateau.",
+    "Eutropia is all of these cities together; only one is inhabited at a time while the others stand empty, in rotation.",
+    "The move comes when weariness takes hold and no one can bear his job, relatives, house, street, debts, or the people he must greet or who greet him.",
+    "Then the entire citizenry moves to the next city, which waits empty and as good as new.",
+    "There each person takes up a new job and a different wife, sees another landscape from the window, and has new pastimes, friends and gossip.",
+    "The sites differ only in exposure, slope, streams or winds.",
+    "Society has no great distinctions of wealth or authority, so passing from one role to another happens almost without jolts.",
+    "Because there are so many roles, a man rarely returns in his lifetime to a job he has already held.",
+    "Its life repeats identically, moving up and down across what the text calls an empty chessboard.",
+    "The same scenes recur with the actors changed, the same speeches with the accents recombined, the same yawns from different mouths.",
+    "It is the only city of the empire that never changes.",
+    "The city is sacred to Mercury, god of the fickle, who is credited with this ambiguous miracle.",
+    "Not in the text: the number of cities, their architecture and the order of rotation; this brief uses eight copies on a six-by-six board."
+  ],
+  "visualConcept": "A broad, softly rolling plateau of pale pasture dissolving into haze, with a faint six-by-six chessboard of lighter and darker grass inscribed across it; on eight scattered squares stand eight copies of the same small city, identical in every house, belfry, street and orientation, each centred on a little square with a statue of Mercury in winged cap holding a caduceus. Seven copies are empty: crisp, unlit, bone-white like plaster architectural models, as good as new. One is alive: lit windows, chimney smoke, terracotta awnings and laundry lines, and tiny citizens moving in its streets, each tinted by his current role. Only the ground differs from square to square: one city leans on a sunny slope, one has a stream curling past it, one stands on a windy crest among bent poplars, one sits in a misty hollow, the rest lie beside a pond, among boulders, among orchard rows, on an open meadow. The idea reads at a glance: the same city repeated like pieces on a game board, with life lit on a single square. Then weariness: the living city dulls and yawns, and its whole population pours out as one mirror-bright stream of quicksilver beads (Mercury's metal for Mercury's fickle people) that rolls along a pale road to the next city, lights going out behind it and coming on ahead. On arrival every bead takes a new role colour, couples unhook and re-pair, a marked protagonist gets a new window with a new view, and yet the overall pattern of colours in the city is exactly what it was before.",
+  "layout": "North = -z. Plateau disc radius 26 with gentle noise relief (amplitude 0.6 to 1.0), edges fading into fog. A 6 x 6 board of 6-unit squares (36 x 36, centred on the origin) tinted in alternating sage and olive by vertex colour, lines barely visible; square (col, row) is centred at x = -15 + 6*col, z = -15 + 6*row. Eight cities on non-adjacent squares, each with its own site: (1,0) sunny slope tilted 7 degrees; (4,0) windy crest with 6 bent poplars; (2,2) stream bending round its east side; (5,2) beside a round pond; (0,3) misty hollow; (3,4) open meadow; (1,5) strewn boulders; (5,5) orchard rows. All eight share identical geometry and orientation: footprint radius 2.6; central square 1.2 x 1.2 with a Mercury statue (0.45 tall on a 0.2 plinth); a belfry 1.4 tall on the square's north side; 26 houses (footprints 0.4 to 0.6, heights 0.4 to 0.75, gable roofs) in a fixed plan of four short streets and a ring lane. A pale road links the cities in rotation order, a loop down one side of the board and up the other: (1,0), (2,2), (0,3), (1,5), (3,4), (5,5), (5,2), (4,0), then back to (1,0). Population: about 120 citizens (0.15-tall beads or simple figures) in 8 role colours with a fixed count per role, plus 20 couple threads.",
+  "signatureMotion": "1) Life and weariness (about 40 s): in the inhabited city the citizens bustle; gradually the light there cools and desaturates, the beads slow, and synchronised yawns (every window dimming and re-brightening together, a soft ring spreading from the statue) come faster and faster. 2) The move (about 10 s): the Mercury statue turns to face the next city, a small winged glint skims ahead along the road, and the citizens stream out as quicksilver beads (metalness 1, roughness 0.08, reflecting the sky) that merge, split and roll along the road with a liquid wobble; lights die house by house behind them and kindle house by house ahead. 3) The reshuffle: on arrival each bead blinks smoothly to a new role colour (never its last), couple threads unhook and re-hook to new partners, and a marked protagonist with a white halo can be followed through his changing lives, while the city's overall distribution of colours stays identical.",
+  "interactionLabel": "Fold into one",
+  "interactionDescription": "The seven empty copies lift slightly, turn translucent and glide across the board onto the inhabited city, merging into it exactly, while the terrain differences flatten to plain meadow: the many become a single, unchanged city. Toggling back sends the copies out to their squares again, each settling onto its own slope, stream, crest or hollow, and the rotation resumes.",
+  "mood": "Late afternoon on a high plateau in early autumn: clear cool air, pale cerulean sky, a low warm sun from the west raking long shadows across the grass and the white cities, wind combing the pasture; serene, orderly and faintly melancholy, the inhabited city's windows already lit.",
+  "palette": {
+    "skyTop": "#6e93bf",
+    "skyHorizon": "#eedfc0",
+    "fog": "#cfd1c2",
+    "ground": "#93a06b",
+    "primary": "#efe8da",
+    "secondary": "#6f7f52",
+    "accent": "#c4673f",
+    "glow": "#ffc66b"
+  },
+  "caption": "On a wide plateau stand many copies of one city, alike in every street, each waiting on its own square of grass. Only one is lived in. When boredom settles over its windows, the whole population walks to the next, where every man finds a new trade, a new wife, a new view. The actors change places; the play does not. Under Mercury, patron of the fickle, perpetual change has become the surest way of staying the same.",
+  "motto": "They change everything, and so nothing ever changes.",
+  "camera": "High three-quarter view from the south, distance about 58 units, elevation about 48 degrees, target the board centre (0, 0, 0) so all eight cities read as pieces on the board; during a migration the camera eases slightly (2 to 3 s) to keep the origin and destination cities in view.",
+  "series": "trading"
+}

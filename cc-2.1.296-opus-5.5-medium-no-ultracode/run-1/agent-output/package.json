@@ -1,0 +1,24 @@
+{
+  "name": "invisible-cities",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A three.js atlas of the fifty-five Invisible Cities of Italo Calvino",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "packageManager": "pnpm@8.6.6",
+  "dependencies": {
+    "@fontsource/cormorant-garamond": "^5.3.0",
+    "@fontsource/cormorant-sc": "^5.3.0",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@types/three": "^0.186.0",
+    "playwright-core": "^1.64.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "zenobia",
+  "essence": "Zenobia rises on very tall stilts over dry ground for reasons no one remembers, and its tangled, layered form has become the only mould its people have for imagining happiness: a city that keeps giving shape to desire.",
+  "textDetails": [
+    "Though it is built on dry ground, Zenobia stands on very high pilings.",
+    "Its houses are made of bamboo and zinc.",
+    "It has many platforms (galleries) and balconies set at different heights on stilts that cross over one another.",
+    "These are linked by ladders and by hanging sidewalks.",
+    "The city is crowned by belvederes with cone-shaped roofs, barrels that serve as water tanks, and weather vanes.",
+    "Pulleys, fishing poles and cranes project from it.",
+    "No one remembers what need, command or desire moved the founders to give the city this form.",
+    "So no one can tell whether that original purpose is satisfied by the city as it stands now.",
+    "It has perhaps grown by successive superimpositions over a first plan that is now undecipherable.",
+    "Asked to describe a happy life, an inhabitant always imagines a city like Zenobia, with its pilings and suspended stairways.",
+    "That imagined Zenobia may be very different, fluttering with banners and ribbons, but it is always assembled by combining elements of the first model.",
+    "Marco calls it pointless to class Zenobia among happy or unhappy cities.",
+    "The real division is between cities that, through the years and the changes, keep giving their form to desires, and cities in which desires erase the city or are erased by it.",
+    "Not in the text: why stilts were needed on dry land, what the fishing poles are for, colours, size or population; fishing gear over dry ground is the text's own unexplained juxtaposition."
+  ],
+  "visualConcept": "A bone-dry plain of cracked ochre earth runs flat to a dusty horizon, and out of it rises a thicket of very tall bamboo stilts carrying a whole city high in the air, so the first read is height over emptiness: life above, nothing but dust and striped shadow below. The city is a tangle of bamboo-and-zinc houses perched on platforms and balconies at many different heights, the stilts leaning and crossing one another in X's and tripods, everything stitched together by ladders and sagging hanging sidewalks of plank and rope. Its crown is exactly the skyline the text lists: small open belvederes under conical zinc roofs, banded water barrels on the roofs, weather vanes on poles, and, jutting outward from every edge, pulley beams with dangling buckets, timber jib cranes and long fishing poles. The fishing lines are the quiet signature: a dozen of them fall straight from the highest decks into the dust, their hooks swaying a hand's breadth above cracked earth with no water anywhere, a hint of a purpose nobody remembers. The layers show their age: the lowest stilts and decks are grey, split and patched, the upper ones pale gold and new, the zinc ranging from chalky dull to mirror bright, so the city reads as built by superimposition, one storey of wanting on top of another. As a design reading of the 'first, undecipherable plan', faint bleached lines of an older geometric layout (concentric rings and a skewed grid) are half buried in the dust beneath, matching nothing that stands above them.",
+  "layout": "Ground: infinite flat plain at y=0 with a cracked-earth shader (Voronoi cells 0.6-1.5 units), fading into haze at about 140 units. City footprint: irregular blob of radius about 14 centred on the origin, taller and denser on the north side. Stilts: about 320 bamboo poles (radius 0.05-0.1, node rings every 0.6 units), heights 4-19, about 35 percent leaning 4-12 degrees, many in crossing pairs and tripods. Decks: platforms and balconies (thin plank slabs 1-3.5 wide with railings 0.15 high) on loose levels between y=4 and y=18 with random jitter, never in clean storeys. Houses: about 110, footprint 0.6-1.2, height 0.45-0.8, walls of vertical bamboo slats or corrugated zinc, single-pitch corrugated zinc roofs. Ladders: about 60 (length 1-4, a few reaching the ground). Hanging sidewalks: about 22 sagging plank walkways 2-8 long strung between decks. Belvederes: 9 on the highest points (y=17-21), four posts under a cone roof of radius 0.5 and height 0.6. Water barrels: about 30 (radius 0.18, height 0.4) on roofs and stands. Weather vanes: 12 on poles 1-1.5 above roofs. Pulleys: 16 jutting beams 0.8-1.5 long with ropes, buckets and baskets. Fishing poles: 14 rods 2.5-4 long jutting outward and slightly up from deck edges at heights 10-18, lines dropping to 0.15-0.3 above the ground. Cranes: 4 timber jib cranes (mast 2, jib 2.5) on upper decks. Ghost plan on the dust: rings of radius 6, 11 and 16 plus a grid rotated 17 degrees, faded and partly erased. People: about 70 figures 0.25 tall on decks, ladders and walkways, almost none on the ground.",
+  "signatureMotion": "1) A hot, gusty wind: weather vanes swing, the long fishing lines sway like slow pendulums (period 4-6 s) with their hooks skimming just above the dust, loose ropes and rags flick, and a faint heat shimmer trembles over the plain. 2) Daily work at height: buckets and baskets ride the pulleys up and down on 8-14 s cycles, cranes slew slowly through 40-60 degrees, and tiny figures climb ladders and cross the hanging sidewalks, which bounce slightly under their steps. 3) The low sun drifts a few degrees per minute, so the long striped lattice of stilt shadows slowly wheels across the cracked ground like the hand of a sundial.",
+  "interactionLabel": "Dream a happy life",
+  "interactionDescription": "Shows the Zenobia an inhabitant pictures when asked about happiness. Every module of the real city (house, deck, stilt, ladder, walkway, belvedere, barrel, vane, pulley, crane) lifts free and glides along a curved path to a new position taken from a second seeded layout, a different, airier arrangement spiralling higher around the centre, while stilts telescope to new lengths. Nothing is added except cloth: once the new city has assembled, it breaks out in fluttering banners, pennant strings and long ribbons in vermilion, saffron, turquoise and white, and the light warms to honey. Staggered over about 5 seconds; toggling back reassembles the actual Zenobia piece by piece and furls the cloth, making the point that desire here can only recombine the first model.",
+  "mood": "Late afternoon heat over a dry plain: a low brassy sun about 25 degrees up throws long hard shadows; the sky is deep blue overhead and dusty apricot at the horizon; the air is thick with suspended dust and heat haze, and zinc roofs flash like signals. Arid, bright and faintly absurd, with the stillness of a place whose reason has been forgotten. In the dream state the same light turns honeyed and festive.",
+  "palette": {
+    "skyTop": "#3b74a3",
+    "skyHorizon": "#f0d3a0",
+    "fog": "#e2c391",
+    "ground": "#c3925a",
+    "primary": "#d7bf78",
+    "secondary": "#8d99a4",
+    "accent": "#d2452d",
+    "glow": "#ffe09a"
+  },
+  "caption": "Zenobia stands on stilts above ground as dry as old bone, and nobody recalls why. Ladders climb to platforms, walkways sag between balconies, and fishing lines hang from the heights into dust. Ask anyone here to picture a happy life and they will build you Zenobia again: the same poles, barrels and stairs, rearranged and hung with ribbons. Whatever the founders wanted, the city still lends its shape to wanting.",
+  "motto": "Every dream of happiness here is built from the same planks.",
+  "camera": "Low three-quarter view from the south-west: camera about 46 units from the city axis at a height of about 6 units, looking slightly upward to a target at (0, 9, 0), so the full height of the stilts, the empty dust and shadows below and the belvederes against the sky are all in frame; FOV about 40. Gentle orbit; in the dream state the camera eases up to about 14 units high to follow the city's new crown.",
+  "series": "thin"
+}

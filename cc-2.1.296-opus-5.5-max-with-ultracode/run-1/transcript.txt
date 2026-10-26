@@ -1,0 +1,3582 @@
+ ▐▛███▛█   Claude Code v2.1.296
+▝▜██████▀  Opus 5.5 · Claude Max
+ ▝▝   ▝▝   /-home-konrad-dane-workspace--upstream-invisible-cities-one-shot…
+
+
+❯ /model
+  ⎿  Set model to Opus 5.5 and saved as your default for new sessions
+
+❯ /effort
+  ⎿  Set effort level to max (this session only): Maximum capability with
+     deepest reasoning. May use excessive tokens resulting in long response
+     times or overthinking. Use sparingly for the hardest tasks. · Ultracode on
+
+❯ Make a three.js (pnpm) visualization of all Invisible Cities by Italo
+  Calvino. Don’t ask questions, it is a one-shot task. You have 6h of work, use
+  it until it becomes a masterpiece.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Skill(workflow-authoring)
+  ⎿  Successfully loaded skill
+
+● Workflow(Research all 55 Invisible Cities and write visual design briefs +
+          original captions)
+  ⎿  /workflows to view dynamic workflow runs
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Research agents are drafting design briefs for all 55 cities in the
+  background; I'm now scaffolding the Vite + three.js project (engine, toolkit,
+  screenshot harness).
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/kit/rng.ts)
+  ⎿  Wrote 114 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/kit/rng.ts
+       1 // Seeded randomness. Every city gets its own deterministic RNG
+         so that a city
+       2 // always looks the same, in the atlas thumbnails, in screenshot
+       3
+       4 export function hashString(s: string): number {
+       5   let h = 2166136261 >>> 0;
+       6   for (let i = 0; i < s.length; i++) {
+       8     h = Math.imul(h, 16777619);
+       9   }
+      10   return h >>> 0;
+     … +109 lines (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/kit/noise.ts)
+  ⎿  Wrote 212 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/kit/noise.ts
+       1 // Simplex noise (after Stefan Gustavson, public domain) plus fr
+         actal helpers.
+         ed.
+       3
+       4 import { RNG } from './rng';
+       6 const grad3 = new Float32Array([
+       7   1, 1, 0, -1, 1, 0, 1, -1, 0, -1, -1, 0, 1, 0, 1, -1, 0, 1, 1,
+         0, -1, -1, 0, -1, 0, 1, 1, 0, -1, 1, 0, 1, -1, 0, -1, -1,
+       9
+      10 const perm = new Uint8Array(512);
+     … +228 lines (ctrl+o to expand)
+
+  Read 1 file (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/kit/materials.ts)
+  ⎿  Wrote 187 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/kit/materials.ts
+       1 // Material factories. Materials are cached by their parameters,
+       2 // M.plaster('#e9dcc3') a hundred times returns the same instanc
+         e (fewer GPU programs,
+       4 //
+       5 // Two families:
+         '#ffcc88', 3) ...
+       7 //   - finish materials:   finish('plaster') etc. use VERTEX COL
+       8 //                         so one draw call can hold a whole cit
+         y of differently coloured houses.
+      10 import * as THREE from 'three';
+     … +222 lines (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/kit/geo.ts)
+  ⎿  Wrote 408 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/kit/geo.ts
+      1 // Geometry primitives and helpers.
+      3 // CONVENTIONS
+      4 //  - Standing solids (box, cyl, cone, pyramid, roofs, dome, onio
+        n, lathe, prism, extrudeUp ...)
+        .
+      6 //  - Spheres and tori are centred on the origin.
+        e.
+      8 //  - at(geo, x, y, z, {ry, s ...}) transforms in place and retur
+        ns the geometry (chainable).
+        ute (used by Batch + finish()).
+     … +487 lines (ctrl+o to expand)
+
+● Writing the shared procedural toolkit (geometry, materials, batching);
+  research agents are still running in the background.
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/kit/batch.ts)
+  ⎿  Wrote 147 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/kit/batch.ts
+      1 // Batch: the main tool for building static city geometry efficie
+      2 //
+      3 //   const b = new Batch();
+         // colour + finish
+      5 //   b.add(at(gableRoof(2, 2, 1), x, 3, z), '#a0482e', 'ceramic')
+      6 //   b.add(windowsGeo, '#ffcf7a', 'glow', 3);
+           // HDR glow for bloom
+           // ~1 draw call per finish
+      8 //
+        ex colours.
+     … +158 lines (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/kit/arch.ts)
+  ⎿  Wrote 554 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/kit/arch.ts
+       1 // Architecture generators. Each function adds pieces to a Batch
+       2 // merges into a handful of draw calls). All take world-space pl
+         acement (x, y, z, ry).
+       3 //
+       5 //   house(b, { x: 2, z: 3, w: 1.6, d: 1.4, h: 2.2, roof: 'gable
+         ', wall: '#e7d6b8', roofColor: '#9b4a32' });
+         #d8cbb0', topColor: '#c9a24c', topFinish: 'gold' });
+       7 //   root.add(b.build());
+       8
+      10 import type { Batch } from './batch';
+     … +646 lines (ctrl+o to expand)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/kit/nature.ts)
+  ⎿  Wrote 141 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/kit/nature.ts
+      1 // Trees, rocks and other natural props. Tree/rock functions add
+        to a Batch.
+      2
+      3 import * as THREE from 'three';
+      4 import type { Batch } from './batch';
+      6 import { jitter } from './color';
+      7 import { RNG } from './rng';
+      8 import { noise3 } from './noise';
+      9 import { at, cyl, cone, lathe, sphere, tube, box, smooth } from '
+        ./geo';
+     … +166 lines (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/kit/terrain.ts)
+  ⎿  Wrote 224 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/kit/terrain.ts
+       1 // Ground and diorama bases: floating islands, plinths, heightfi
+         elds.
+       2
+       3 import * as THREE from 'three';
+       4 import type { ColorLike } from './color';
+       6 import { fbm2, noise2, noise3 } from './noise';
+       7 import { paintBy } from './geo';
+       8
+       9 export interface IslandOpts {
+      10   /** radius of the top surface */
+     … +246 lines (ctrl+o to expand)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Still building the toolkit: now water, figures/animals, particles and text
+  helpers.
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/kit/water.ts)
+  ⎿  Wrote 98 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/kit/water.ts
+       1 // Animated water: a MeshStandardMaterial whose normals are pert
+         urbed by moving
+       2 // noise (so it reflects the sky environment and the sun like re
+       3
+       4 import * as THREE from 'three';
+       5 import type { ColorLike } from './color';
+       6 import { U } from './globals';
+       8
+       9 export interface WaterOpts {
+      10   color?: ColorLike;
+     … +104 lines (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/kit/figures.ts)
+  ⎿  Wrote 238 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/kit/figures.ts
+      1 // Tiny inhabitants: people, animals, birds, boats. Designed for
+        instancing.
+      2 // Scale reference: a person is ~0.25 units tall (default).
+      3
+      4 import * as THREE from 'three';
+      6 import { RNG } from './rng';
+      7 import { at, box, cone, cyl, merge, paint, sphere, strut, lathe }
+         from './geo';
+      8 import { instanced, instanceSetter } from './batch';
+      9 import { std } from './materials';
+     … +278 lines (ctrl+o to expand)
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/kit/fx.ts)
+  ⎿  Wrote 426 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/kit/fx.ts
+       1 // Atmospheric effects: particles (dust, fireflies, snow, embers
+         , petals), smoke,
+         nimation runs on
+       3 // the GPU from the shared time uniform, so there is nothing to
+         update per frame.
+       5 import * as THREE from 'three';
+       6 import type { ColorLike } from './color';
+       7 import { U } from './globals';
+       9 import { GLSL_NOISE } from './noise';
+      10 import { v3, type V3 } from './geo';
+     … +453 lines (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/kit/text.ts)
+  ⎿  Wrote 90 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/kit/text.ts
+       1 // In-world lettering: shop signs, inscriptions, labels. Canvas-
+         rendered textures.
+       2
+       3 import * as THREE from 'three';
+       4
+       6   /** CSS font family (default the display serif) */
+       7   family?: string;
+       8   /** pixel size on the canvas (resolution) */
+       9   px?: number;
+      10   weight?: string | number;
+     … +95 lines (ctrl+o to expand)
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/core/types.ts)
+  ⎿  Wrote 160 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/core/types.ts
+       1 // The contract between the engine and the 55 city modules.
+       2 //
+       3 // A city module lives in src/cities/<id>.ts and default-exports
+          a builder:
+       4 //
+       6 //   import * as K from '../kit';
+       7 //   import type { CityBuilder } from '../core/types';
+       8 //
+       9 //   const build: CityBuilder = (ctx) => {
+      10 //     const root = new THREE.Group();
+     … +166 lines (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/core/sky.ts)
+  ⎿  Wrote 156 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/core/sky.ts
+       1 // Procedural sky dome: gradient, sun disc and halo, moon, stars
+         , drifting clouds.
+       2 // The same material is rendered into a PMREM environment map so
+       3 // metal, glass and water surface reflects the city's own sky.
+       4
+       5 import * as THREE from 'three';
+       6 import { U } from '../kit/globals';
+       8 import type { EnvSpec } from './types';
+       9
+      10 export function createSkyMaterial(): THREE.ShaderMaterial {
+     … +166 lines (ctrl+o to expand)
+
+● Writing the render pipeline (sky, post-processing, stage) next.
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/core/post.ts)
+  ⎿  Wrote 142 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/core/post.ts
+       1 // Post-processing: HDR scene -> bloom -> final grade (tilt-shif
+       2 // colour grade, vignette, grain, ink-dissolve transition).
+       3
+       5 import { EffectComposer } from 'three/addons/postprocessing/Effe
+         ctComposer.js';
+         ss.js';
+       7 import { UnrealBloomPass } from 'three/addons/postprocessing/Unr
+       8 import { ShaderPass } from 'three/addons/postprocessing/ShaderPa
+         ss.js';
+      10 const FinalShader = {
+     … +155 lines (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/core/stage.ts)
+  ⎿  Wrote 381 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/core/stage.ts
+       1 // The stage: one renderer, one scene, one camera. It shows one
+       2 // (a city or the atlas), applies its environment (sky, fog, lig
+         ht, IBL, grade),
+       3 // drives its animation and handles camera controls and transiti
+       4
+       5 import * as THREE from 'three';
+         ls.js';
+       7 import { U } from '../kit/globals';
+       8 import { easeInOut } from '../kit/anim';
+      10 import { applySkyUniforms, createSkyMaterial } from './sky';
+     … +403 lines (ctrl+o to expand)
+
+  Read 1 file, listed 1 directory, ran 2 shell commands (ctrl+o to expand)
+
+● Engine core is written; now stubbing the app shell and a screenshot harness so
+  city builders can verify their work visually.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/scripts/shot.mjs)
+  ⎿  Wrote 105 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/scripts/shot.mjs
+      1 #!/usr/bin/env node
+      3 //
+      4 //   node scripts/shot.mjs <cityId|atlas> [--views 0,1,2] [--t 6]
+         [--toggle] [--both]
+        ] [--quiet]
+      6 //
+         otherwise starts
+      8 // a private Vite server. Prints a JSON report (errors, warnings,
+         render stats) and
+        l).
+     … +118 lines (ctrl+o to expand)
+
+  Ran 4 shell commands (ctrl+o to expand)
+
+● Debugging the headless-browser screenshot setup (the dev server process died
+  between calls; restarting it as a background task).
+
+  Ran 4 shell commands (ctrl+o to expand)
+
+● GPU-backed headless rendering works (GTX 1060 via ANGLE). Now writing a
+  reference city (Diomira) to validate the toolkit and set the quality bar for
+  the city builders.
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/cities/diomira.ts)
+  ⎿  Wrote 294 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/cities/diomira.ts
+       1 // DIOMIRA - Cities & Memory 1.
+         aved with lead,
+       3 // a crystal theatre, a golden cock that crows on a tower. On a
+       4 // the coloured lamps above the food stalls light all at once, a
+         nd a woman's cry
+         they have lived
+       6 // an evening identical to this one. Toggle: the remembered even
+       7 // ghost of the same city superimposed on the present one.
+       8
+      10 import * as K from '../kit';
+     … +355 lines (ctrl+o to expand)
+
+  Read 1 file, ran 3 shell commands (ctrl+o to expand)
+
+● Pipeline works end to end: Diomira renders at ~5ms/frame. Checking on the
+  research workflow before tuning further.
+
+  Read 1 file, listed 1 directory (ctrl+o to expand)
+
+● The look is working (dreamy miniature with bloom, fog, tilt-shift). Writing
+  the city-builder guide for the implementation agents while research finishes.
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/docs/CITY_GUIDE.md)
+  ⎿  Wrote 138 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/docs/CITY_GUIDE.md
+       1 # City builder's guide
+       3 This project is a three.js atlas of the 55 cities of Italo Calvi
+       4 Every city is ONE TypeScript module, `src/cities/<id>.ts`, that
+         procedurally builds a
+         rimitives, instancing,
+         + shadows, image based
+         ls and UI.
+       8
+         tation (API usage,
+         lkit) and
+     … +215 lines (ctrl+o to expand)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Research is about halfway (3 of 11 series done). To save time I'll start
+  building cities for the finished series now, launching more as briefs arrive.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Workflow(Implement Invisible Cities city modules (one agent per city,
+          screenshot-driven iteration))
+  ⎿  /workflows to view dynamic workflow runs
+
+● Workflow(invisible-cities-build-wf_a7a7ed5b-b0a.js)
+  ⎿  /workflows to view dynamic workflow runs
+
+● Workflow(invisible-cities-build-wf_a7a7ed5b-b0a.js)
+  ⎿  /workflows to view dynamic workflow runs
+● Three build workflows are running (15 cities: Desire, Signs, Thin). While they
+  work, I'll delegate the generative audio engine to a separate agent and write
+  the atlas and app shell myself.
+
+● Agent(Generative ambient audio engine)
+  ⎿  Backgrounded agent (↓ to manage · ctrl+o to expand)
+
+● Now writing the atlas: the Great Khan's board, 55 medallions in a rose-window
+  layout (11 series as sectors, 5 rings), and a golden thread tracing the book's
+  order.
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/atlas/layout.ts)
+  ⎿  Wrote 46 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/atlas/layout.ts
+       1 // Geometry of the Khan's atlas: a rose window of 11 sectors (th
+         e thematic series)
+         ward from the centre).
+       3 // Read in the book's order, the cities trace nine spiral arms:
+         the chapters.
+       5 import { CITIES } from '../data/cities';
+       6 import { SERIES_BY_ID } from '../data/series';
+       7 import type { CityMeta } from '../core/types';
+       9 export const RING_R = [5.0, 8.3, 12.1, 16.7, 22.1];
+      10 export const MEDAL_R = [1.12, 1.5, 1.95, 2.4, 2.8];
+     … +45 lines (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/atlas/board.ts)
+  ⎿  Wrote 215 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/atlas/board.ts
+      1 // The face of the atlas, drawn once into a canvas: black lacquer
+         with gold inlay,
+      2 // ring and sector lines, an eleven-pointed star, series names ar
+      3 // every city's name engraved beneath its medallion.
+      4
+      5 import * as THREE from 'three';
+      6 import { BOARD_R, RING_R, SECTORS, SLOTS, sectorAngle, sectorBoun
+      7 import { SERIES } from '../data/series';
+      8 import { RNG } from '../kit/rng';
+      9 import { DISPLAY_FONT } from '../kit/text';
+     … +227 lines (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/atlas/atlas.ts)
+  ⎿  Added 384 lines, removed 8 lines
+        1 -// Placeholder; the full atlas is written later.
+        1 +// The Atlas of the Great Khan: a lacquered rose window on whi
+          +ch every city has its
+        2 +// medallion. Sectors are the eleven series, rings their five
+          +appearances; a golden
+        3 +// thread follows the order in which Marco Polo tells them. At
+          + the centre lies the
+        4 +// Khan's chessboard of ebony and maple, where every city is r
+          +educed to a square.
+        5 +
+        6  import * as THREE from 'three';
+        7 +import * as K from '../kit';
+        8  import type { Stage, World } from '../core/stage';
+        9  import { resolveEnv } from '../core/sky';
+       10 +import { disposeObject } from '../core/dispose';
+       11 +import { CITIES } from '../data/cities';
+       12 +import { SERIES, SERIES_BY_ID } from '../data/series';
+       13 +import type { CameraView, CityMeta } from '../core/types';
+       14 +import { BOARD_R, SLOTS, SLOT_BY_ID, sectorBounds, type Slot }
+          + from './layout';
+       15 +import { drawBoard } from './board';
+       16
+        6 -export async function createAtlasWorld(_stage: Stage, _o: { sh
+          -ot?: boolean } = {}): Promise<{ world: World }> {
+       17 +export interface AtlasApi {
+       18 +  world: World;
+       19 +  onHover: ((meta: CityMeta | null) => void) | null;
+       20 +  onSelect: ((meta: CityMeta) => void) | null;
+       21 +  onCenter: (() => void) | null;
+       22 +  /** mark the city the visitor last saw */
+       23 +  setCurrent(id: string | null): void;
+       24 +  /** camera view that looks into a medallion (for the dive tr
+          +ansition) */
+       25 +  diveView(id: string): CameraView;
+       26 +  /** world position of a medallion (for tooltips) */
+       27 +  medalPosition(id: string): THREE.Vector3;
+       28 +  /** the thread unrolls from the first city */
+       29 +  revealThread(seconds?: number): void;
+       30 +}
+       31 +
+       32 +const BASE = import.meta.env.BASE_URL;
+       33 +
+       34 +function fallbackTexture(meta: CityMeta): THREE.CanvasTexture
+          +{
+       35 +  const s = SERIES_BY_ID[meta.series];
+       36 +  return K.canvasTexture(256, 256, (g, w, h) => {
+       37 +    const grd = g.createRadialGradient(w / 2, h * 0.4, 10, w /
+          + 2, h / 2, w * 0.7);
+       38 +    grd.addColorStop(0, s.color);
+       39 +    grd.addColorStop(1, '#16110d');
+       40 +    g.fillStyle = grd;
+       41 +    g.fillRect(0, 0, w, h);
+       42 +    g.fillStyle = 'rgba(255,245,225,0.85)';
+       43 +    g.font = `italic 500 150px ${K.DISPLAY_FONT}`;
+       44 +    g.textAlign = 'center';
+       45 +    g.textBaseline = 'middle';
+       46 +    g.fillText(meta.name[0], w / 2, h / 2 + 8);
+       47 +  });
+       48 +}
+       49 +
+       50 +interface Medal {
+       51 +  slot: Slot;
+       52 +  group: THREE.Group;
+       53 +  picture: THREE.Mesh;
+       54 +  pictureMat: THREE.MeshBasicMaterial;
+       55 +  bezelMat: THREE.MeshStandardMaterial;
+       56 +  lift: number;
+       57 +  hover: number;
+       58 +}
+       59 +
+       60 +export async function createAtlasWorld(stage: Stage, o: { shot
+          +?: boolean } = {}): Promise<AtlasApi> {
+       61    const root = new THREE.Group();
+        8 -  return {
+        9 -    world: {
+       10 -      root,
+       11 -      env: resolveEnv({ skyTop: '#0c1020', skyHorizon: '#1a1d2
+          -e', skyBottom: '#07080d', stars: 1 }),
+       12 -      camera: { position: [0, 40, 40], target: [0, 0, 0] },
+       13 -      dispose() {},
+       62 +  root.name = 'atlas';
+       63 +
+       64 +  // ---- the board
+       65 +  const { map, emissive } = drawBoard(o.shot ? 2048 : 2048);
+       66 +  const topMat = new THREE.MeshStandardMaterial({
+       67 +    map,
+       68 +    emissiveMap: emissive,
+       69 +    emissive: new THREE.Color('#ffd58a'),
+       70 +    emissiveIntensity: 0.55,
+       71 +    roughness: 0.32,
+       72 +    metalness: 0.15,
+       73 +  });
+       74 +  const top = new THREE.Mesh(new THREE.CircleGeometry(BOARD_R,
+          + 160).rotateX(-Math.PI / 2), topMat);
+       75 +  top.receiveShadow = true;
+       76 +  root.add(top);
+       77 +  const sideMat = new THREE.MeshStandardMaterial({ color: '#12
+          +0d0a', roughness: 0.45, metalness: 0.2 });
+       78 +  const side = new THREE.Mesh(new THREE.CylinderGeometry(BOARD
+          +_R, BOARD_R * 0.985, 1.6, 160, 1, true).translate(0, -0.8, 0),
+          + sideMat);
+       79 +  root.add(side);
+       80 +  const under = new THREE.Mesh(new THREE.CircleGeometry(BOARD_
+          +R * 0.985, 96).rotateX(Math.PI / 2).translate(0, -1.6, 0), sid
+          +eMat);
+       81 +  root.add(under);
+       82 +  const rimGold = K.M.gold('#cfa654', 0.3);
+       83 +  const rim = new THREE.Mesh(K.torus(BOARD_R + 0.02, 0.09, 8,
+          +220), rimGold);
+       84 +  rim.position.y = -0.02;
+       85 +  root.add(rim);
+       86 +  const rim2 = new THREE.Mesh(K.torus(BOARD_R * 0.99, 0.06, 6,
+          + 220), rimGold);
+       87 +  rim2.position.y = -1.5;
+       88 +  root.add(rim2);
+       89 +
+       90 +  // ---- the chessboard at the centre (Venice, the city never
+          + named)
+       91 +  const chess = new THREE.Group();
+       92 +  const cb = new K.Batch();
+       93 +  const sq = 0.5;
+       94 +  for (let i = 0; i < 8; i++) {
+       95 +    for (let j = 0; j < 8; j++) {
+       96 +      const dark = (i + j) % 2 === 0;
+       97 +      cb.add(K.at(K.box(sq, 0.12, sq), (i - 3.5) * sq, 0, (j -
+          + 3.5) * sq), dark ? '#1b120c' : '#d8b886', dark ? 'polished' :
+          + 'wood');
+       98 +    }
+       99 +  }
+      100 +  cb.add(K.at(K.box(sq * 8 + 0.3, 0.1, sq * 8 + 0.3), 0, -0.02
+          +, 0), '#3a2414', 'wood');
+      101 +  // a few pieces of the Khan's game
+      102 +  const piece = (x: number, z: number, h: number, dark: boolea
+          +n, crown: 'king' | 'queen' | 'rook' | 'knight' | 'pawn') => {
+      103 +    const col = dark ? '#1a1310' : '#efe2c6';
+      104 +    const fin = dark ? 'polished' : 'ceramic';
+      105 +    const px = (x - 3.5) * sq, pz = (z - 3.5) * sq;
+      106 +    cb.add(K.at(K.lathe([[0.17, 0], [0.17, 0.05], [0.11, 0.09]
+          +, [0.07, h * 0.6], [0.1, h * 0.68], [0.06, h * 0.75]], 16), px
+          +, 0.12, pz), col, fin);
+      107 +    if (crown === 'king') {
+      108 +      cb.add(K.at(K.box(0.04, 0.16, 0.04), px, 0.12 + h * 0.75
+          +, pz), col, fin);
+      109 +      cb.add(K.at(K.box(0.12, 0.04, 0.04), px, 0.12 + h * 0.75
+          + + 0.08, pz), col, fin);
+      110 +    } else if (crown === 'queen') {
+      111 +      cb.add(K.at(K.sphere(0.07, 10, 8), px, 0.12 + h * 0.8, p
+          +z), col, fin);
+      112 +    } else if (crown === 'rook') {
+      113 +      cb.add(K.at(K.cyl(0.1, 0.1, 0.08, 10), px, 0.12 + h * 0.
+          +72, pz), col, fin);
+      114 +    } else if (crown === 'knight') {
+      115 +      cb.add(K.at(K.box(0.08, 0.16, 0.18), px, 0.12 + h * 0.7,
+          + pz + 0.03, { rx: -0.4 }), col, fin);
+      116 +    } else {
+      117 +      cb.add(K.at(K.sphere(0.06, 10, 8), px, 0.12 + h * 0.78,
+          +pz), col, fin);
+      118 +    }
+      119 +  };
+      120 +  piece(4, 0, 0.62, true, 'king');
+      121 +  piece(3, 1, 0.55, true, 'queen');
+      122 +  piece(6, 2, 0.42, true, 'knight');
+      123 +  piece(1, 1, 0.3, true, 'pawn');
+      124 +  piece(5, 6, 0.6, false, 'king');
+      125 +  piece(2, 7, 0.42, false, 'rook');
+      126 +  piece(4, 4, 0.42, false, 'knight');
+      127 +  piece(6, 5, 0.3, false, 'pawn');
+      128 +  piece(2, 4, 0.3, false, 'pawn');
+      129 +  chess.add(cb.build({ name: 'chess' }));
+      130 +  chess.rotation.y = Math.PI / 4;
+      131 +  chess.position.y = 0.02;
+      132 +  root.add(chess);
+      133 +  const chessHit = new THREE.Mesh(new THREE.CircleGeometry(3.2
+          +, 32).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ vis
+          +ible: false }));
+      134 +  chessHit.position.y = 0.3;
+      135 +  root.add(chessHit);
+      136 +
+      137 +  // ---- medallions
+      138 +  const loader = new THREE.TextureLoader();
+      139 +  const medals: Medal[] = [];
+      140 +  const hits: THREE.Mesh[] = [];
+      141 +  const bezelGeo = K.torus(1, 0.075, 10, 64);
+      142 +  const socketGeo = K.cyl(1.04, 1.08, 0.16, 48);
+      143 +  const pictureGeo = new THREE.CircleGeometry(0.97, 64).rotate
+          +X(-Math.PI / 2);
+      144 +  const glassGeo = K.dome(0.97, 40, 1, 0.22);
+      145 +  const glassMat = new THREE.MeshStandardMaterial({ color: '#f
+          +fffff', roughness: 0.04, metalness: 0, transparent: true, opac
+          +ity: 0.16, envMapIntensity: 2.2, depthWrite: false });
+      146 +  const socketMat = new THREE.MeshStandardMaterial({ color: '#
+          +0b0807', roughness: 0.6 });
+      147 +  for (const slot of SLOTS) {
+      148 +    const g = new THREE.Group();
+      149 +    g.position.set(slot.x, 0, slot.z);
+      150 +    g.scale.setScalar(slot.m);
+      151 +    const bezelMat = new THREE.MeshStandardMaterial({ color: '
+          +#d6ad5c', roughness: 0.28, metalness: 1, emissive: new THREE.C
+          +olor(SERIES_BY_ID[slot.meta.series].color), emissiveIntensity:
+          + 0 });
+      152 +    const socket = new THREE.Mesh(socketGeo, socketMat);
+      153 +    const bezel = new THREE.Mesh(bezelGeo, bezelMat);
+      154 +    bezel.position.y = 0.16;
+      155 +    bezel.castShadow = true;
+      156 +    const pictureMat = new THREE.MeshBasicMaterial({ map: fall
+          +backTexture(slot.meta), color: '#ffffff' });
+      157 +    const picture = new THREE.Mesh(pictureGeo, pictureMat);
+      158 +    picture.position.y = 0.17;
+      159 +    picture.rotation.y = 0;
+      160 +    const glass = new THREE.Mesh(glassGeo, glassMat);
+      161 +    glass.position.y = 0.17;
+      162 +    g.add(socket, picture, glass, bezel);
+      163 +    root.add(g);
+      164 +    const hit = new THREE.Mesh(new THREE.CircleGeometry(1.15,
+          +24).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ visib
+          +le: false }));
+      165 +    hit.position.y = 0.3;
+      166 +    hit.userData.id = slot.meta.id;
+      167 +    g.add(hit);
+      168 +    hits.push(hit);
+      169 +    const medal: Medal = { slot, group: g, picture, pictureMat
+          +, bezelMat, lift: 0, hover: 0 };
+      170 +    medals.push(medal);
+      171 +    loader.load(
+      172 +      `${BASE}thumbs/${slot.meta.id}.jpg`,
+      173 +      (tex) => {
+      174 +        tex.colorSpace = THREE.SRGBColorSpace;
+      175 +        tex.anisotropy = 4;
+      176 +        const old = medal.pictureMat.map;
+      177 +        medal.pictureMat.map = tex;
+      178 +        medal.pictureMat.needsUpdate = true;
+      179 +        old?.dispose();
+      180 +      },
+      181 +      undefined,
+      182 +      () => {},
+      183 +    );
+      184 +  }
+      185 +  const medalById = new Map(medals.map((m) => [m.slot.meta.id,
+          + m]));
+      186 +
+      187 +  // ---- the golden thread through the cities in the order of
+          + narration
+      188 +  const ordered = [...CITIES].sort((a, b) => a.order - b.order
+          +).map((c) => SLOT_BY_ID[c.id]);
+      189 +  const pts = ordered.map((s) => new THREE.Vector3(s.x, 0.34,
+          +s.z));
+      190 +  const curve = new THREE.CatmullRomCurve3(pts, false, 'centri
+          +petal', 0.5);
+      191 +  const threadGeo = new THREE.TubeGeometry(curve, 1400, 0.045,
+          + 6, false);
+      192 +  const threadMat = new THREE.ShaderMaterial({
+      193 +    uniforms: { uTime: K.U.time, uReveal: { value: o.shot ? 1
+          +: 0 }, uColor: { value: new THREE.Color('#ffcf73') }, uHi0: {
+          +value: -1 }, uHi1: { value: -1 } },
+      194 +    vertexShader: /* glsl */ `
+      195 +      varying float vT;
+      196 +      void main() { vT = uv.x; gl_Position = projectionMatrix
+          +* modelViewMatrix * vec4(position, 1.0); }`,
+      197 +    fragmentShader: /* glsl */ `
+      198 +      uniform float uTime, uReveal, uHi0, uHi1;
+      199 +      uniform vec3 uColor;
+      200 +      varying float vT;
+      201 +      void main() {
+      202 +        if (vT > uReveal) discard;
+      203 +        float pulse = 0.0;
+      204 +        for (int i = 0; i < 3; i++) {
+      205 +          float p = fract(uTime * 0.018 + float(i) / 3.0);
+      206 +          pulse += smoothstep(0.035, 0.0, abs(vT - p)) ;
+      207 +        }
+      208 +        float hi = step(uHi0, vT) * step(vT, uHi1);
+      209 +        float head = smoothstep(0.02, 0.0, abs(vT - uReveal))
+          +* step(uReveal, 0.999);
+      210 +        vec3 c = uColor * (0.55 + 1.8 * pulse + 1.4 * hi + 3.0
+          + * head);
+      211 +        gl_FragColor = vec4(c, 1.0);
+      212 +      }`,
+      213 +  });
+      214 +  const thread = new THREE.Mesh(threadGeo, threadMat);
+      215 +  root.add(thread);
+      216 +  // chapter beads where each chapter begins
+      217 +  const beadMat = K.M.glow('#ffd88a', 2.2);
+      218 +  const chapterStarts = CITIES.filter((c, i) => i === 0 || CIT
+          +IES[i - 1].chapter !== c.chapter);
+      219 +  for (const c of chapterStarts) {
+      220 +    const s = SLOT_BY_ID[c.id];
+      221 +    const bead = new THREE.Mesh(K.sphere(0.13, 12, 8), beadMat
+          +);
+      222 +    const out = new THREE.Vector3(s.x, 0, s.z).normalize();
+      223 +    bead.position.set(s.x - out.x * (s.m + 0.45), 0.36, s.z -
+          +out.z * (s.m + 0.45));
+      224 +    root.add(bead);
+      225 +    const label = K.textSprite(['I', 'II', 'III', 'IV', 'V', '
+          +VI', 'VII', 'VIII', 'IX'][c.chapter - 1], 0.55, { color: '#f3d
+          +898', px: 72 });
+      226 +    label.position.set(bead.position.x - out.x * 0.55, 0.75, b
+          +ead.position.z - out.z * 0.55);
+      227 +    root.add(label);
+      228 +  }
+      229 +  const chapterRange = (chapter: number): [number, number] =>
+          +{
+      230 +    const idx = ordered.map((s, i) => (s.meta.chapter === chap
+          +ter ? i : -1)).filter((i) => i >= 0);
+      231 +    const n = ordered.length - 1;
+      232 +    return [Math.max(0, (idx[0] - 0.5) / n), Math.min(1, (idx[
+          +idx.length - 1] + 0.5) / n)];
+      233 +  };
+      234 +
+      235 +  // ---- sector highlight wedge (shown on hover)
+      236 +  const wedgeMat = new THREE.MeshBasicMaterial({ color: '#ffff
+          +ff', transparent: true, opacity: 0, depthWrite: false, blendin
+          +g: THREE.AdditiveBlending });
+      237 +  const wedge = new THREE.Mesh(new THREE.RingGeometry(3.7, 24.
+          +9, 48, 1, 0, (Math.PI * 2) / 11), wedgeMat);
+      238 +  wedge.rotation.x = -Math.PI / 2;
+      239 +  wedge.position.y = 0.03;
+      240 +  root.add(wedge);
+      241 +  let wedgeTarget = 0;
+      242 +
+      243 +  // ---- current-city marker
+      244 +  const markerMat = new THREE.MeshBasicMaterial({ color: '#ffe
+          +2a0', transparent: true, opacity: 0, depthWrite: false, blendi
+          +ng: THREE.AdditiveBlending });
+      245 +  const marker = new THREE.Mesh(K.torus(1, 0.03, 6, 64), marke
+          +rMat);
+      246 +  root.add(marker);
+      247 +  let current: string | null = null;
+      248 +
+      249 +  // ---- dust of gold in the air, and a dim glow over the cen
+          +tre
+      250 +  root.add(K.particles({ count: 500, radius: 30, y0: 0.5, y1:
+          +16, color: '#ffd896', size: 0.07, opacity: 0.5, swirl: 0.8, tw
+          +inkle: 0.7, rng: new K.RNG('atlas-dust') }));
+      251 +  const centreGlow = K.glowSprite('#ffcc80', 9, 0.18);
+      252 +  centreGlow.position.set(0, 1.2, 0);
+      253 +  root.add(centreGlow);
+      254 +
+      255 +  // ---- picking
+      256 +  let hovered: Medal | null = null;
+      257 +  let chessHover = false;
+      258 +  const api: AtlasApi = {
+      259 +    world: null as unknown as World,
+      260 +    onHover: null,
+      261 +    onSelect: null,
+      262 +    onCenter: null,
+      263 +    setCurrent(id) {
+      264 +      current = id;
+      265      },
+      266 +    diveView(id) {
+      267 +      const s = SLOT_BY_ID[id];
+      268 +      return { position: [s.x * 1.02, 2.2 + s.m * 2.2, s.z * 1
+          +.02 + s.m * 1.4], target: [s.x, 0, s.z] };
+      269 +    },
+      270 +    medalPosition(id) {
+      271 +      const m = medalById.get(id);
+      272 +      return m ? m.group.position.clone().setY(0.4 + m.lift) :
+          + new THREE.Vector3();
+      273 +    },
+      274 +    revealThread(seconds = 7) {
+      275 +      revealSpeed = 1 / seconds;
+      276 +      threadMat.uniforms.uReveal.value = 0;
+      277 +    },
+      278    };
+      279 +  let revealSpeed = 0;
+      280 +
+      281 +  const env = resolveEnv({
+      282 +    skyTop: '#05070f',
+      283 +    skyHorizon: '#161624',
+      284 +    skyBottom: '#040406',
+      285 +    skyCurve: 0.5,
+      286 +    fog: '#0b0b13',
+      287 +    fogNear: 70,
+      288 +    fogFar: 190,
+      289 +    sunDir: [0.35, 1, 0.55],
+      290 +    sunColor: '#ffe6bf',
+      291 +    sunIntensity: 2.3,
+      292 +    sunDisc: 0,
+      293 +    sunGlow: 0,
+      294 +    hemiSky: '#46507a',
+      295 +    hemiGround: '#1a1410',
+      296 +    hemiIntensity: 0.35,
+      297 +    envIntensity: 0.35,
+      298 +    stars: 1,
+      299 +    bloomStrength: 0.75,
+      300 +    bloomThreshold: 0.7,
+      301 +    bloomRadius: 0.7,
+      302 +    vignette: 0.55,
+      303 +    tiltShift: 0.25,
+      304 +    shadowRadius: 30,
+      305 +    saturation: 1.05,
+      306 +    contrast: 1.05,
+      307 +  });
+      308 +
+      309 +  const world: World = {
+      310 +    root,
+      311 +    env,
+      312 +    camera: {
+      313 +      position: [0, 46, 37],
+      314 +      target: [0, 0, 1.5],
+      315 +      fov: 42,
+      316 +      minDistance: 10,
+      317 +      maxDistance: 95,
+      318 +      maxPolar: 1.25,
+      319 +      autoRotate: 0.12,
+      320 +      views: [
+      321 +        { position: [0, 72, 6], target: [0, 0, 0] },
+      322 +        { position: [12, 14, 18], target: [0, 0, 0] },
+      323 +      ],
+      324 +    },
+      325 +    update(t, dt) {
+      326 +      if (revealSpeed > 0) {
+      327 +        const u = threadMat.uniforms.uReveal;
+      328 +        u.value = Math.min(1, (u.value as number) + dt * revea
+          +lSpeed);
+      329 +        if (u.value >= 1) revealSpeed = 0;
+      330 +      }
+      331 +      for (const m of medals) {
+      332 +        const target = m === hovered ? 1 : 0;
+      333 +        m.hover = K.damp(m.hover, target, 10, dt);
+      334 +        m.lift = m.hover * 0.9;
+      335 +        m.group.position.y = m.lift;
+      336 +        m.group.scale.setScalar(m.slot.m * (1 + m.hover * 0.12
+          +));
+      337 +        m.bezelMat.emissiveIntensity = m.hover * 1.6;
+      338 +        m.pictureMat.color.setScalar(0.82 + m.hover * 0.35);
+      339 +      }
+      340 +      wedgeMat.opacity = K.damp(wedgeMat.opacity, wedgeTarget,
+          + 8, dt);
+      341 +      if (current && medalById.has(current)) {
+      342 +        const m = medalById.get(current)!;
+      343 +        marker.position.set(m.group.position.x, 0.12, m.group.
+          +position.z);
+      344 +        const pulse = 1.12 + 0.1 * Math.sin(t * 3);
+      345 +        marker.scale.setScalar(m.slot.m * pulse + 0.35);
+      346 +        markerMat.opacity = 0.55 + 0.25 * Math.sin(t * 3);
+      347 +      } else {
+      348 +        markerMat.opacity = 0;
+      349 +      }
+      350 +      chess.rotation.y = Math.PI / 4 + (chessHover ? Math.sin(
+          +t * 2) * 0.03 : 0);
+      351 +    },
+      352 +    pointer(ray, kind) {
+      353 +      const hit = ray.intersectObjects([...hits, chessHit], fa
+          +lse)[0];
+      354 +      const id = hit?.object.userData.id as string | undefined
+          +;
+      355 +      const m = id ? medalById.get(id) ?? null : null;
+      356 +      chessHover = !!hit && hit.object === chessHit;
+      357 +      if (m !== hovered) {
+      358 +        hovered = m;
+      359 +        api.onHover?.(m ? m.slot.meta : null);
+      360 +        if (m) {
+      361 +          const s = SERIES_BY_ID[m.slot.meta.series];
+      362 +          const [a0] = sectorBounds(s.index);
+      363 +          wedge.rotation.z = -a0 - (Math.PI * 2) / 11;
+      364 +          wedge.rotation.set(-Math.PI / 2, 0, -a0 - (Math.PI *
+          + 2) / 11);
+      365 +          wedgeMat.color.set(s.color).multiplyScalar(0.12);
+      366 +          wedgeTarget = 1;
+      367 +          const [h0, h1] = chapterRange(m.slot.meta.chapter);
+      368 +          threadMat.uniforms.uHi0.value = h0;
+      369 +          threadMat.uniforms.uHi1.value = h1;
+      370 +        } else {
+      371 +          wedgeTarget = 0;
+      372 +          threadMat.uniforms.uHi0.value = -1;
+      373 +          threadMat.uniforms.uHi1.value = -1;
+      374 +        }
+      375 +      }
+      376 +      if (kind === 'click') {
+      377 +        if (m) api.onSelect?.(m.slot.meta);
+      378 +        else if (chessHover) api.onCenter?.();
+      379 +      }
+      380 +      return !!m || chessHover;
+      381 +    },
+      382 +    dispose() {
+      383 +      disposeObject(root);
+      384 +      map.dispose();
+      385 +      emissive.dispose();
+      386 +    },
+      387 +  };
+      388 +  api.world = world;
+      389 +  void stage;
+      390 +  void SERIES;
+      391 +  return api;
+      392  }
+
+● Atlas written. Now the app shell: intro, atlas/city navigation, the bottom
+  "thread" timeline, journey mode with chapter interludes, keyboard controls.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/ui/styles.css)
+  ⎿  Added 152 lines, removed 2 lines
+        1 -html, body { margin: 0; height: 100%; background: #0d0b0a; ove
+          -rflow: hidden; }
+        2 -#stage { position: fixed; inset: 0; width: 100vw; height: 100v
+          -h; display: block; }
+        1 +:root {
+        2 +  --ink: #0e0b09;
+        3 +  --ink-2: #17120e;
+        4 +  --paper: #f3e9d6;
+        5 +  --paper-dim: rgba(243, 233, 214, 0.78);
+        6 +  --paper-faint: rgba(243, 233, 214, 0.5);
+        7 +  --gold: #d6b166;
+        8 +  --gold-dim: rgba(214, 177, 102, 0.55);
+        9 +  --display: 'Cormorant Garamond', 'EB Garamond', Georgia, ser
+          +if;
+       10 +  --body: 'EB Garamond', Georgia, serif;
+       11 +  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+       12 +}
+       13 +
+       14 +* { box-sizing: border-box; }
+       15 +html, body { margin: 0; height: 100%; background: var(--ink);
+          +overflow: hidden; color: var(--paper); font-family: var(--body
+          +); }
+       16 +#stage { position: fixed; inset: 0; width: 100vw; height: 100v
+          +h; display: block; outline: none; touch-action: none; }
+       17  body.shot #ui { display: none; }
+       18 +button { font: inherit; color: inherit; background: none; bord
+          +er: 0; cursor: pointer; padding: 0; }
+       19 +button:focus-visible { outline: 1px solid var(--gold); outline
+          +-offset: 3px; }
+       20 +
+       21 +#ui { position: fixed; inset: 0; pointer-events: none; z-index
+          +: 2; }
+       22 +#ui > * { pointer-events: auto; }
+       23 +#ui .passive { pointer-events: none; }
+       24 +
+       25 +/* -----------------------------------------------------------
+          +----- top bar */
+       26 +.topbar { position: absolute; top: 0; left: 0; right: 0; displ
+          +ay: flex; justify-content: space-between; align-items: flex-st
+          +art; padding: 22px 28px; pointer-events: none; transition: opa
+          +city 0.8s var(--ease); }
+       27 +.topbar > * { pointer-events: auto; }
+       28 +.wordmark { text-align: left; font-family: var(--display); let
+          +ter-spacing: 0.32em; font-size: 13px; text-transform: uppercas
+          +e; color: var(--paper-dim); text-shadow: 0 1px 12px rgba(0,0,0
+          +,0.6); }
+       29 +.wordmark span { display: block; letter-spacing: 0.08em; text-
+          +transform: none; font-style: italic; font-size: 14px; color: v
+          +ar(--paper-faint); margin-top: 4px; }
+       30 +.wordmark:hover { color: var(--paper); }
+       31 +.tools { display: flex; gap: 6px; }
+       32 +.tools button { width: 38px; height: 38px; border-radius: 50%;
+          + display: grid; place-items: center; color: var(--paper-dim);
+          +background: rgba(14, 11, 9, 0.28); backdrop-filter: blur(6px);
+          + border: 1px solid rgba(243, 233, 214, 0.12); transition: all
+          +0.3s var(--ease); }
+       33 +.tools button:hover { color: var(--paper); border-color: var(-
+          +-gold-dim); background: rgba(14, 11, 9, 0.5); }
+       34 +.tools button.on { color: var(--gold); border-color: var(--gol
+          +d-dim); }
+       35 +.tools svg { width: 17px; height: 17px; stroke: currentColor;
+          +fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-l
+          +inejoin: round; }
+       36 +
+       37 +/* -----------------------------------------------------------
+          +----- city panel */
+       38 +.city-panel { position: absolute; left: 0; bottom: 92px; width
+          +: min(520px, 92vw); padding: 0 28px 0 40px; opacity: 0; transf
+          +orm: translateY(14px); transition: opacity 0.9s var(--ease), t
+          +ransform 0.9s var(--ease); pointer-events: none; }
+       39 +.city-panel.show { opacity: 1; transform: none; }
+       40 +.city-panel.show > * { pointer-events: auto; }
+       41 +.city-panel::before { content: ''; position: fixed; left: 0; b
+          +ottom: 0; width: 760px; height: 560px; max-width: 100vw; backg
+          +round: radial-gradient(ellipse at 0% 100%, rgba(8, 6, 5, 0.72)
+          + 0%, rgba(8, 6, 5, 0.38) 42%, rgba(8, 6, 5, 0) 70%); z-index:
+          +-1; pointer-events: none; }
+       42 +.kicker { display: flex; align-items: center; gap: 10px; font-
+          +family: var(--display); font-size: 13px; letter-spacing: 0.24e
+          +m; text-transform: uppercase; color: var(--paper-dim); }
+       43 +.kicker .dot { width: 9px; height: 9px; border-radius: 50%; ba
+          +ckground: var(--series, var(--gold)); box-shadow: 0 0 12px var
+          +(--series, var(--gold)); }
+       44 +.kicker .num { font-style: italic; letter-spacing: 0.05em; tex
+          +t-transform: none; font-size: 16px; color: var(--paper); }
+       45 +.kicker .sep { opacity: 0.4; }
+       46 +.city-name { font-family: var(--display); font-style: italic;
+          +font-weight: 400; font-size: clamp(54px, 7.4vw, 104px); line-h
+          +eight: 0.92; margin: 10px 0 10px -4px; letter-spacing: -0.01em
+          +; text-shadow: 0 2px 30px rgba(0,0,0,0.45); }
+       47 +.motto { font-family: var(--display); font-style: italic; font
+          +-size: 21px; color: var(--gold); margin: 0 0 14px; text-shadow
+          +: 0 1px 14px rgba(0,0,0,0.6); }
+       48 +.caption { font-size: 17px; line-height: 1.55; color: var(--pa
+          +per-dim); margin: 0 0 18px; max-width: 34em; text-shadow: 0 1p
+          +x 10px rgba(0,0,0,0.75); }
+       49 +.interact { display: inline-flex; align-items: center; gap: 10
+          +px; padding: 9px 18px 9px 14px; border-radius: 999px; border:
+          +1px solid var(--gold-dim); color: var(--paper); font-family: v
+          +ar(--display); font-size: 17px; font-style: italic; background
+          +: rgba(14, 11, 9, 0.35); backdrop-filter: blur(6px); transitio
+          +n: all 0.35s var(--ease); }
+       50 +.interact:hover { background: rgba(214, 177, 102, 0.16); borde
+          +r-color: var(--gold); }
+       51 +.interact .glyph { width: 16px; height: 16px; border-radius: 5
+          +0%; border: 1px solid var(--gold); background: linear-gradient
+          +(90deg, var(--gold) 50%, transparent 50%); transition: transfo
+          +rm 0.6s var(--ease); }
+       52 +.interact.active .glyph { transform: rotate(180deg); }
+       53 +.interact[hidden] { display: none; }
+       54 +.hint { font-style: italic; font-size: 15px; color: var(--pape
+          +r-faint); margin: 10px 0 0; min-height: 1.2em; transition: opa
+          +city 0.6s; }
+       55 +
+       56 +/* -----------------------------------------------------------
+          +----- the thread (bottom navigation) */
+       57 +.thread { position: absolute; left: 50%; bottom: 22px; transfo
+          +rm: translateX(-50%); display: flex; align-items: center; gap:
+          + 14px; padding: 10px 16px 6px; border-radius: 999px; transitio
+          +n: opacity 0.8s var(--ease); }
+       58 +.thread .arrow { width: 34px; height: 34px; border-radius: 50%
+          +; display: grid; place-items: center; color: var(--paper-dim);
+          + border: 1px solid rgba(243, 233, 214, 0.14); background: rgba
+          +(14, 11, 9, 0.3); backdrop-filter: blur(6px); transition: all
+          +0.3s; }
+       59 +.thread .arrow:hover { color: var(--paper); border-color: var(
+          +--gold-dim); }
+       60 +.thread .arrow svg { width: 15px; height: 15px; stroke: curren
+          +tColor; fill: none; stroke-width: 1.5; }
+       61 +.beads { display: flex; gap: 10px; align-items: flex-start; }
+       62 +.chapter { display: flex; flex-direction: column; align-items:
+          + center; gap: 5px; }
+       63 +.chapter .row { display: flex; gap: 3px; align-items: center;
+          +height: 16px; }
+       64 +.chapter .roman { font-family: var(--display); font-size: 11px
+          +; letter-spacing: 0.12em; color: var(--paper-faint); }
+       65 +.bead { width: 7px; height: 7px; border-radius: 50%; backgroun
+          +d: var(--c); opacity: 0.38; transition: all 0.35s var(--ease);
+          + position: relative; }
+       66 +.bead.visited { opacity: 0.8; }
+       67 +.bead:hover { opacity: 1; transform: scale(1.5); }
+       68 +.bead.current { opacity: 1; transform: scale(1.75); box-shadow
+          +: 0 0 0 2px rgba(14, 11, 9, 0.8), 0 0 0 3px var(--c), 0 0 14px
+          + var(--c); }
+       69 +.bead-tip { position: absolute; bottom: 48px; left: 0; transfo
+          +rm: translateX(-50%); white-space: nowrap; font-family: var(--
+          +display); font-style: italic; font-size: 18px; color: var(--pa
+          +per); text-shadow: 0 1px 10px #000; pointer-events: none; opac
+          +ity: 0; transition: opacity 0.2s; }
+       70 +.bead-tip small { display: block; text-align: center; font-sty
+          +le: normal; font-size: 11px; letter-spacing: 0.2em; text-trans
+          +form: uppercase; color: var(--paper-faint); }
+       71 +.bead-tip.show { opacity: 1; }
+       72 +.journey-bar { position: absolute; left: 0; right: 0; bottom:
+          +0; height: 2px; background: rgba(243, 233, 214, 0.06); opacity
+          +: 0; transition: opacity 0.6s; }
+       73 +.journey-bar.show { opacity: 1; }
+       74 +.journey-bar .fill { height: 100%; width: 0; background: linea
+          +r-gradient(90deg, rgba(214, 177, 102, 0.2), var(--gold)); }
+       75 +
+       76 +/* -----------------------------------------------------------
+          +----- atlas panel */
+       77 +.atlas-panel { position: absolute; left: 40px; bottom: 40px; w
+          +idth: min(380px, 86vw); opacity: 0; transform: translateY(14px
+          +); transition: opacity 1s var(--ease), transform 1s var(--ease
+          +); pointer-events: none; }
+       78 +.atlas-panel.show { opacity: 1; transform: none; pointer-event
+          +s: auto; }
+       79 +.atlas-panel h2 { font-family: var(--display); font-weight: 40
+          +0; font-style: italic; font-size: 38px; line-height: 1; margin
+          +: 0 0 12px; }
+       80 +.atlas-panel p { font-size: 15.5px; line-height: 1.55; color:
+          +var(--paper-dim); margin: 0 0 16px; }
+       81 +.legend { display: grid; grid-template-columns: 1fr 1fr; gap:
+          +4px 16px; margin: 0 0 18px; }
+       82 +.legend span { display: flex; align-items: center; gap: 8px; f
+          +ont-size: 13.5px; color: var(--paper-dim); }
+       83 +.legend i { width: 7px; height: 7px; border-radius: 50%; backg
+          +round: var(--c); box-shadow: 0 0 8px var(--c); }
+       84 +.btn { display: inline-flex; align-items: center; gap: 10px; p
+          +adding: 11px 22px; border-radius: 999px; border: 1px solid var
+          +(--gold-dim); font-family: var(--display); font-size: 18px; fo
+          +nt-style: italic; color: var(--paper); background: rgba(14, 11
+          +, 9, 0.35); backdrop-filter: blur(6px); transition: all 0.35s
+          +var(--ease); }
+       85 +.btn:hover { background: rgba(214, 177, 102, 0.18); border-col
+          +or: var(--gold); }
+       86 +.btn.primary { background: rgba(214, 177, 102, 0.2); border-co
+          +lor: var(--gold); }
+       87 +.btn.primary:hover { background: rgba(214, 177, 102, 0.32); }
+       88 +.tooltip { position: absolute; left: 0; top: 0; transform: tra
+          +nslate(-50%, -100%); pointer-events: none; text-align: center;
+          + opacity: 0; transition: opacity 0.25s; padding-bottom: 14px;
+          +}
+       89 +.tooltip.show { opacity: 1; }
+       90 +.tooltip .t-name { font-family: var(--display); font-style: it
+          +alic; font-size: 30px; line-height: 1; text-shadow: 0 2px 16px
+          + #000; }
+       91 +.tooltip .t-meta { font-size: 11.5px; letter-spacing: 0.22em;
+          +text-transform: uppercase; color: var(--paper-dim); margin-top
+          +: 6px; text-shadow: 0 1px 8px #000; }
+       92 +.tooltip .t-motto { font-family: var(--display); font-style: i
+          +talic; font-size: 16px; color: var(--gold); margin-top: 6px; m
+          +ax-width: 320px; text-shadow: 0 1px 10px #000; }
+       93 +
+       94 +/* -----------------------------------------------------------
+          +----- intro */
+       95 +.intro { position: absolute; inset: 0; display: grid; place-it
+          +ems: center; text-align: center; background: radial-gradient(e
+          +llipse at center, rgba(8, 6, 5, 0.25) 0%, rgba(8, 6, 5, 0.75)
+          +75%); opacity: 0; transition: opacity 1.4s var(--ease); pointe
+          +r-events: none; }
+       96 +.intro.show { opacity: 1; pointer-events: auto; }
+       97 +.intro-inner { max-width: 640px; padding: 24px; }
+       98 +.intro .pre { font-family: var(--display); letter-spacing: 0.5
+          +em; text-transform: uppercase; font-size: 13px; color: var(--g
+          +old); margin: 0 0 18px; }
+       99 +.intro h1 { font-family: var(--display); font-weight: 400; fon
+          +t-style: italic; font-size: clamp(64px, 11vw, 148px); line-hei
+          +ght: 0.9; margin: 0; letter-spacing: -0.01em; text-shadow: 0 4
+          +px 50px rgba(0,0,0,0.6); }
+      100 +.intro .sub { font-family: var(--display); font-style: italic;
+          + font-size: 22px; color: var(--paper-dim); margin: 16px 0 26px
+          +; }
+      101 +.intro .text { font-size: 17px; line-height: 1.65; color: var(
+          +--paper-dim); margin: 0 auto 32px; max-width: 36em; }
+      102 +.intro .actions { display: flex; gap: 14px; justify-content: c
+          +enter; flex-wrap: wrap; }
+      103 +.intro .small { margin-top: 26px; font-size: 13px; color: var(
+          +--paper-faint); font-style: italic; }
+      104 +.intro .rule { width: 60px; height: 1px; background: var(--gol
+          +d-dim); margin: 0 auto 26px; }
+      105 +
+      106 +/* -----------------------------------------------------------
+          +----- interlude, epilogue, modals */
+      107 +.interlude, .epilogue { position: absolute; inset: 0; display:
+          + grid; place-items: center; text-align: center; opacity: 0; po
+          +inter-events: none; transition: opacity 1.4s var(--ease); }
+      108 +.interlude.show, .epilogue.show { opacity: 1; pointer-events:
+          +auto; }
+      109 +.interlude .inner, .epilogue .inner { max-width: 620px; paddin
+          +g: 24px; }
+      110 +.interlude .ch, .epilogue .ch { font-family: var(--display); l
+          +etter-spacing: 0.45em; text-transform: uppercase; font-size: 1
+          +3px; color: var(--gold); margin: 0 0 14px; }
+      111 +.interlude h2, .epilogue h2 { font-family: var(--display); fon
+          +t-style: italic; font-weight: 400; font-size: clamp(40px, 6vw,
+          + 68px); line-height: 1; margin: 0 0 22px; }
+      112 +.interlude .text, .epilogue .text { font-size: 19px; line-heig
+          +ht: 1.7; color: var(--paper-dim); font-style: italic; }
+      113 +.epilogue { background: radial-gradient(ellipse at center, rgb
+          +a(8, 6, 5, 0.35) 0%, rgba(8, 6, 5, 0.8) 80%); }
+      114 +.epilogue .actions { margin-top: 30px; display: flex; gap: 14p
+          +x; justify-content: center; flex-wrap: wrap; }
+      115 +.modal { position: absolute; inset: 0; display: grid; place-it
+          +ems: center; background: rgba(8, 6, 5, 0.62); backdrop-filter:
+          + blur(4px); opacity: 0; pointer-events: none; transition: opac
+          +ity 0.5s var(--ease); }
+      116 +.modal.show { opacity: 1; pointer-events: auto; }
+      117 +.modal .card { max-width: 560px; width: calc(100vw - 40px); ma
+          +x-height: calc(100vh - 60px); overflow: auto; padding: 36px 40
+          +px; border: 1px solid rgba(214, 177, 102, 0.3); border-radius:
+          + 4px; background: rgba(18, 14, 11, 0.92); }
+      118 +.modal h2 { font-family: var(--display); font-style: italic; f
+          +ont-weight: 400; font-size: 40px; margin: 0 0 14px; }
+      119 +.modal p { font-size: 16.5px; line-height: 1.6; color: var(--p
+          +aper-dim); }
+      120 +.modal .keys { display: grid; grid-template-columns: auto 1fr;
+          + gap: 6px 16px; font-size: 15px; color: var(--paper-dim); marg
+          +in: 18px 0 8px; }
+      121 +.modal kbd { font-family: var(--display); font-size: 14px; bor
+          +der: 1px solid rgba(243, 233, 214, 0.25); border-radius: 4px;
+          +padding: 1px 7px; color: var(--paper); justify-self: start; }
+      122 +.modal .close { position: absolute; margin: -20px 0 0 0; right
+          +: 0; }
+      123 +.modal .card-head { display: flex; justify-content: space-betw
+          +een; align-items: baseline; }
+      124 +.modal .x { font-size: 28px; line-height: 1; color: var(--pape
+          +r-faint); }
+      125 +.modal .x:hover { color: var(--paper); }
+      126 +
+      127 +/* -----------------------------------------------------------
+          +----- loading */
+      128 +.loading { position: absolute; left: 50%; top: 50%; transform:
+          + translate(-50%, -50%); font-family: var(--display); font-styl
+          +e: italic; font-size: 22px; color: var(--paper-dim); opacity:
+          +0; transition: opacity 0.5s; pointer-events: none; text-align:
+          + center; }
+      129 +.loading.show { opacity: 1; }
+      130 +.loading small { display: block; font-style: normal; font-size
+          +: 11px; letter-spacing: 0.3em; text-transform: uppercase; colo
+          +r: var(--gold); margin-bottom: 8px; }
+      131 +
+      132 +/* -----------------------------------------------------------
+          +----- states */
+      133 +body.mode-intro .topbar .tools, body.mode-intro .thread { opac
+          +ity: 0; pointer-events: none; }
+      134 +body.mode-atlas .thread { opacity: 0.0; pointer-events: none;
+          +}
+      135 +body.ui-hidden .city-panel, body.ui-hidden .atlas-panel, body.
+          +ui-hidden .thread, body.ui-hidden .wordmark { opacity: 0 !impo
+          +rtant; pointer-events: none !important; }
+      136 +body.ui-hidden .city-panel > *, body.ui-hidden .atlas-panel >
+          +* { pointer-events: none !important; }
+      137 +
+      138 +@media (max-width: 760px) {
+      139 +  .topbar { padding: 14px 14px; }
+      140 +  .wordmark span { display: none; }
+      141 +  .tools button { width: 34px; height: 34px; }
+      142 +  .city-panel { padding: 0 18px; bottom: 74px; }
+      143 +  .caption { display: none; }
+      144 +  .city-panel.read .caption { display: block; }
+      145 +  .city-name { font-size: 54px; }
+      146 +  .motto { font-size: 18px; }
+      147 +  .thread { bottom: 10px; gap: 6px; padding: 6px; }
+      148 +  .beads { gap: 5px; }
+      149 +  .bead { width: 5px; height: 5px; }
+      150 +  .chapter .row { gap: 2px; }
+      151 +  .atlas-panel { left: 18px; bottom: 20px; }
+      152 +  .legend { display: none; }
+      153 +}
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/ui/ui.ts)
+  ⎿  Wrote 287 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/ui/ui.ts
+      1 // DOM overlay: top bar, city panel, the bead thread, atlas panel
+        , intro,
+      2 // interludes, epilogue, modals. Pure view; the app wires the beh
+      3
+      4 import { CITIES } from '../data/cities';
+      5 import { SERIES, SERIES_BY_ID } from '../data/series';
+      6 import { FRAME } from '../data/frame';
+      8
+      9 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII',
+        'IX'];
+     … +342 lines (ctrl+o to expand)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/app/app.ts)
+  ⎿  Added 468 lines, removed 7 lines
+        1 -// Placeholder app; the full experience is written later.
+        1 +// The application: intro, the Khan's atlas, the fifty-five ci
+          +ties, the journey
+        2 +// (all cities in the book's order with the chapters' interlud
+          +es) and the epilogue.
+        3 +
+        4 +import * as THREE from 'three';
+        5  import { Stage } from '../core/stage';
+        6  import { createCityWorld } from '../core/cityWorld';
+        7 +import { createAtlasWorld, type AtlasApi } from '../atlas/atla
+          +s';
+        8 +import { loadCity } from '../cities/registry';
+        9  import { CITIES, CITY_BY_ID } from '../data/cities';
+       10 +import { SERIES_BY_ID } from '../data/series';
+       11 +import { FRAME } from '../data/frame';
+       12 +import { UI, type Action } from '../ui/ui';
+       13 +import type { CityInstance, CityMeta, CameraView } from '../co
+          +re/types';
+       14 +import type { Ambient } from '../core/audio';
+       15
+       16 +type Mode = 'intro' | 'atlas' | 'city' | 'epilogue';
+       17 +
+       18 +const JOURNEY_CITY_SECONDS = 34;
+       19 +const INTERLUDE_SECONDS = 10;
+       20 +const FADE = '#0e0b09';
+       21 +
+       22 +function storage<T>(key: string, fallback: T): T {
+       23 +  try {
+       24 +    const v = localStorage.getItem(key);
+       25 +    return v ? (JSON.parse(v) as T) : fallback;
+       26 +  } catch {
+       27 +    return fallback;
+       28 +  }
+       29 +}
+       30 +function store(key: string, v: unknown) {
+       31 +  try {
+       32 +    localStorage.setItem(key, JSON.stringify(v));
+       33 +  } catch {
+       34 +    /* private mode */
+       35 +  }
+       36 +}
+       37 +
+       38 +class App {
+       39 +  stage: Stage;
+       40 +  ui = new UI();
+       41 +  atlas!: AtlasApi;
+       42 +  mode: Mode = 'intro';
+       43 +  city: CityMeta | null = null;
+       44 +  instance: CityInstance | null = null;
+       45 +  interactionOn = false;
+       46 +  busy = false;
+       47 +  pending: (() => Promise<void>) | null = null;
+       48 +  visited = new Set<string>(storage<string[]>('ic-visited', []
+          +));
+       49 +  journey = { on: false, t: 0, interlude: false, toggled: fals
+          +e };
+       50 +  audio: Ambient | null = null;
+       51 +  soundOn = false;
+       52 +  quality: 'low' | 'high';
+       53 +  tipCity: CityMeta | null = null;
+       54 +
+       55 +  constructor() {
+       56 +    const canvas = document.getElementById('stage') as HTMLCan
+          +vasElement;
+       57 +    const weak = /Mobi|Android/i.test(navigator.userAgent) ||
+          +(navigator.hardwareConcurrency ?? 8) <= 4;
+       58 +    this.quality = new URLSearchParams(location.search).get('q
+          +uality') === 'low' || weak ? 'low' : 'high';
+       59 +    this.stage = new Stage({ canvas, quality: this.quality });
+       60 +    this.stage.setFadeColor(FADE);
+       61 +    this.ui.onAction = (a) => this.action(a);
+       62 +    this.ui.onBead = (c) => this.goCity(c, { stopJourney: fals
+          +e });
+       63 +    this.ui.setVisited(this.visited);
+       64 +    this.stage.onFrame = (dt) => this.tick(dt);
+       65 +    window.addEventListener('keydown', (e) => this.key(e));
+       66 +    window.addEventListener('hashchange', () => this.route());
+       67 +  }
+       68 +
+       69 +  async start() {
+       70 +    this.atlas = await createAtlasWorld(this.stage);
+       71 +    this.atlas.world.keep = true;
+       72 +    this.atlas.onHover = (m) => {
+       73 +      this.tipCity = m;
+       74 +      this.ui.showTooltip(m);
+       75 +    };
+       76 +    this.atlas.onSelect = (m) => this.goCity(m, { fromAtlas: t
+          +rue });
+       77 +    this.atlas.onCenter = () => this.ui.venice.classList.add('
+          +show');
+       78 +    this.stage.setWorld(this.atlas.world);
+       79 +    this.stage.start();
+       80 +    await this.route(true);
+       81 +  }
+       82 +
+       83 +  // ---------------------------------------------------------
+          +---- routing
+       84 +
+       85 +  private setHash(h: string) {
+       86 +    if (location.hash !== h) history.replaceState(null, '', h)
+          +;
+       87 +  }
+       88 +
+       89 +  async route(initial = false) {
+       90 +    const h = location.hash.replace(/^#\/?/, '');
+       91 +    const [kind, id] = h.split('/');
+       92 +    if (kind === 'city' && CITY_BY_ID[id]) return this.goCity(
+          +CITY_BY_ID[id], { instant: initial });
+       93 +    if (kind === 'journey') return this.startJourney(CITY_BY_I
+          +D[id] ?? CITIES[0]);
+       94 +    if (kind === 'atlas') return this.goAtlas(initial);
+       95 +    if (kind === 'epilogue') return this.goEpilogue();
+       96 +    return this.goIntro();
+       97 +  }
+       98 +
+       99 +  /** Serialise transitions: the newest request wins. */
+      100 +  private run(task: () => Promise<void>) {
+      101 +    if (this.busy) {
+      102 +      this.pending = task;
+      103 +      return;
+      104 +    }
+      105 +    this.busy = true;
+      106 +    task()
+      107 +      .catch((e) => console.error(e))
+      108 +      .finally(async () => {
+      109 +        this.busy = false;
+      110 +        const next = this.pending;
+      111 +        this.pending = null;
+      112 +        if (next) this.run(next);
+      113 +      });
+      114 +  }
+      115 +
+      116 +  // ---------------------------------------------------------
+          +---- modes
+      117 +
+      118 +  goIntro() {
+      119 +    this.mode = 'intro';
+      120 +    this.ui.setMode('intro');
+      121 +    this.setHash('#/');
+      122 +    this.run(async () => {
+      123 +      if (this.stage.world !== this.atlas.world) {
+      124 +        await this.stage.fadeTo(1, 2.2);
+      125 +        this.stage.setWorld(this.atlas.world, false);
+      126 +      }
+      127 +      this.stage.applyCamera(this.atlas.world.camera, false);
+      128 +      this.stage.camera.position.set(-6, 9, 44);
+      129 +      this.stage.controls.target.set(0, 2, 0);
+      130 +      this.stage.flyTo({ position: [0, 13, 52], target: [0, 1.
+          +5, 0] }, 6);
+      131 +      await this.stage.fadeTo(0, 0.5);
+      132 +    });
+      133 +  }
+      134 +
+      135 +  goAtlas(initial = false) {
+      136 +    this.stopJourney();
+      137 +    this.mode = 'atlas';
+      138 +    this.ui.setMode('atlas');
+      139 +    this.setHash('#/atlas');
+      140 +    this.document(null);
+      141 +    this.run(async () => {
+      142 +      const wasAtlas = this.stage.world === this.atlas.world;
+      143 +      if (!wasAtlas) {
+      144 +        await this.stage.fadeTo(1, 2.4);
+      145 +        this.stage.setWorld(this.atlas.world, false);
+      146 +        this.instance = null;
+      147 +      }
+      148 +      this.atlas.setCurrent(this.city?.id ?? null);
+      149 +      const cam = this.atlas.world.camera;
+      150 +      if (!wasAtlas || initial) {
+      151 +        if (this.city) {
+      152 +          const v = this.atlas.diveView(this.city.id);
+      153 +          this.stage.camera.position.set(...v.position);
+      154 +          this.stage.controls.target.set(...v.target);
+      155 +        } else {
+      156 +          this.stage.camera.position.set(0, 80, 60);
+      157 +          this.stage.controls.target.set(0, 0, 0);
+      158 +        }
+      159 +      }
+      160 +      this.stage.flyTo({ position: cam.position, target: cam.t
+          +arget }, wasAtlas ? 2.6 : 3);
+      161 +      if (wasAtlas && this.stage.fadeValue > 0) await this.sta
+          +ge.fadeTo(0, 0.8);
+      162 +      else if (!wasAtlas) await this.stage.fadeTo(0, 0.9);
+      163 +      this.mood(null);
+      164 +    });
+      165 +  }
+      166 +
+      167 +  goEpilogue() {
+      168 +    this.stopJourney();
+      169 +    this.mode = 'epilogue';
+      170 +    this.ui.setMode('epilogue');
+      171 +    this.setHash('#/epilogue');
+      172 +    this.document(null);
+      173 +    this.run(async () => {
+      174 +      if (this.stage.world !== this.atlas.world) {
+      175 +        await this.stage.fadeTo(1, 1.2);
+      176 +        this.stage.setWorld(this.atlas.world, false);
+      177 +        this.instance = null;
+      178 +      }
+      179 +      this.atlas.setCurrent(null);
+      180 +      this.stage.camera.position.set(0, 28, 30);
+      181 +      this.stage.controls.target.set(0, 0, 0);
+      182 +      this.stage.flyTo({ position: [0, 70, 22], target: [0, 0,
+          + 0] }, 14);
+      183 +      this.atlas.revealThread(9);
+      184 +      await this.stage.fadeTo(0, 0.5);
+      185 +    });
+      186 +  }
+      187 +
+      188 +  goCity(meta: CityMeta, o: { fromAtlas?: boolean; instant?: b
+          +oolean; stopJourney?: boolean } = {}) {
+      189 +    if (o.stopJourney !== false && this.journey.on && !o.insta
+          +nt) this.stopJourney();
+      190 +    this.mode = 'city';
+      191 +    this.ui.setMode('city');
+      192 +    this.ui.interlude.classList.remove('show');
+      193 +    this.setHash('#/city/' + meta.id);
+      194 +    this.run(async () => {
+      195 +      this.ui.cityPanel.classList.remove('show');
+      196 +      if (o.fromAtlas && this.stage.world === this.atlas.world
+          +) {
+      197 +        this.stage.flyTo(this.atlas.diveView(meta.id), 1.3);
+      198 +        await new Promise((r) => setTimeout(r, 450));
+      199 +      }
+      200 +      await this.stage.fadeTo(1, o.fromAtlas ? 1.5 : 2.2);
+      201 +      const slow = setTimeout(() => this.ui.setLoading(meta.na
+          +me), 250);
+      202 +      const cw = await createCityWorld(meta, this.stage, this.
+          +quality);
+      203 +      clearTimeout(slow);
+      204 +      this.ui.setLoading(null);
+      205 +      this.city = meta;
+      206 +      this.instance = cw.instance;
+      207 +      this.interactionOn = false;
+      208 +      this.stage.setWorld(cw.world, true);
+      209 +      // arrive from further away and higher, then settle on t
+          +he city's own view
+      210 +      const cam = cw.world.camera;
+      211 +      const t = new THREE.Vector3(...cam.target);
+      212 +      const p = new THREE.Vector3(...cam.position);
+      213 +      const start = p.clone().sub(t).multiplyScalar(1.45).add(
+          +t);
+      214 +      start.y += 4;
+      215 +      this.stage.camera.position.copy(start);
+      216 +      this.stage.controls.target.copy(t);
+      217 +      this.stage.controls.update();
+      218 +      this.stage.flyTo({ position: cam.position, target: cam.t
+          +arget }, 4.2);
+      219 +      this.visited.add(meta.id);
+      220 +      store('ic-visited', [...this.visited]);
+      221 +      this.ui.setVisited(this.visited);
+      222 +      this.ui.showCity(meta, cw.instance.interaction ?? null,
+          +false);
+      223 +      this.document(meta);
+      224 +      this.mood(meta);
+      225 +      this.audio?.chime();
+      226 +      await this.stage.fadeTo(0, 0.85);
+      227 +      setTimeout(() => {
+      228 +        if (this.city === meta && this.mode === 'city') this.u
+          +i.cityPanel.classList.add('show');
+      229 +      }, 250);
+      230 +      this.journey.t = 0;
+      231 +      this.journey.toggled = false;
+      232 +      this.prefetch(meta);
+      233 +    });
+      234 +  }
+      235 +
+      236 +  private prefetch(meta: CityMeta) {
+      237 +    const i = meta.order - 1;
+      238 +    for (const j of [i + 1, i - 1]) {
+      239 +      const c = CITIES[(j + CITIES.length) % CITIES.length];
+      240 +      loadCity(c.id).catch(() => {});
+      241 +    }
+      242 +  }
+      243 +
+      244 +  private document(meta: CityMeta | null) {
+      245 +    document.title = meta ? `${meta.name} - Invisible Cities`
+          +: 'Invisible Cities';
+      246 +  }
+      247 +
+      248 +  // ---------------------------------------------------------
+          +---- journey
+      249 +
+      250 +  startJourney(from?: CityMeta) {
+      251 +    this.journey.on = true;
+      252 +    this.journey.t = 0;
+      253 +    this.ui.setJourney(true);
+      254 +    const first = from ?? (this.city && this.mode === 'city' ?
+          + this.city : CITIES[0]);
+      255 +    if (this.mode === 'city' && this.city === first) return;
+      256 +    if (first.order === 1 || (from && first.chapter !== CITIES
+          +[first.order - 2]?.chapter)) {
+      257 +      this.interludeThen(first);
+      258 +    } else {
+      259 +      this.goCity(first, { stopJourney: false });
+      260 +    }
+      261 +  }
+      262 +
+      263 +  stopJourney() {
+      264 +    if (!this.journey.on) return;
+      265 +    this.journey.on = false;
+      266 +    this.journey.interlude = false;
+      267 +    this.ui.setJourney(false);
+      268 +    this.ui.interlude.classList.remove('show');
+      269 +  }
+      270 +
+      271 +  private interludeThen(next: CityMeta) {
+      272 +    const text = FRAME.chapterInterludes.find((c) => c.chapter
+          + === next.chapter);
+      273 +    if (!text) {
+      274 +      this.goCity(next, { stopJourney: false });
+      275 +      return;
+      276 +    }
+      277 +    this.journey.interlude = true;
+      278 +    this.run(async () => {
+      279 +      this.ui.cityPanel.classList.remove('show');
+      280 +      await this.stage.fadeTo(1, 1.0);
+      281 +      this.ui.showInterlude(next.chapter, text.title, text.tex
+          +t);
+      282 +      this.mode = 'city';
+      283 +      this.ui.setMode('city');
+      284 +    });
+      285 +    window.setTimeout(() => {
+      286 +      if (!this.journey.on || !this.journey.interlude) return;
+      287 +      this.journey.interlude = false;
+      288 +      this.ui.interlude.classList.remove('show');
+      289 +      this.goCity(next, { stopJourney: false });
+      290 +    }, INTERLUDE_SECONDS * 1000);
+      291 +  }
+      292 +
+      293 +  private tick(dt: number) {
+      294 +    // tooltip follows the hovered medallion
+      295 +    if (this.mode === 'atlas' && this.tipCity) {
+      296 +      const p = this.atlas.medalPosition(this.tipCity.id).proj
+          +ect(this.stage.camera);
+      297 +      const r = this.stage.renderer.domElement.getBoundingClie
+          +ntRect();
+      298 +      this.ui.moveTooltip((p.x * 0.5 + 0.5) * r.width, (-p.y *
+          + 0.5 + 0.5) * r.height - 10);
+      299 +    }
+      300 +    if (!this.journey.on || this.journey.interlude || this.bus
+          +y || this.mode !== 'city' || !this.city) return;
+      301 +    if (document.hidden) return;
+      302 +    const j = this.journey;
+      303 +    j.t += dt;
+      304 +    this.ui.setJourneyProgress(j.t / JOURNEY_CITY_SECONDS);
+      305 +    const inter = this.instance?.interaction;
+      306 +    if (inter && !j.toggled && j.t > JOURNEY_CITY_SECONDS * 0.
+          +42) {
+      307 +      j.toggled = true;
+      308 +      this.toggleInteraction(true);
+      309 +    }
+      310 +    if (inter && this.interactionOn && j.t > JOURNEY_CITY_SECO
+          +NDS * 0.82) this.toggleInteraction(false);
+      311 +    if (j.t >= JOURNEY_CITY_SECONDS) {
+      312 +      j.t = 0;
+      313 +      const i = this.city.order;
+      314 +      if (i >= CITIES.length) {
+      315 +        this.goEpilogue();
+      316 +        return;
+      317 +      }
+      318 +      const next = CITIES[i];
+      319 +      if (next.chapter !== this.city.chapter) this.interludeTh
+          +en(next);
+      320 +      else this.goCity(next, { stopJourney: false });
+      321 +    }
+      322 +  }
+      323 +
+      324 +  // ---------------------------------------------------------
+          +---- actions
+      325 +
+      326 +  toggleInteraction(force?: boolean) {
+      327 +    const inter = this.instance?.interaction;
+      328 +    if (!inter || this.mode !== 'city') return;
+      329 +    this.interactionOn = force ?? !this.interactionOn;
+      330 +    inter.set(this.interactionOn);
+      331 +    this.ui.setInteraction(inter, this.interactionOn);
+      332 +    this.ui.hint.textContent = this.interactionOn ? inter.hint
+          + ?? '' : '';
+      333 +    const cam = this.stage.world?.camera;
+      334 +    if (inter.camera && this.interactionOn) this.stage.flyTo(i
+          +nter.camera, 3);
+      335 +    else if (inter.camera && cam) this.stage.flyTo({ position:
+          + cam.position, target: cam.target }, 3);
+      336 +    this.stage.poke();
+      337 +  }
+      338 +
+      339 +  step(dir: 1 | -1) {
+      340 +    const cur = this.city && this.mode === 'city' ? this.city.
+          +order - 1 : dir > 0 ? -1 : CITIES.length;
+      341 +    const next = CITIES[(cur + dir + CITIES.length) % CITIES.l
+          +ength];
+      342 +    if (this.journey.on) {
+      343 +      this.journey.interlude = false;
+      344 +      this.ui.interlude.classList.remove('show');
+      345 +    }
+      346 +    this.goCity(next, { stopJourney: false });
+      347 +  }
+      348 +
+      349 +  async toggleSound() {
+      350 +    this.soundOn = !this.soundOn;
+      351 +    this.ui.setSound(this.soundOn);
+      352 +    store('ic-sound', this.soundOn);
+      353 +    if (this.soundOn) {
+      354 +      if (!this.audio) {
+      355 +        const { Ambient } = await import('../core/audio');
+      356 +        this.audio = new Ambient();
+      357 +      }
+      358 +      this.mood(this.mode === 'city' ? this.city : null);
+      359 +      await this.audio.start();
+      360 +    } else {
+      361 +      this.audio?.stop();
+      362 +    }
+      363 +  }
+      364 +
+      365 +  private mood(meta: CityMeta | null) {
+      366 +    if (!this.audio) return;
+      367 +    if (!meta) {
+      368 +      this.audio.setMood({ series: 8, night: 0.9, energy: 0.2,
+          + seed: 0 });
+      369 +      return;
+      370 +    }
+      371 +    const env = this.stage.world?.env;
+      372 +    const top = new THREE.Color(env?.skyTop ?? '#888888');
+      373 +    const lum = 0.2126 * top.r + 0.7152 * top.g + 0.0722 * top
+          +.b;
+      374 +    const night = Math.max(env?.stars ?? 0, 1 - Math.min(1, lu
+          +m * 3));
+      375 +    this.audio.setMood({ series: SERIES_BY_ID[meta.series].ind
+          +ex, night, energy: 0.35 + (meta.order % 5) * 0.1, seed: meta.o
+          +rder });
+      376 +  }
+      377 +
+      378 +  action(a: Action) {
+      379 +    switch (a) {
+      380 +      case 'home':
+      381 +        this.stopJourney();
+      382 +        this.goIntro();
+      383 +        break;
+      384 +      case 'atlas':
+      385 +      case 'enter-atlas':
+      386 +      case 'epilogue-atlas':
+      387 +        this.goAtlas();
+      388 +        break;
+      389 +      case 'journey':
+      390 +        if (this.journey.on) this.stopJourney();
+      391 +        else this.startJourney();
+      392 +        break;
+      393 +      case 'begin':
+      394 +      case 'epilogue-again':
+      395 +        this.startJourney(CITIES[0]);
+      396 +        break;
+      397 +      case 'sound':
+      398 +        void this.toggleSound();
+      399 +        break;
+      400 +      case 'hide':
+      401 +        document.body.classList.toggle('ui-hidden');
+      402 +        this.ui.tools.hide.classList.toggle('on', document.bod
+          +y.classList.contains('ui-hidden'));
+      403 +        break;
+      404 +      case 'full':
+      405 +        if (document.fullscreenElement) void document.exitFull
+          +screen();
+      406 +        else void document.documentElement.requestFullscreen?.
+          +();
+      407 +        break;
+      408 +      case 'about':
+      409 +        this.ui.about.classList.add('show');
+      410 +        break;
+      411 +      case 'prev':
+      412 +        this.step(-1);
+      413 +        break;
+      414 +      case 'next':
+      415 +        this.step(1);
+      416 +        break;
+      417 +      case 'interact':
+      418 +        this.toggleInteraction();
+      419 +        break;
+      420 +    }
+      421 +  }
+      422 +
+      423 +  private key(e: KeyboardEvent) {
+      424 +    if (e.metaKey || e.ctrlKey || e.altKey) return;
+      425 +    const modal = [this.ui.about, this.ui.venice].find((m) =>
+          +m.classList.contains('show'));
+      426 +    if (modal) {
+      427 +      if (e.key === 'Escape') modal.classList.remove('show');
+      428 +      return;
+      429 +    }
+      430 +    switch (e.key) {
+      431 +      case 'ArrowRight':
+      432 +        this.step(1);
+      433 +        break;
+      434 +      case 'ArrowLeft':
+      435 +        this.step(-1);
+      436 +        break;
+      437 +      case 'Escape':
+      438 +        if (this.mode === 'city' || this.mode === 'epilogue')
+          +this.goAtlas();
+      439 +        break;
+      440 +      case ' ':
+      441 +        e.preventDefault();
+      442 +        this.toggleInteraction();
+      443 +        break;
+      444 +      case 'j':
+      445 +      case 'J':
+      446 +        this.action('journey');
+      447 +        break;
+      448 +      case 'h':
+      449 +      case 'H':
+      450 +        this.action('hide');
+      451 +        break;
+      452 +      case 'm':
+      453 +      case 'M':
+      454 +        this.action('sound');
+      455 +        break;
+      456 +      case 'f':
+      457 +      case 'F':
+      458 +        this.action('full');
+      459 +        break;
+      460 +      case 'Enter':
+      461 +        if (this.mode === 'intro') this.goAtlas();
+      462 +        break;
+      463 +    }
+      464 +  }
+      465 +}
+      466 +
+      467  export async function startApp() {
+        7 -  const canvas = document.getElementById('stage') as HTMLCanva
+          -sElement;
+        8 -  const stage = new Stage({ canvas, quality: 'high' });
+        9 -  const id = location.hash.replace('#/city/', '') || CITIES[0]
+          -.id;
+       10 -  const cw = await createCityWorld(CITY_BY_ID[id] ?? CITIES[0]
+          -, stage, 'high');
+       11 -  stage.setWorld(cw.world);
+       12 -  stage.start();
+      468 +  await document.fonts.ready;
+      469 +  const app = new App();
+      470 +  (window as unknown as { __app: App }).__app = app;
+      471 +  await app.start();
+      472  }
+      473 +
+      474 +export type { CameraView };
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● App shell and atlas typecheck (only the audio module is pending from its
+  agent). Rendering the atlas to check it visually.
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● The atlas looks great with its nine spiral golden-thread arms and central
+  chessboard. Now I'll fix the label clutter by moving city names inside the
+  medallions instead of engraving them on the board.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/scripts/thumbs.mjs)
+  ⎿  Wrote 60 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/scripts/thumbs.mjs
+      1 #!/usr/bin/env node
+      2 // Render a square thumbnail of every city for the atlas medallio
+        ns:
+        jpg
+      4 // Uses the dev server on :5173 when running, otherwise a private
+         Vite server.
+      5
+      7 import { resolve, dirname } from 'node:path';
+      8 import { fileURLToPath } from 'node:url';
+      9 import puppeteer from 'puppeteer-core';
+     … +64 lines (ctrl+o to expand)
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● Research for Cities & Memory just landed; launching builders for Isidora,
+  Zaira, Zora and Maurilia (Diomira is my reference city).
+
+● Workflow(invisible-cities-build-wf_a7a7ed5b-b0a.js)
+  ⎿  /workflows to view dynamic workflow runs
+
+  Listed 1 directory, ran 2 shell commands (ctrl+o to expand)
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/README.md)
+  ⎿  Wrote 41 lines to ../../../home/konrad/dane/workspace/_upstream/invisi
+     ble-cities-one-shot/claude-code-opus-5.5-max-ultracode-on/README.md
+      1 # Invisible Cities
+      3 An atlas of the fifty-five cities of Italo Calvino's *Invisible C
+        ities* (*Le città invisibili*, 1972),
+      4 built with three.js. Every city is a procedural diorama written i
+      5 floating in its own weather; the cities are gathered on the Great
+         Khan's atlas, a lacquered rose window
+        e rings are their appearances, joined by
+      7 a golden thread that follows the order in which Marco Polo tells
+        them.
+      9 ## Run
+     … +50 lines (ctrl+o to expand)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Builders are still in their first passes (no city files written yet).
+  Meanwhile I'm preparing review tooling: a contact-sheet generator so critics
+  can compare all cities side by side.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● While builders work, I'm writing the next workflow: build → independent
+  art-director critique → refinement, pipelined per city, for the remaining
+  series.
+
+  Listed 1 directory, ran 1 shell command (ctrl+o to expand)
+
+● All 20 agents are busy. Meanwhile I'll polish my reference city Diomira (the
+  haze was too milky, the cry rings too strong, the tower's golden cock cut
+  off).
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+● Diomira now frames its whole tower and the golden cock, with less haze. Next
+  I'll check research progress and prepare the pipelined build→critique→refine
+  workflow.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Agents are mid-build. I'll use the time to make a bonus capstone scene:
+  Venice, the city implicit in all others, reached from the chessboard at the
+  atlas centre.
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/venice/venice.ts)
+  ⎿  Wrote 233 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/venice/venice.ts
+       1 // VENICE - the city Marco Polo never names, because it is impli
+       2 // others. A lagoon at dawn: San Marco's five domes, the campani
+         le, the Doge's
+       3 // palace, the Salute, the Rialto, gondolas and mooring poles; o
+       4 // fifty-five small lights circle slowly, one for each city he d
+         escribed.
+       6 import * as THREE from 'three';
+       7 import * as K from '../kit';
+       8 import type { CityBuilder } from '../core/types';
+      10 import { SERIES_BY_ID } from '../data/series';
+     … +301 lines (ctrl+o to expand)
+
+  Read 1 file, ran 3 shell commands (ctrl+o to expand)
+
+● Venice is in place as a bonus scene (I'll refine it later). Checking builder
+  progress.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● While waiting on builders, I'll smoke-test every toolkit function in one scene
+  so any kit bugs surface now rather than inside 55 agents.
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/dev/kittest.ts)
+  ⎿  Wrote 93 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/src/dev/kittest.ts
+       1 // Development scene exercising every toolkit function (?shot=ki
+         ttest).
+       2
+       3 import * as THREE from 'three';
+       4 import * as K from '../kit';
+       6
+       7 const build: CityBuilder = (ctx) => {
+       8   const rng = ctx.rng;
+       9   const root = new THREE.Group();
+      10   root.add(K.plinth({ radius: 18 }));
+     … +116 lines (ctrl+o to expand)
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● Toolkit smoke test passes: every helper renders without errors. Checking on
+  agents again.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● While waiting, I'll add robustness so a failing city doesn't break the app,
+  polish the camera choreography for the journey, and add an epilogue effect to
+  the atlas.
+
+  Read 1 file, ran 5 shell commands (ctrl+o to expand)
+
+● Venice reads correctly from above (Grand Canal S-curve, San Marco, the
+  Salute). Adding an index of all 55 cities by chapter (key I) for quick
+  navigation while builders work.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Monitor(new city modules, audio module or research briefs appearing)
+  ⎿  Monitor started · task bg7bwc40i · timeout 1800s
+
+● While the monitor watches for new files, I'll add the opening flourish: the
+  golden thread draws itself across the atlas behind the title.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Now drafting the critique→refine pipeline script (used both for the cities
+  already being built and, with a build stage, for the remaining series).
+
+  Made 1 scratchpad edit +123, ran 1 shell command (ctrl+o to expand)
+
+● Adding a sweep script that loads every city in one browser session and
+  tabulates errors and render stats; it'll be the integration gate once builds
+  land.
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/scripts/sweep.mjs)
+  ⎿  Wrote 73 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/scripts/sweep.mjs
+      1 #!/usr/bin/env node
+      2 // Load every city in headless Chromium and report errors and ren
+        der statistics.
+      3 //   node scripts/sweep.mjs [id ...] [--shots dir]
+      4 // Exit code 1 when any city errors or misses the performance bud
+      5
+      6 import { readdirSync, existsSync, mkdirSync } from 'node:fs';
+      7 import { resolve, dirname } from 'node:path';
+      8 import { fileURLToPath } from 'node:url';
+      9 import puppeteer from 'puppeteer-core';
+     … +84 lines (ctrl+o to expand)
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Trading Cities research is in. Launching the full build→critique→refine
+  pipeline for its five cities.
+
+● Workflow(pipeline.js)
+  ⎿  /workflows to view dynamic workflow runs
+
+● Monitor event: "new city modules, audio module or research briefs appearing"
+  NEW FILE: briefs/chloe.json
+  NEW FILE: briefs/ersilia.json
+  NEW FILE: briefs/esmeralda.json
+  NEW FILE: briefs/euphemia.json
+  NEW FILE: briefs/eutropia.json
+  NEW FILE: briefs/_series_trading.json
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Polishing the Venice bonus scene while builders work: canal-side palazzi with
+  glowing arched windows and San Giorgio Maggiore across the basin.
+
+  Read 1 file, ran 2 shell commands (ctrl+o to expand)
+
+● Venice now reads as a misty dawn lagoon with the 55 city-lights circling over
+  the water. Checking builder progress.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● I'll cap future workflows at 4 cities each to match the concurrency limit, and
+  update the prompt to have builders skip reading three.js internals and write
+  a first draft early instead of over-exploring.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● The trading pipeline has 5 cities on a 4-slot cap (Esmeralda would wait ~an
+  hour). It just started, so I'll restart it split into two smaller workflows.
+● Stop Task
+  ⎿  Build (unless review mode), art-direct and refine Invisible Cities
+     city modules, pipelined per city · stopped
+
+● Workflow(pipeline.js)
+  ⎿  /workflows to view dynamic workflow runs
+
+● Workflow(pipeline.js)
+  ⎿  /workflows to view dynamic workflow runs
+
+  Searched memories (ctrl+o to expand)
+
+● Eyes, Names, Dead and Sky research are in flight; Continuous and Hidden would
+  wait another ~40 minutes. Instead, I'll let their builders research their own
+  cities and start now.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Workflow(pipeline.js)
+  ⎿  /workflows to view dynamic workflow runs
+
+● Workflow(pipeline.js)
+  ⎿  /workflows to view dynamic workflow runs
+
+● Workflow(pipeline.js)
+  ⎿  /workflows to view dynamic workflow runs
+
+● 9 workflows (~35 agents) are now building in parallel. Remaining: Eyes, Names,
+  Dead and Sky, which launch as their research lands. Let me check whether the
+  audio agent is close.
+
+  Listed 1 directory (ctrl+o to expand)
+
+● While the audio agent finishes up, I'll write an automated end-to-end flow
+  test for the real app covering intro → atlas hover/click → city → next →
+  transformation → index, capturing screenshots and console errors along the
+  way.
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/scripts/dev/flow.mjs)
+  ⎿  Wrote 73 lines to
+     ../../../home/konrad/dane/workspace/_upstream/invisible-cities-one-sho
+     t/claude-code-opus-5.5-max-ultracode-on/scripts/dev/flow.mjs
+       1 // End-to-end flow through the real app with screenshots:
+       2 //   node scripts/dev/flow.mjs [base=http://127.0.0.1:5173/] [ou
+         tDir=shots/flow] [w=1440] [h=900]
+       4 import { mkdirSync } from 'node:fs';
+       5
+       6 const [base = 'http://127.0.0.1:5173/', out = 'shots/flow', w =
+         '1440', h = '900'] = process.argv.slice(2);
+       8 const browser = await puppeteer.launch({
+       9   executablePath: '/usr/bin/chromium',
+      10   headless: true,
+     … +70 lines (ctrl+o to expand)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Adding a cinematic touch while I wait: a centered title card (series line +
+  city name) that fades in on arrival before the side panel appears.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Launching the frame-text writer (intro, 9 chapter interludes, epilogue, Venice
+  note) as its own agent now rather than waiting in the research queue.
+
+● Agent(Write original frame texts)
+  ⎿  Backgrounded agent (↓ to manage · ctrl+o to expand)
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Monitor event: "new city modules, audio module or research briefs appearing"
+  NEW FILE: src/core/audio.ts
+
+● The audio module just landed. Typechecking and running the end-to-end flow
+  test.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Monitor event: "new city modules, audio module or research briefs appearing"
+  NEW FILE: src/cities/_hypatia.ts
+
+● Monitor event: "new city modules, audio module or research briefs appearing"
+  NEW FILE: src/cities/anastasia.ts
+
+  Read 1 file (ctrl+o to expand)
+
+● The intro looks elegant. Checking the rest of the flow screenshots.
+
+  Read 5 files, ran 1 shell command (ctrl+o to expand)
+
+● The whole app flow runs without errors (intro, atlas, city, index, Venice,
+  epilogue). The first city module (Anastasia) just appeared; let me see what
+  the builders are producing.
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● Anastasia's first pass is already intricate (concentric canals, a sky full of
+  kites) and its builder is still iterating. Checking whether
+  Eyes/Names/Dead/Sky research has landed.
+
+  Ran 1 shell command (ctrl+o to expand)
+● Cities & Names research is in. Launching its pipelines (split 3+2 to stay
+  under the slot cap).
+
+● Workflow(pipeline.js)
+  ⎿  /workflows to view dynamic workflow runs
+
+● Workflow(pipeline.js)
+  ⎿  /workflows to view dynamic workflow runs
+
+● Monitor event: "new city modules, audio module or research briefs appearing"
+  NEW FILE: briefs/aglaura.json
+  NEW FILE: briefs/clarice.json
+  NEW FILE: briefs/irene.json
+  NEW FILE: briefs/leandra.json
+  NEW FILE: briefs/pyrrha.json
+  NEW FILE: briefs/_series_names.json
+
+  Searched for 1 pattern, ran 4 shell commands (ctrl+o to expand)
+
+● Dead research landed; launching Cities & the Dead pipelines (3+2). Eyes and
+  Sky are still researching.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Workflow(pipeline.js)
+  ⎿  /workflows to view dynamic workflow runs
+
+● Workflow(pipeline.js)
+  ⎿  /workflows to view dynamic workflow runs
+
+● Monitor event: "new city modules, audio module or research briefs appearing"
+  NEW FILE: briefs/adelma.json
+  NEW FILE: briefs/argia.json
+  NEW FILE: briefs/eusapia.json
+  NEW FILE: briefs/laudomia.json
+  NEW FILE: briefs/melania.json
+  NEW FILE: briefs/_series_dead.json
+
+  Ran 4 shell commands (ctrl+o to expand)
+
+● Small UI legibility fixes done. Checking whether Eyes/Sky research has landed.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● While waiting on research, I'll hand the Venice capstone scene to a dedicated
+  refinement agent.
+
+● Agent(Refine the Venice capstone scene)
+  ⎿  Backgrounded agent (↓ to manage · ctrl+o to expand)
+
+● Meanwhile, a production build check to catch configuration issues early.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Monitor event: "new city modules, audio module or research briefs appearing"
+  NEW FILE: src/cities/zenobia.ts
+
+● Production build works (three.js chunk 159 KB gzipped, each city lazy-loaded).
+  Zenobia's first version just landed too.
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● Zenobia's first pass is striking: a stilt city over cracked dry earth,
+  platforms and blue conical roofs, a dust devil. The builders are producing
+  high-quality work. Waiting on Eyes/Sky research next.
+
+  Ran 3 shell commands (ctrl+o to expand)
+  ⎿  You've hit your session limit · resets 6:30pm (Europe/Warsaw)
+     /upgrade or /usage-credits to finish what you’re working on.
+
+● Usage limit reached · continuing automatically at 6:30pm · esc to
+  cancel
+
+✻ Baked for 1h 3m 56s · done Friday 16.19
+
+● Agent "Write original frame texts" failed: Agent terminated early due to an
+API error: You've hit your session limit · resets 6:30pm (Europe/Warsaw) (error
+type rate_limit, HTTP 429, request id req_011CfrotBc4Xr8Ly4bY5EmBH, model sent
+to the API: claude-opus-5-5)
+
+● Agent "Refine the Venice capstone scene" failed: Agent terminated early due to
+an API error: You've hit your session limit · resets 6:30pm (Europe/Warsaw)
+(error type rate_limit, HTTP 429, request id req_011CfrotJur5ccVs9PaHbCwu, model
+sent to the API: claude-opus-5-5)
+
+● Agent "Generative ambient audio engine" failed: Agent terminated early due to
+an API error: API Error: This request would exceed your account's rate limit.
+Please try again later. (error type unknown, HTTP 429, request id
+req_011Cfroq3iDKkQMfksz8H7tE, model sent to the API: claude-opus-5-5)
+  ⎿  You've hit your session limit · resets 6:30pm (Europe/Warsaw)
+     /upgrade or /usage-credits to finish what you’re working on.
+
+✻ Cooked for 3s · done Friday 16.19
+
+● Automatic continue cancelled · /rate-limit-options to re-arm
+
+● 3 background shell command tasks didn't finish before the previous session
+ended. Task ids: bs2d9iz9k, bg7bwc40i, bhvjvd5uu.
+
+● Background workflow "invisible-cities-research" (run wf_9bf20383-999) didn't
+finish before the previous session ended
+
+● Background workflow "invisible-cities-build" (run wf_a7a7ed5b-b0a) didn't
+finish before the previous session ended
+
+● Background workflow "invisible-cities-build" (run wf_e8da66b6-6a8) didn't
+finish before the previous session ended
+● Background workflow "invisible-cities-build" (run wf_7095cc43-7b6) didn't
+finish before the previous session ended
+
+● Background workflow "invisible-cities-build" (run wf_711b3071-e0d) didn't
+finish before the previous session ended
+
+● Background workflow "invisible-cities-pipeline" (run wf_c617143a-0ed) didn't
+finish before the previous session ended
+
+● Background workflow "invisible-cities-pipeline" (run wf_31b9e4c2-37c) didn't
+finish before the previous session ended
+
+● Background workflow "invisible-cities-pipeline" (run wf_32588bf4-85f) didn't
+finish before the previous session ended
+
+● Background workflow "invisible-cities-pipeline" (run wf_6a572c89-e77) didn't
+finish before the previous session ended
+
+● Background workflow "invisible-cities-pipeline" (run wf_4b50ce1a-b40) didn't
+finish before the previous session ended
+
+● Background workflow "invisible-cities-pipeline" (run wf_779bd916-e93) didn't
+finish before the previous session ended
+
+● Background workflow "invisible-cities-pipeline" (run wf_1b64a3c3-15c) didn't
+finish before the previous session ended
+
+● Background workflow "invisible-cities-pipeline" (run wf_31d83377-e96) didn't
+finish before the previous session ended
+
+● Background workflow "invisible-cities-pipeline" (run wf_5344d5dd-984) didn't
+finish before the previous session ended
+
+❯ continue
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Only Diomira, Anastasia and Zenobia exist so far—everything else (engine,
+  atlas, UI, Venice, audio, tooling) is intact. To avoid hitting the rate limit
+  again, I'll resume with fewer, smaller background agents each handling a whole
+  series compactly, while I fill in the missing frame texts myself.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Agent(Build Memory + Dorothea cities)
+  ⎿  Backgrounded agent (↓ to manage · ctrl+o to expand)
+
+● 5 background agents launched (↓ to manage)
+   ├ Build Desire + Tamara cities
+   ├ Build Signs cities
+   ├ Build Thin cities
+   ├ Build Trading cities
+   └ Build Eyes cities
+
+● Six builder agents are working (Memory, Desire, Signs, Thin, Trading, Eyes).
+  Meanwhile I'm writing the frame texts (intro, chapter interludes, epilogue,
+  Venice, about) myself.
+
+● Write(~/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-opus-5.
+       5-max-ultracode-on/src/data/frame.ts)
+  ⎿  Added 57 lines, removed 6 lines
+       8
+       9  export const FRAME = {
+      10    introTitle: 'Invisible Cities',
+      11 -  introText: '',
+      12 -  chapterInterludes: [] as Interlude[],
+      13 -  epilogueText: '',
+      14 -  veniceNote: '',
+      15 -  atlasNote: '',
+      16 -  aboutText: '',
+      11 +  introText:
+      12 +    'In the garden of his summer palace, as the evening cools,
+         +the aging Kublai Khan listens to a young Venetian. Marco Polo h
+         +as been sent to the farthest provinces of the empire and return
+         +s with cities: fifty-five of them, each stranger than the last,
+         + each perhaps the same one. The Khan does not believe everythin
+         +g he hears. He listens anyway. Wander the atlas as he did: city
+         + by city, or in the order of the telling.',
+      13 +  chapterInterludes: [
+      14 +    {
+      15 +      chapter: 1,
+      16 +      title: 'The emperor listens',
+      17 +      text: 'Kublai Khan suspects that Marco Polo invents half
+         +of what he says, yet he listens to no envoy with more attention
+         +. Beyond the reports of conquest lies an empire too vast to hol
+         +d; only in these accounts can he glimpse, through the walls of
+         +its decay, a pattern fine enough to escape the termites.',
+      18 +    },
+      19 +    {
+      20 +      chapter: 2,
+      21 +      title: 'Objects and gestures',
+      22 +      text: 'Before he knew the language, Marco spoke with thin
+         +gs drawn from his bags: ostrich plumes, quartz, a quiver, an ho
+         +urglass; with leaps, cries of wonder and of horror. Each emblem
+         + could mean many cities. Later the words came, and the Khan fou
+         +nd he missed the uncertainty that had held them all.',
+      23 +    },
+      24 +    {
+      25 +      chapter: 3,
+      26 +      title: 'Cities of the mind',
+      27 +      text: 'Kublai begins to describe cities of his own, built
+         + from elements he combines in his head, and asks if they exist.
+         + Marco answers that one can combine endlessly, but a city is no
+         +t only a sum of parts: it needs a thread that binds it, a desir
+         +e or a fear, and a question to which it answers.',
+      28 +    },
+      29 +    {
+      30 +      chapter: 4,
+      31 +      title: 'Ashes and stones',
+      32 +      text: 'The Khan notices that Marco speaks of cities as if
+         + he moved among them in a trance. Perhaps, he says, the garden
+         +and the palace are all that exist, and the journeys only a stor
+         +y told to pass the evening. Marco shrugs: whether they are drea
+         +med or walked, the cities are made of the same stones.',
+      33 +    },
+      34 +    {
+      35 +      chapter: 5,
+      36 +      title: 'The bridge and the arch',
+      37 +      text: 'Marco describes a bridge stone by stone. Which is
+         +the stone that bears the bridge? None, he says: the bridge is b
+         +orne by the line of the arch. Then why speak of stones, asks th
+         +e Khan; it is only the arch that matters. Without the stones, M
+         +arco answers, there is no arch.',
+      38 +    },
+      39 +    {
+      40 +      chapter: 6,
+      41 +      title: 'The one city',
+      42 +      text: 'There is one city Marco never mentions. When the K
+         +han presses him, he smiles: every time he describes a city he i
+         +s speaking of Venice. He is afraid that if he names it he will
+         +lose it all at once; or perhaps, in speaking of the others, he
+         +has already been losing it little by little.',
+      43 +    },
+      44 +    {
+      45 +      chapter: 7,
+      46 +      title: 'What the traveller seeks',
+      47 +      text: 'Do you travel to relive your past, the Khan asks,
+         +or to find your future? Marco answers that elsewhere is a mirro
+         +r in reverse: the traveller recognizes the little that is his b
+         +y discovering the much he has never had and never will. Each ci
+         +ty he reaches holds a past he did not know he had.',
+      48 +    },
+      49 +    {
+      50 +      chapter: 8,
+      51 +      title: 'The chessboard',
+      52 +      text: 'Kublai sets aside the descriptions and plays chess
+         +, believing the rules of the game might hold the order of his e
+         +mpire. Checkmate leaves only a square of bare planed wood. Marc
+         +o reads it aloud: a knot of the tree, the year of a drought, th
+         +e grain of forests, the river that floated the logs, a woman at
+         + a window.',
+      53 +    },
+      54 +    {
+      55 +      chapter: 9,
+      56 +      title: 'The atlas',
+      57 +      text: 'The Khan owns an atlas that shows every city, thos
+         +e that are, those that were, and those not yet founded, along w
+         +ith the cities of the future: endless suburbs, cities like tent
+         +s, cities of nightmare. He turns its pages and asks where the c
+         +urrent is carrying them all. Marco speaks of the inferno, and o
+         +f what is not.',
+      58 +    },
+      59 +  ] as Interlude[],
+      60 +  epilogueText:
+      61 +    'The inferno of the living, says Marco, is not something to
+         + come: it is already here, the one we live in every day, the on
+         +e we make by being together. There are two ways not to suffer i
+         +t. The first is easy: accept it and become part of it until you
+         + no longer see it. The second asks for vigilance and learning:
+         +to seek out who and what, in the midst of the inferno, is not i
+         +nferno, and to make it last, and give it room.',
+      62 +  veniceNote:
+      63 +    'The one city Marco never names is the one he speaks of all
+         + the time. Venice is the ground every other city is measured ag
+         +ainst, the first city from which the traveller departs and to w
+         +hich each description returns. He fears that to name it would b
+         +e to lose it at once; to describe the others is to lose it slow
+         +ly, and to keep it.',
+      64 +  atlasNote:
+      65 +    'The eleven series of the book are the eleven sectors of th
+         +is rose. Each series appears five times, in rings that grow out
+         +ward from the centre as the book proceeds. A golden thread foll
+         +ows the order of the telling; its nine chapters wind across the
+         + sectors as spiral arms. At the centre, the Khan\'s chessboard:
+         + the city that holds all the others.',
+      66 +  aboutText:
+      67 +    'An homage to Italo Calvino\'s Invisible Cities (Le citta i
+         +nvisibili, 1972; English translation by William Weaver, 1974).
+         +Each of the fifty-five cities is a procedural diorama built in
+         +code with three.js: no models, no image textures. Captions, mot
+         +tos and interludes are original paraphrases written for this at
+         +las, not quotations from the book, which deserves to be read wh
+         +ole.',
+      68  };
+
+● 3 background agents launched (↓ to manage)
+   ├ Build Names cities
+   ├ Build Dead cities
+   └ Build Sky cities
+
+● Nine builders running; Continuous and Hidden will launch as slots free up.
+  Meanwhile I'll write original captions and mottos for the 20 cities that never
+  got research briefs.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● All captions, mottos and frame texts are now in place. Waiting for builders to
+  report; Continuous and Hidden Cities launch when the first finishes.
+
+● ReadNotifications
+  ⎿  No queued notifications
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● I'll continue once builders report back.
+
+✻ Cooked for 3m 2s · done 14.10
+
+● Background command "Wait until 14 city files exist" completed (exit code 0)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Progress is steady and no rate-limit trouble so far, so I'm launching the last
+  two builders (Continuous and Hidden Cities).
+
+● 2 background agents launched (↓ to manage)
+   ├ Build Continuous cities
+   └ Build Hidden cities
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● All 11 builders are running. I'll pick up again as they report.
+✻ Cooked for 28s · done 14.16
+
+› Message from general-purpose
+  All five Cities & the Sky dioramas are built in src/cities/: eudoxia.ts,
+  beersheba.ts, thekla.ts, perinthia.ts and andria.ts. The type check prints
+  nothing for any of them, and every shot run reported no runtime errors. Each
+  city has its default view plus two extra views, at least two kinds of motion,
+  and a toggle. There is no Math.random, Date.now or performance.now, no em or
+  en dashes, and no shared material is mutated. Measured frameMs was 3.7-9.5,
+  triangles under 160k and calls under 90 for all five, so all are well within
+  budget.
+
+  **1. Eudoxia** - toggle "Unroll the carpet" / "Return to the alleys", frameMs
+  4.1-6.2
+  - A rose and indigo dusk over a tangle of about 360 many-coloured houses along
+  winding alleys. At the centre an open colonnade holds the carpet, whose
+  canvas texture is drawn from the same ring-and-lane design.
+  - On toggle, every house rises and glides into its cell of the carpet pattern,
+  taking on the carpet's colours. The ground becomes the carpet and the same
+  pattern appears in stars overhead.
+  - Caption: "A labyrinth of crooked lanes and quarrelling colours sprawls
+  across the island, yet at its heart a carpet lies under a ring of columns,
+  woven in strict rings and radiating lanes. Unroll it, and the houses lift from
+  their muddle to settle into the weave, while the sky above repeats the same
+  design star by star."
+  - Motto: "The tangle is a weave seen from too close."
+
+  **2. Beersheba** - toggle "Weigh the doubles" / "Restore the belief", frameMs
+  3.7-9.5 (the 9.5 was the toggled underside view)
+  - Three tiers: a golden, silver and diamond city on clouds above, the earthly
+  town with its treasury vault in the middle, and a sooty, red-windowed infernal
+  city hanging upside down below. Hundreds of pieces of refuse wheel between
+  them, fed by a stream from a chute at the rim.
+  - On toggle, the golden city sinks and flips over to become the base under the
+  island, the infernal city shrinks away, and the rubbish rises and kindles
+  into glowing stars.
+  - Caption: "Its citizens picture a city of gold and diamond above them and a
+  furnace city of soot below, and they hoard their gold to deserve the first.
+  But weigh the doubles: the treasure sinks to become the foundation, while
+  scraps, peelings and broken things, the lightest of all, rise and kindle into
+  the only heaven Beersheba has."
+  - Motto: "What we throw away weighs least and climbs highest."
+
+  **3. Thekla** - toggle "Show the blueprint" / "Back to work", frameMs 4.6-9.4
+  - A rose blue-hour island of unfinished stone walls inside scaffolding, with
+  ladders, timber stacks, a half-ribbed dome, two treadwheel cranes with turning
+  wheels, and five tower cranes whose jibs swing and whose loads rise and sway.
+  - On toggle the work slows, the corner stars above connect into the city plan,
+  and pale line drawings of the finished buildings appear over every site.
+  - Caption: "Every wall is still climbing its scaffold, cranes swing their
+  loads, ropes creak, and nobody will say what is being built. Wait until the
+  work stops at nightfall: the stars above the yards join into lines, and the
+  finished city flickers over the timber frames, a plan that exists only in the
+  sky."
+  - Motto: "Keep building, so that ruin never gets its turn."
+
+  **4. Perinthia** - toggle "Read the sky again" / "Trust the calculations",
+  frameMs 4.0-7.4
+  - A moonlit marble and lapis city on a strict astronomical plan: twelve
+  streets, twelve zodiac obelisks, a gold meridian, a temple, an observatory
+  with a turning armillary sphere, and a central gnomon.
+  - The inhabitants are imaginary chimeras walking the streets: stilt-legged,
+  shell-backed, two-headed, antlered and winged figures with long moon shadows.
+  Per your note, they are fantastical beings rather than depictions of real
+  bodies.
+  - On toggle, seven regular star-polygon constellations twist into lumpy
+  creature outlines.
+  - Caption: "Astronomers laid out every street by the stars: twelve avenues to
+  the twelve signs, a golden meridian, a temple turned to the brightest dawn.
+  Yet the creatures born in its perfect squares are stilt-legged, horned,
+  double-headed. Read the sky again and its tidy figures twist into the same
+  beasts, as if the city had copied the heavens too faithfully."
+  - Motto: "A perfect copy of the sky, monsters included."
+
+  **5. Andria** - toggle "Raise a new tower" / "Take it down", frameMs 3.8-4.6
+  - A teal night with seven elliptical orbit streets, each with the sun rotunda
+  at one focus. The towers and houses form six constellations, with red, gold
+  and white crowns where the brightest stars are, and one house whose lamp
+  pulses like a variable star.
+  - Each building is tied to its matching star overhead by a faint thread. Seven
+  planets circle above their own streets, inner ones faster, while carriages
+  and walkers travel the streets below.
+  - On toggle a new spired tower grows from an empty plot, and a new star flares
+  above it, sending out rings and linking itself to its neighbours.
+  - Caption: "Each street of Andria runs on a planet's ellipse, and each cluster
+  of towers copies a constellation, its tallest crown shining under its
+  brightest star. Planets glide above the carriages that share their road. The
+  citizens are not afraid of change: when they raise a new tower, a new star
+  blazes into the firmament, and the sky rearranges itself around it."
+  - Motto: "Change the city, and the sky changes with it."
+
+  **Known issues**
+  - Perinthia's last tweak, lowering the constellations about 1.3 units so they
+  are no longer cropped at the top of the default view, was not re-rendered.
+  - Andria's last tweak, raising the toggle camera target so the new star is not
+  cut off at the top, was not re-rendered either.
+  - In Eudoxia, walkers are hidden during the transformation so they do not walk
+  through houses that have moved, and the constellation lines in the overhead
+  toggle view cross the frame faintly.
+  - In Beersheba, the flipped golden city's clouds sit just under the island's
+  rocky tip, so they may touch it slightly.
+  - One early shot run reported an error for Thekla that did not reproduce on
+  two later runs.
+  - One Perinthia shot command timed out once in the background; it worked on
+  retry.
+
+● Sky cities are done. Their builder's captions describe the actual scenes
+  better, so I'll swap them in.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Agent "Build Sky cities" finished · 16m 2s
+
+● Sky cities verified. Waiting on the remaining builders.
+
+✻ Churned for 19s · done 14.25
+
+● Background command "Wait until 40 city files exist" completed (exit code 0)
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● 40 of 55 cities exist; 15 remain with their builders. Waiting.
+
+✻ Cooked for 8s · done 14.30
+
+› Message from general-purpose
+  I built all five Cities & Eyes dioramas in order, one file each:
+
+  - /home/konrad/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-
+  opus-5.5-max-ultracode-on/src/cities/valdrada.ts
+  - /home/konrad/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-
+  opus-5.5-max-ultracode-on/src/cities/zemrude.ts
+  - /home/konrad/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-
+  opus-5.5-max-ultracode-on/src/cities/baucis.ts
+  - /home/konrad/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-
+  opus-5.5-max-ultracode-on/src/cities/phyllis.ts
+  - /home/konrad/dane/workspace/_upstream/invisible-cities-one-shot/claude-code-
+  opus-5.5-max-ultracode-on/src/cities/moriana.ts
+
+  All five pass tsc with no output. The harness reported no runtime errors on
+  the final shots. Each file is 259 to 338 lines. I touched no other files. None
+  of them use Math.random, Date.now or performance.now, none contain em or en
+  dashes, and no shared kit material is mutated. Every city has an interaction,
+  two extra camera views and at least two kinds of motion. Each got one
+  render-and-improve round; a few got a second quick framing or tone fix.
+
+  Budgets: frameMs was 4 to 7.4 on the shots I checked last. One Phyllis toggle
+  shot took 10.1 ms, probably warm-up. Calls were 45 to 63 and triangles were
+  100k to 423k (Valdrada is the high one because of the mirror pass).
+
+  **VALDRADA**
+  - Interaction: "Trouble the water" / "Let the lake settle"
+  - frameMs: about 6.5 to 7.2 (calls 55, about 423k triangles because of the
+  real mirror pass)
+  - What it shows: five curved terraces of houses stacked with verandas rise
+  from a lake. A real Reflector mirror with a ripple shader doubles the city,
+  with boats, walkers and swallows.
+  - Caption: A city stacked in terraces of balconies along a lakeshore, and a
+  second city hanging upside down in the still water, repeating every step,
+  every lit window and every passing boat. When the surface trembles the twin
+  breaks into bands of colour, and the people above seem unsure which of their
+  gestures still counts.
+  - Motto: Every gesture done twice, once for the eye of the lake.
+
+  **ZEMRUDE**
+  - Interaction: "Lower your gaze" / "Raise your eyes" (flies to a low gutter
+  view)
+  - frameMs: about 4.5 to 8.6
+  - What it shows: one street lined with tall houses. Looking up you get
+  windowsills, shutters, flower boxes, flapping curtains, three fountains and
+  swallows. Lowering your gaze greys the flowers and curtains, makes the
+  curtains go limp, sends the swallows away, sets wastepaper tumbling and makes
+  fish scales and gutters glint. A negative ambient light acts as the gloom.
+  - Caption: The same street gives two cities to two moods. With your chin up it
+  is window boxes, curtains in the breeze, fountains and swallows. With your
+  head bowed it is gutters, manhole covers, fish scales glinting by the stall
+  and paper drifting in the wind, and the bright upper city quietly loses its
+  colour.
+  - Motto: The city is whatever height your eyes carry.
+
+  **BAUCIS**
+  - Interaction: "Descend below the clouds" / "Climb back above"
+  - frameMs: about 4.4 to 6
+  - What it shows: seven wooden decks on long, widely spaced stilts above a
+  cloud sea, joined by catwalks, with brass spyglasses on tripods sweeping over
+  a wooded island with ponds and deer. Going down thins the clouds, lowers a
+  basket on its rope and moves the camera among the stilt feet in the forest.
+  - Caption: Far above a forest that carries no trace of it, a city stands on
+  thin stilts set wide apart, its decks and catwalks floating over the clouds.
+  Its people almost never climb down. They spend long hours at brass spyglasses,
+  studying the green earth below, untouched since the day they left it.
+  - Motto: They love the earth best from far above it.
+
+  **PHYLLIS**
+  - Interaction: "Live here a while" / "Arrive as a stranger" (flies to a
+  top-down view)
+  - frameMs: about 4 to 5.4 (one 10.1 toggle shot)
+  - What it shows: a canal grid with 18 bridges in six kinds: humpbacked,
+  covered, on pillars, on barges, suspended and openwork lattice. The fronts
+  have mullioned, Moorish, lancet, lunette and stained-glass rose windows, and
+  the pavements are blue and white tiles, slabs, cobbles and gravel. Living here
+  fades everything to pale paper through a shared shader uniform. Only glowing
+  amber routes between home, work, market and a friend remain, plus those four
+  buildings in colour.
+  - Caption: To the newcomer every bridge is a different invention and every
+  window a different style, and the pavements change underfoot from tiles to
+  gravel. Stay long enough and the city goes pale. All that is left are a few
+  lit threads between home, work, the market and a friend's door, walked every
+  day without looking.
+  - Motto: Habit draws a map with almost nothing on it.
+
+  **MORIANA**
+  - Interaction: "Turn the sheet" / "Turn it back"
+  - frameMs: about 4.3 to 4.9
+  - What it shows: the city is a thin gilt-rimmed disc. The top face has
+  alabaster gates, a ring of coral columns with serpentine pediments, glass
+  villas with glowing medusa chandeliers and silver dancers swimming inside, and
+  domed white houses with palms. The other face hangs underneath. It has 200
+  shacks of rusted metal, sackcloth tents, nailed planks, sooty pipes, heaps of
+  tins, blind walls with faded wordless signs, smoke and rats. The toggle flips
+  the whole sheet over.
+  - Caption: One side is coral columns, alabaster gates and glass villas where
+  silver dancers circle under jellyfish lamps. Flip it like a page and the same
+  streets turn up as rust, sacking, nails, soot and piles of tins. The city has
+  no inside at all, only a front and a back.
+  - Motto: Splendour and squalor, printed on two sides of one page.
+
+  **Known issues**
+  - Valdrada: the lake disc's fade into the fog shows a faint circular edge from
+  the high overview.
+  - Zemrude: orbit controls block upward-looking views, so "looking up" is shown
+  from mid-height in the street rather than truly from below. A moving gondola
+  can pass through the moored barge bridge in Phyllis (see below), but Zemrude
+  itself has no such clash.
+  - Phyllis: moving gondolas can pass through the boats of the barge bridges.
+  - Moriana: the top face is deliberately pale and pearly, so it still reads a
+  little hazy, and the central alabaster gate is low-contrast white on white.
+  Its smoke is only shown once the sheet is mostly flipped, because the smoke
+  would otherwise sink downward under the sheet.
+  - Baucis: the low cloud puffs leave a light veil over the island in the
+  overview.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Agent "Build Eyes cities" finished · 22m 49s
+
+● Cities & Eyes done and captioned. Waiting for the rest.
+
+✻ Baked for 9s · done 14.31
+
+› Message from general-purpose
+  All five cities are built and checked. Each one passes `tsc` with no errors,
+  rendered with no runtime errors (default and toggled views), and stays within
+  budget: the busiest is dorothea at about 0.54M triangles and 102 draw calls,
+  every other city is under 0.37M triangles and 123 calls. Each file also
+  contains no Math.random, Date.now, performance.now or long dashes.
+
+  | City | Interaction label | frameMs | Known issues |
+  |---|---|---|---|
+  | isidora | "As he dreamed it" / "As he reaches it" | about 5 to 6.3 | below |
+  | zaira | "Read its past" / "Let it keep silent" | about 4 to 7.7 | below |
+  | zora | "Seek it on earth" / "Recall it from memory" | about 3.2 to 6 | below
+  |
+  | maurilia | "Old postcard" / "Back to the metropolis" | about 3.2 to 6.3 |
+  below |
+  | dorothea | "Remember" / "Count" | about 6.5 to 8 | below |
+
+  Files, all in `/home/konrad/dane/workspace/_upstream/invisible-cities-one-shot
+  /claude-code-opus-5.5-max-ultracode-on/src/cities/`: `isidora.ts`, `zaira.ts`,
+  `zora.ts`, `maurilia.ts`, `dorothea.ts`.
+
+  Known issues:
+
+  - **isidora:**
+    - The lighting change between dreamed and reached is done with extra lights
+  I add to the scene, because the scene's lighting settings are fixed once the
+  city loads. So it is a lift of cool light, not a real change of time of day.
+    - The traveller's arrival takes about 38 seconds. At the default screenshot
+  time (t=6) he is still riding the road and the 8th seat on the wall is empty.
+    - The young traveller in the dreamed state is hard to pick out in the crowd.
+  - **zaira:**
+    - The "darken as if soaked" part of the memory tide is not done, because
+  that would mean changing the kit's shared materials. Only the gold tide ring,
+  a warm light pulse and the 1.5 percent swelling are shown.
+    - The palm-crease lines float about 3 units above the roofs.
+  - **zora:**
+    - The moon comes from the south-west rather than the brief's north-west, so
+  the street-facing house fronts are lit.
+    - The distant mountains and rivers are mostly lost in the night fog in the
+  default view.
+  - **maurilia:**
+    - The three large postcards are still images rendered once when the city
+  loads, using the brief's allowed fallback, so there is no parallax inside
+  them. The city does this by calling `ctx.renderer` during build.
+    - I made the hero cards about 2.1 times the brief's size (5.4 x 3.55) so
+  they read from the default camera.
+    - The postcard state gets a warm light, not a full sepia color grade over
+  the whole scene.
+  - **dorothea:**
+    - The census is exact: 300 houses and 700 chimneys in each quarter.
+    - The brief's pre-dawn to sunrise change is approximated with an extra warm
+  sun light that casts its own shadows and a glowing sun sprite. In the counting
+  state the base light still casts faint shadows, so it is not fully
+  shadowless.
+    - There are no outline edges on the buildings.
+    - The central market plaza is only 2.6 units across, so it holds 12 small
+  stalls instead of about 30.
+    - About 900 walking townspeople are updated every frame while the remembered
+  state is on, which is why this is the slowest city at about 8 ms.
+
+  No kit bugs needed working around.
+
+● Memory series and Dorothea done. Waiting for the remaining builders.
+
+✻ Cogitated for 1s · done 14.32
+
+● Agent "Build Memory + Dorothea cities" finished · 24m 55s
+
+› Message from general-purpose
+  All four cities are built: despina, fedora, zobeide and tamara. Each passes
+  `tsc` with nothing printed and renders with no runtime errors in the final
+  shots. They are the only files I touched, all in `src/cities/`. None uses
+  Math.random, Date.now, em dashes or en dashes. Draw calls stayed between about
+  29 and 79 and triangles under 400k. The machine was shared with many other
+  agents' screenshot runs, so a few shots timed out or caught another city's HMR
+  error overlay. I re-ran those and checked the clean PNGs.
+
+  | City | Toggle label (active label) | frameMs | Known issues |
+  |---|---|---|---|
+  | despina | "Arrive by sea" ("Arrive by camel") | 5.0 to 5.7 | Ghost sails
+  read mainly by their outline lines because the haze is so bright; the far-port
+  mirage cranes look boxy. |
+  | fedora | "Enter a globe" ("Return to the stone") | 4.1 to 6.3 | Globe
+  miniatures are too small to read from the default camera; the blue state is a
+  single combined ideal city, not one per globe. |
+  | zobeide | "Wake" ("Dream again") | 3.8 to 6.5 | The skein reads best from
+  the higher views; the default view is lowered to keep the moon in frame, which
+  makes the hill rim look like a wall; lanterns are small. |
+  | tamara | "Strip the signs" ("Let the signs return") | 4.4 to 7.7 |
+  Individual emblems are only readable from the street view; the cloud figures
+  are faint in fog at the top of the default frame. |
+
+  - **despina:** Dunes to the west, sea to the east and the city on the seam.
+  The landward face is a hull-shaped podium with seven towers in a row (11 to 18
+  high) carrying needle masts, rotating radars, flapping red-and-white
+  windsocks and four banded smoking chimneys. The seaward face is two dappled
+  domes as humps, with a canopied bazaar and glittering lamp fringes between
+  them and a causeway to a lighthouse. By default a ghost windjammer, its sails
+  billowing, sits over the towers; the toggle cross-fades it to a ghost camel
+  and flies the camera to the sea side.
+  - **fedora:** A grey stone disc with about 1,000 instanced houses around an
+  octagonal iron and glass museum holding 24 glowing azure globes. The city
+  shows the matching absences: a dry canal stopping at a plain square, an avenue
+  lined with 20 empty plinths, and a spiral inlay. Every 25 s an azure
+  wireframe plan grows over part of the city, flickers, and spirals into a globe
+  that flares. The toggle sinks the stone city and grows the blue Fedora out of
+  a globe: the canal and jellyfish pond, parading elephants, and a hovering
+  spiral minaret with a sliding rider.
+  - **zobeide:** A moonlit white hill wound with 20 street strands, with
+  arcades, stairs and dead-end walls, lined with about 2,000 houses. A wisp
+  trailing hair-like filaments is chased by 9 coloured lanterns, and a wall
+  rises where each one stops. The toggle turns to a chalky dawn: the glow and
+  the chase go away, about 520 workers walk the strands, and the camera rises to
+  a map-like view.
+  - **tamara:** Mute, doorless blocks along seven street-lines, with about 400
+  swinging emblems: four painted glyph boards plus gilt pincers, tankards,
+  halberds and scales. There are temples with gods and their attributes, the
+  five unsigned buildings, permission and prohibition placards, zebras drinking,
+  and a breathing pyre. A warm gaze reads the streets line by line, and clouds
+  form a ship, a hand and an elephant in turn. The toggle lifts every sign, in
+  reading order, into a turning gilded cloud, and the walls take on the colour
+  of the plain's stones.
+
+  I also fixed a culling problem along the way: instanced meshes whose positions
+  are only set in `update` were being culled, so the tamara clouds were
+  invisible. I turned off frustum culling on those meshes in tamara, zobeide and
+  fedora.
+
+  Files are in /home/konrad/dane/workspace/_upstream/invisible-cities-one-shot/c
+  laude-code-opus-5.5-max-ultracode-on/src/cities/:
+  - despina.ts
+  - fedora.ts
+  - zobeide.ts
+  - tamara.ts
+
+● Desire and Tamara done. Waiting for the remaining builders.
+
+✻ Crunched for 2s · done 14.36
+
+● Agent "Build Desire + Tamara cities" finished · 28m 9s
+
+› Message from general-purpose
+  All five cities are built in /home/konrad/dane/workspace/_upstream/invisible-c
+  ities-one-shot/claude-code-opus-5.5-max-ultracode-on/src/cities/ (euphemia.ts,
+  chloe.ts, eutropia.ts, ersilia.ts, esmeralda.ts). For each file, `tsc
+  --noEmit` prints nothing and the harness reported no runtime errors in the
+  final render. All are well inside budget: at most 133k triangles and 121 draw
+  calls. None of them use Math.random, Date.now or performance.now, none mutate
+  shared materials, there is no visible text, and there are no em or en dashes.
+  Each has two extra camera views and at least two kinds of motion. I rendered
+  views 0 and 1 or 2 plus the toggle state, then did one fix round per city.
+
+  - **euphemia**: toggle "Wares by daylight". frameMs 4.3 to 5.5. At night,
+  glyphs for the six words (wolf, sister, chest, spears, scabies, lovers) rise
+  from the seven fires every 10 s, one fire after another. They orbit and slowly
+  redraw themselves, and the departing caravan and junk carry them away. Known
+  issues:
+    - The env can't change at runtime, so daylight is faked with my own sun and
+  hemisphere lights plus a pale sky veil sphere. The fog stays dusky.
+    - The cargo shuttle only runs between the junk and the wharf; nothing moves
+  between the camels and the market.
+    - The last dune-size tweak was not re-rendered.
+  - **chloe**: toggle "Live the dreams". frameMs 4.7 to 8. 160 strangers turn in
+  counter-rotating rings around a carousel bandstand. Thin glance threads flash
+  between heads, a triangle or star forms every 3 s, and 11 named strangers
+  plus the cheetah walk among them. Rain comes every 40 s. Known issues:
+    - In the toggled state, red cords bind pairs and the crowd stops, but the
+  small acted-out stories (chase, collide, kneel) are minimal: only some figures
+  turn their backs.
+    - The puddles are glossy discs, not true reflections.
+  - **eutropia**: toggle "Fold into one". frameMs 4.2 to 5.8. Eight identical
+  white cities stand on a 6 x 6 grass board, each site different (slope, crest,
+  stream, pond, hollow, meadow, boulders, orchard). The inhabited one glows
+  warm, yawns, then sends quicksilver beads down the road to the next city,
+  where they take new role colours. Known issues:
+    - At the default distance the beads and windows are too small to read; the
+  warm light marks the living city.
+    - Folding hides the roads, trees and site features along with the terrain.
+  - **ersilia**: toggle "Dismantle the houses". frameMs 4.1 to 4.5. The living
+  web grows from 300 to 900 strings, a new one every 0.4 s, with a shuttle bead
+  and a snap vibration. Four older webs recede to the north-west, each more
+  chaotic. Beads of light run along the strings and dust blows across the plain.
+  Known issues:
+    - The toggle camera looks down from the terrace, but the camp and refugees
+  fall just outside its frame.
+    - The ground near the mountain shows faint stripes, probably from shading on
+  the low-poly terrain.
+  - **esmeralda**: toggle "Ink the map". frameMs 5.0 to 6.6. A canal city with a
+  cut-away south wedge shows the sewers, with rats, smugglers and lanterns. It
+  has bridges, hanging streets, boats, walkers, cats and thieves leaping roof to
+  roof, and swallows. Every agent leaves a fading trail in its own ink, and the
+  lantern citizen takes one of five routes each 25 s day. The toggle lays a
+  paper veil over the city, raises the camera to plan view and keeps trails for
+  about 40 s, except the swallows' trails, which keep fading. Known issues:
+    - Trails are 1 px lines, so they are thin at the default distance.
+    - The lantern citizen and the rats are hard to spot from the default camera.
+    - Walkers stay on the grand-canal quays and two short streets.
+
+  The screenshot harness twice failed with "Execution context was destroyed" and
+  once with a screenshot timeout, probably from other agents' edits reloading
+  the dev server. Re-running worked each time.
+
+● Trading Cities done. Waiting for Signs, Thin, Names, Dead, Continuous, Hidden.
+
+✻ Cogitated for 2s · done 14.37
+
+● Agent "Build Trading cities" finished · 29m 13s
+
+● Agent "Build Thin cities" finished · 29m 13s
+
+› Message from general-purpose
+  All four cities are built, in the order you gave. Type-checking prints nothing
+  for any of them, the screenshot runs show no runtime errors, and every
+  recorded frame time was under budget except one sophronia frame of 21 ms (see
+  below). None of the files uses Math.random, Date.now, performance.now, or em
+  or en dashes.
+
+  | City | Interaction label | frameMs | Calls / triangles |
+  |---|---|---|---|
+  | isaura | "Gods below" / "Gods above" | 4.9 to 8.6 (toggled view ~6 to 8.6) |
+  ~68 / ~410k |
+  | armilla | "Imagine the walls" / "Let the water back" | 4.6 to 7.2 (toggled 6
+  to 7) | ~50 / ~480k |
+  | sophronia | "Caravan departs" / "Caravan returns" | 4.0 to 5.1 | ~170 /
+  ~133k |
+  | octavia | "View from the abyss" / "Climb back to the crest" | 5.3 to 6.4
+  (early 3-view run peaked at 9.2) | ~72 / ~240k |
+
+  What each city shows:
+  - **isaura:** A limestone island with a 100 degree wedge cut out, so the black
+  lake in its cave sits under the sunlit city. The green border follows the
+  lake shore, and there are exactly 1000 wells. A swell crosses the lake every 9
+  seconds and sends aqua pulses up the shafts; when a pulse arrives, buckets
+  jerk up, pump handles dip and spray rises. The toggle turns the rock smoky and
+  makes the lake and all the shafts glow.
+  - **armilla:** A copper pipe forest drawn on 44 house footprints, standing in
+  still water. The mirror is a flipped copy of the city plus a reflected sky
+  dome under a see-through water layer, not a Reflector. It also has porcelain,
+  showers and taps with glittering streams, ripple rings, glowing nymphs (one
+  travels through the pipes between showers), and rising motes. The toggle fades
+  in translucent walls, floors and windows while the water, porcelain and
+  nymphs fade out.
+  - **sophronia:** A plinth split in two:
+    - **Fair half:** a gravity-timed coaster, a wheel with spinning cages, a
+  chain carousel, the well of death, a big top with trapezes, and chasing bulbs.
+    - **Stone half:** the Ministry, bank, palaces, school, hospital,
+  slaughterhouse, factories with smoke, the refinery with its flare, docks with
+  cranes, pylons, and 120 blocks.
+    - **Toggle:** buildings fold into crates that fly onto 14 trailers, and the
+  convoy drives into the fog. Chalk outlines appear, the coaster halts at the
+  lip of its plunge with a glowing ring above it, and the gate sign starts
+  counting days.
+  - **octavia:** A 36-radial orb web strung between two slate cliffs with an
+  alpenglow on the crests. Hung below it are about 360 items of 15 kinds that
+  swing like pendulums, plus walkers on the wooden ties, 6 cable cars, two cloud
+  layers and the river far below. The web rises and falls on a 14 second cycle.
+  The toggle flies the camera into the abyss to look straight up.
+
+  Known issues:
+  - **isaura:**
+    - Only about 85 houses (the brief says 300), so there is room for 1000
+  wells.
+    - From the default camera the cave ceiling barely shows; you mostly see the
+  lake.
+    - The interaction camera sits below the net, but the separate view I first
+  placed below ground rendered black. I moved that view above ground.
+  - **armilla:**
+    - The image is soft, bright and dawn-hazy. Porcelain and nymphs are small
+  and low-contrast against the pale sky.
+    - The mirror is faked: reflected surfaces are lit from above. This is cheap
+  but not physically correct.
+  - **sophronia:**
+    - One run recorded 21 ms on the default view; two re-runs gave 4.4 and 4.7
+  ms, so I treated it as a one-off spike.
+    - The 120 filler blocks are plain boxes.
+    - Pediments are not lifted separately; each building folds whole.
+  - **octavia:**
+    - The net rises and falls as one rigid piece, so the anchors move about 0.28
+  units against the cliffs.
+    - The gas-flame halos do not follow their swinging jets.
+    - Only the hanging objects sway.
+
+  Files are in /home/konrad/dane/workspace/_upstream/invisible-cities-one-shot/c
+  laude-code-opus-5.5-max-ultracode-on/src/cities:
+  - isaura.ts
+  - armilla.ts
+  - sophronia.ts
+  - octavia.ts
+
+● Thin Cities done. Remaining: Signs, Names, Dead, Continuous, Hidden.
+
+✻ Cogitated for 1s · done 14.37
+
+› Message from general-purpose
+  I built all five Continuous Cities, one file each, in the order you gave. All
+  five type-check cleanly and render with no runtime errors, both normal and
+  toggled. Each file has two extra camera views. I didn't touch any kit, core,
+  app, data or other city files.
+
+  | City | Interaction label | frameMs | Triangles | Calls |
+  |---|---|---|---|---|
+  | leonia | "Let the mountain fall" | about 5-9 | about 1.13M | about 44 |
+  | trude | "Fly to another Trude" | about 4-5 | about 650k | about 38 |
+  | procopia | "Let the years pass" | about 4-6 (one reading of 10.4 right after
+  a hot reload) | about 560k | about 46 |
+  | cecilia | "Let the years pass" | about 4-5 | about 113k | 46 |
+  | penthesilea | "Search for the centre" | about 4 | about 142k | about 120 |
+
+  - **Leonia** (`src/cities/leonia.ts`): a pastel grid town on an island, clean
+  white bags at every curb, sheets drying on the flat roofs. Around it a ring
+  mountain of about 4300 rubbish bags plus cartons and old appliances. Garbage
+  trucks drive the streets, gulls circle and paper scraps blow about. The toggle
+  makes the far side of the mountain slide inward and bury about a third of the
+  town, and the camera moves to a high view.
+  - **Trude** (`src/cities/trude.ts`): one 16-unit square repeated 40 times to
+  the foggy horizon. Each square has an airport, a terminal, a control tower,
+  two rows of identical yellow and green houses and the same billboard. Traffic
+  is moving cars plus distant planes crossing. The toggle flies a red-tailed
+  plane to an identical airport three squares away while the ground scrolls
+  under it, and the name on every terminal sign changes (invented names such as
+  TRUDE EAST). Toggling again flies on in the other direction to yet another
+  name.
+  - **Procopia** (`src/cities/procopia.ts`): a cutaway inn room with an open
+  window onto a ditch, a stone bridge, a swaying cornfield, a hill and a
+  farmhouse. Crows, chimney smoke and the water add motion. About 900 people
+  each have a year of arrival. The toggle runs from year 3 to year 15 and a
+  calendar on the wall counts up in Roman numerals. The faces fill the field,
+  the hill, the roofs and the door, then pack the room. Extra view 1 is the
+  traveller's own view through the window, which ends up blocked by heads.
+  - **Cecilia** (`src/cities/cecilia.ts`): a green upland with a goatherd and 16
+  grazing goats, trees, flowers and dry-stone walls. A grey city of warehouses,
+  blocks and walled yards advances across it, with swinging cranes at its front
+  edge. The toggle grows the city lot by lot over the whole island while the
+  pasture disappears. The goats end up in a paved yard among warehouses and the
+  goatherd's beard turns white.
+  - **Penthesilea** (`src/cities/penthesilea.ts`): a straight road through dusty
+  outskirts of sheds, sawtooth warehouses, smoking factories, container yards,
+  fenced empty lots, shabby blocks and pylons. A pale skyline of the "centre"
+  sits in the haze, and signposts all say CENTRE but point in different
+  directions. The toggle drives the traveller's car forward through endless
+  strips of outskirts; the skyline never gets closer.
+
+  Known issues:
+  - **Leonia:** at about 1.13M it is the closest to the 1.5M triangle budget. An
+  intermediate version reached 1.47M before I trimmed it. Its bags are
+  deliberately stylised and oversized so they read from a distance.
+  - **Trude:** the 8x5 squares wrap around as the ground scrolls. The swap
+  happens at the edges, inside the fog.
+  - **Penthesilea:**
+    - Its scrolling strips repeat after 160 units, which is hidden by the fog.
+    - It has no auto-rotate, to keep the composition looking down the road.
+    - It has the most draw calls of the five, about 120.
+
+  Screenshots are in `shots/<id>/` under the project root.
+● Continuous Cities done. Remaining: Signs, Names, Dead, Hidden.
+
+✻ Baked for 1s · done 14.39
+
+● Agent "Build Continuous cities" finished · 22m 52s
+
+› Message from general-purpose
+  I built all four cities: zirma, zoe, hypatia and olivia. Each one typechecks
+  cleanly and renders with no runtime errors. Each also has two camera views and
+  a toggle, and stays well inside the budget (frameMs 4 to 8, at most about
+  325k triangles and 130 draw calls). I did one improvement round on each, based
+  on the screenshots.
+
+  | City | Toggle label | frameMs (default view) | Known issue |
+  |---|---|---|---|
+  | zirma | One of each | ~5.3 | The lunatics on the cornices are small and hard
+  to see from the default camera. In the toggled state the single dirigible is
+  partly hidden among the central spires. Some dirigibles on the outer lanes fly
+  a little past the plinth edge before they fade out. |
+  | zoe | Any other city | ~5.3 | The houses' doorways are seen mostly from
+  above, so the drifting activities show only as coloured door glows, not as the
+  small scenes inside each house that the brief describes. |
+  | hypatia | Unlearn the signs | ~5.8 (toggled ~5.1) | The quarry behind the
+  palace hall can't be seen from the default view. The citadel crag reads more
+  like a big tapering tower than a rock. The ship in the sky is pale against the
+  morning sky. |
+  | olivia | Words to things | ~6.0 | The black sea at the top of the frame is
+  still a large, glittery area. The peacock is fairly small. The smoke fan that
+  replaces the peacock's tail in the toggled state reads as a flat dark
+  half-disc. |
+
+  **What each city shows:**
+  - **zirma:** Three repeated tower designs on a 7 x 7 grid, with a lunatic on
+  every cornice and 24 dirigibles crossing between the towers. The streets have
+  blind men with canes, girls walking pumas and a row of 14 tattoo parlours. The
+  plinth's south face is cut open to show two subway tubes with packed trains.
+    - Every 13 seconds the lunatics lean out together, the tattoo windows
+  flicker and the canes tap at once.
+    - The toggle reduces everything to a single dirigible, one tattoo artist's
+  bench, one fat woman on the platform, and one of each street figure.
+  - **zoe:** About 340 identical houses with pyramid roofs on an even grid. The
+  colours of their doorways drift slowly as the activities move from house to
+  house. At the rim the houses turn into firs of the same shape, then into
+  pyramid hills that disappear into fog, with lantern carts and wolves' eyes in
+  between.
+    - The toggle grows a city of differences from the centre outwards: a gilded
+  palace with minarets, temples, a slum, a prison and barracks, a bazaar and
+  tavern, pagodas, a mill and haymows, a theatre, canals, and a wall against the
+  forest.
+  - **hypatia:** Five gold sign-glyphs float over their misleading places: a
+  bather, scales, an open book, a ship and a lyre.
+    - The lagoons look like mirrors at a low angle and become see-through when
+  you look down. You then see drowned figures with green hair, stones and crabs.
+    - Behind the six fountain courtyards the palace hall is barred, and chained
+  convicts haul basalt in a quarry behind it.
+    - The library is cut open and leaks smoke, next to the children's garden
+  with a swinging swing and a spinning top. There are riding rings with horses,
+  and points of light that leap between the cemetery tombs.
+    - The toggle flies the glyphs to their true places. A sailing ship may then
+  cross over the highest pinnacle, though on some passes it fades out before it
+  arrives.
+  - **olivia:** Filigree palaces with lit windows and cushions, a green estuary
+  with lantern canoes, and two raised canals whose cascades turn paddle wheels.
+  There is also the white peacock on a lawn with spinning sprinklers, a
+  rug-weaving court and saddlers' stalls.
+    - Hidden geometry that only casts shadows throws the long shapes of
+  smokestacks and factory sheds across the ground.
+    - The toggle turns the same outlines into soot-black tenements with sawtooth
+  roofs, chimney stacks, 40 lathe benches working in unison and iron flywheels.
+  Barges unload files of sleepwalkers whose lamps carry a ripple of laughter
+  down the line, trailers shunt through the streets, soot falls, and the light
+  turns furnace-orange.
+
+  **Other notes:**
+  - I reused the leftover `_hypatia.ts` but cut it down from 731 to 272 lines.
+  It now holds only the five glyph shapes and the GPU fountain spray that
+  `hypatia.ts` imports.
+  - The screenshot runs stalled once, along with several runs for other cities
+  that were going at the same time. Running it again went through fine, so it
+  doesn't appear to be caused by these files.
+
+  Files are in /home/konrad/dane/workspace/_upstream/invisible-cities-one-shot/c
+  laude-code-opus-5.5-max-ultracode-on/src/cities/:
+  - zirma.ts
+  - zoe.ts
+  - hypatia.ts
+  - _hypatia.ts
+  - olivia.ts
+
+● Signs done. Remaining: Names, Dead, Hidden.
+
+✻ Cooked for 1s · done 14.41
+
+● Agent "Build Signs cities" finished · 33m 14s
+
+› Message from general-purpose
+  All five cities are built in src/cities/<id>.ts. Each one passes `tsc
+  --noEmit` with no errors in its file, renders with no runtime errors and stays
+  inside the budget. The highest frame time was 9.8 ms (frameMs) and the worst
+  case was about 500k triangles and 83 draw calls. All have at least two kinds
+  of motion, a K.Toggle interaction and two extra camera views. None use
+  Math.random, Date.now or performance.now, and none contain em or en dashes.
+
+  | City | Interaction label | frameMs | Known issues |
+  |---|---|---|---|
+  | melania | Across Generations | about 5.5 to 6.2 | Actor bodies are small
+  from the default camera, so the glowing masks carry the reading. The 1-in-4
+  "chain of changes" succession from the brief is not implemented; deaths and
+  newborns are staggered per role instead. |
+  | adelma | Be Recognised | about 7.6 to 9.8 | The dusk sky and lighting read
+  mostly copper-orange rather than the brief's slate-blue with a copper band.
+  The water pattern is still a bit blotchy. The ship sits moored and bobbing; it
+  does not arrive out of the mist. |
+  | eusapia | Reverse the Copy | about 4.5 to 9.8 | The camera does not
+  auto-rotate. CameraSpec has no azimuth limit, so this keeps the cutaway facing
+  the viewer. When toggled on, the sun cannot be re-coloured at runtime; an
+  amber PointLight and ochre-tinted living figures stand in for it. |
+  | argia | Ear to the Ground | about 4 to 9.7 | Sleepers, roots and worm
+  tunnels are small from the default distance. The surface ripple torus is
+  disabled; the ring drawn by the shader on the field replaces it. |
+  | laudomia | Infinite Unborn | about 4.5 to 6.7 | The tiny visitors on the
+  heap are barely visible. When toggled on, the sub-funnels read as simple
+  tiered cones. |
+
+  - **melania:** A raised round stage backed by a horseshoe of painted facades
+  with five forced-perspective streets, and 18 masked roles. Bodies age, crumble
+  to dust and are replaced by newborns walking out of the doors, while the
+  masks hover and stay put. Gold speech beads pass between paired speakers, and
+  a gold plot-thread knots around a star. A thousand crowned king's sons sit on
+  the south terraces, with footlights along the stage edge. The toggle runs time
+  40x faster: bodies become ghostly, the beads turn into ribbons and coloured
+  stage-light beams come on.
+  - **adelma:** A terraced harbour town with a quay, bollards, a moored ship and
+  its rope, the fish-market loggia, the vegetable market with the balcony
+  basket, the long stair with stevedores and a bell tower. About 900 figures
+  have face-discs that turn bone-white once the traveller's lantern gaze has
+  touched them, and they turn to follow him. The toggle turns every face toward
+  the traveller along silver sight-lines and moves the camera up to the stair
+  arch.
+  - **eusapia:** An earth drum cut open with a wedge. The sunlit festival city
+  on top is repeated exactly in a candlelit cavern below, peopled by about 1.6
+  times as many dead, plus the clockmaker, barber and heifer scenes, spiral
+  shafts with hooded brothers carrying litters and scrolls, dancers that whirl
+  above but stand frozen below, and domes that appear below first and above 8 s
+  later. The toggle collapses the upper city and rebuilds it along gold threads
+  rising from below.
+  - **argia:** A monolith whose section is computed per pixel in a shader from
+  one procedural 3D city. It shows lime walls, clay-filled rooms, dirt-filled
+  streets, gabled roofs, the wide stair with its darker negative, rock strata
+  with chalk "cloud" boulders, sleepers, roots, tunnels and water beads. The
+  front face slowly drifts back and forth, scanning through the city. Scheduled
+  door slams send a sound shell outward and the listener on the field twitches.
+  The toggle makes everything nearly black, lowers the camera to grass level,
+  and lets each slam draw the city in amber wireframe.
+  - **laudomia:** A walnut-and-brass hourglass with fresnel glass. The marble
+  funnel has about 1,000 niches and about 43k shivering motes, with a cutaway
+  that always faces the camera, and a last grain pulses on the rim. The walled
+  living city sits at the waist with walkers, and stairs spiral down to the
+  stepped heap of the dead, which has about 2,600 name slabs. Falling grains
+  pass through the well, slabs light up one by one, and figures periodically
+  walk from the piazza down to the heap. The toggle fades the glass and frame,
+  grows three levels of sub-funnels and adds a galaxy of dust.
+
+  **Harness note:** shared dev-server renders sometimes failed with "Execution
+  context destroyed" (other agents' edits trigger Vite reloads) or screenshot
+  timeouts. Running `SHOT_BASE=http://127.0.0.1:1 node scripts/shot.mjs <id>
+  ...` forces a private server without hot reload and worked reliably.
+
+  Screenshots are in `shots/<id>/`.
+
+● Cities & the Dead done. Remaining: Names and Hidden.
+
+✻ Baked for 2s · done 14.42
+
+● Agent "Build Dead cities" finished · 33m 16s
+
+● Waiting for Names and Hidden.
+
+✻ Churned for 1s · done 14.42
+
+› Message from general-purpose
+  I built all five Hidden Cities, each in one file under src/cities/. All pass
+  `tsc` and render with no runtime errors. All stay well under budget: frameMs
+  4-9, calls at most about 145, triangles at most about 370k.
+
+  | City | Interaction label | frameMs | Known issue |
+  |---|---|---|---|
+  | olinda | "Let it grow" | ~5-9 (8.8 worst, during the growth toggle) | The
+  oldest ring squashes vertically as it sinks into the meadow, so for a moment
+  its roofs look flattened. |
+  | raissa | "Reveal the thread" | ~4-6 | The animal figures (dog, cat) are very
+  simple at close range. |
+  | marozia | "The swallow city" | ~4.5-5 | Swallows and rising people read as
+  small dots from the default camera. |
+  | theodora | "The beasts return" | ~4-5 | Beasts are deliberately stylized and
+  toy-like. The chimera's mane sphere is chunky. |
+  | berenice | "Open the nesting" | ~5.5-6.3 | A bright sun glint sits on the
+  closed gold dome. The second extra view was changed after its last render and
+  wasn't re-shot. |
+
+  What each city shows:
+
+  - **olinda:** The city is made of the same rings at sizes 1.6 apart. They grow
+  outward without a break, the oldest sinks back into the meadow at the rim,
+  and a glowing point at the centre sits under a brass lens. The toggle speeds
+  up the growth and lifts the lens away.
+  - **raissa:** A grey city in drizzle with people walking slowly. A golden
+  thread climbs above the roofs and drops down to each happy moment: a child and
+  a jumping dog, a girl smiling at a man, a cook tossing a fish to a cat, a
+  woman watering geraniums on her roof, a boy with a kite, an old man with
+  hopping sparrows, a fiddler and two dancers. A pulse runs along the thread and
+  lights each moment as it passes. The toggle lights the whole thread.
+  - **marozia:** A brown maze of houses whose alleys are roofed with brick
+  vaults, with rats running underneath. Every 7 seconds one vault briefly opens.
+  The toggle opens all the vaults from the centre outward: they rise above the
+  roofs as white wings, people float up, about 220 swallows burst out, and light
+  shafts come in.
+  - **theodora:** A clean white city around a domed library, with eyes blinking
+  behind the cellar grates and loose pages drifting. The toggle brings out two
+  sphinxes, two griffons, a chimera, a unicorn, a basilisk, two harpies and a
+  dragon. They come out of the glowing cellar gate, growing as they emerge, and
+  take their places in the city or circle overhead.
+  - **berenice:** Four cities nested inside each other, each half the size of
+  the last: unjust, just, unjust, just, with a red-gold seed at the centre. The
+  unjust city has crimson palaces, steaming baths and banquets around a great
+  gold dome. Inside it, the just city sits at one round table. The toggle opens
+  the domes one after another like petals.
+
+  Things you should know:
+
+  - **One fix touched Olinda and Theodora.** I first assumed `K.torus` lies
+  vertical, but it is already horizontal. Correcting that fixed a stray golden
+  arch in Berenice, and also the Olinda lens ring, the sphinx headband and the
+  dome ribs in Theodora. I didn't re-render Theodora's default view or the
+  sphinx close-up after that change.
+  - **The screenshot script can hang.** My first multi-view Berenice run stalled
+  while other agents' shot jobs were also stuck. Wrapping the command in
+  `timeout 200` worked around it.
+  - No kit bugs found. No `Math.random`, `Date.now` or `performance.now`, no
+  shared materials changed, and no em or en dashes in the five files.
+
+
+● Hidden Cities done. Only Names remains; meanwhile I'll run the full sweep on
+  everything built so far.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Agent "Build Hidden cities" finished · 27m 52s
+
+● 53 cities load cleanly, all within budget (frame 4–8 ms, all under 1.2M
+  triangles). Let me look at them together on a contact sheet.
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● The 53 cities form a solid, varied set, though Argia and Leandra's frames feel
+  weakest. Once Clarice and Irene come in from the Names builder, I'll render
+  the atlas thumbnails and do final checks.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Meanwhile, rendering medallion thumbnails for the 53 finished cities.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Thumbnails done (53, 2.9 MB). Waiting for Clarice and Irene.
+
+✻ Cogitated for 2m 6s · done 14.46
+
+● Background command "Wait for Clarice and Irene" completed (exit code 0)
+
+● Both files exist; I'll wait for the Names builder to finish its verification
+  round before the final pass.
+
+✻ Crunched for 2s · done 14.49
+
+● Background command "Wait until all 55 city files exist" completed (exit code
+0)
+
+● Waiting for the Names builder's final report.
+
+✻ Worked for 2s · done 14.49
+
+› Message from general-purpose
+  All five cities are built. Each one type-checks cleanly, has no runtime errors
+  in the harness, and stays well inside the budget (frameMs 3.6 to 7.3,
+  triangles at most 120k, draw calls at most 92). The rule checks found no
+  dashes, no Math.random/Date.now/performance.now, and no mutated shared
+  materials. Each city has two extra camera views and a toggle that the harness
+  rendered with --toggle.
+
+  Files are in `src/cities/`: `aglaura.ts`, `leandra.ts`, `pyrrha.ts`,
+  `clarice.ts`, `irene.ts`.
+
+  | City | Toggle label | frameMs | Known issues |
+  |---|---|---|---|
+  | aglaura | "Aglaura on the ground" | 4.3 to 7.3 | Ground houses look grainy
+  at default distance (the deliberate dithered "exists less" effect). Upper city
+  is a little pale against the overcast fog. |
+  | leandra | "Moving day" | 4 to 6 | The 50-kitchen block glows strongly in the
+  default view (dimmed once). No spark "quips" or huff bursts between god
+  clusters. Families never walk off the island edge. |
+  | pyrrha | "Pyrrha imagined" | 4.4 to 5.9 | Default view is very hazy and
+  yellow, which is intended. Sawmill roofs are a bit heavy. No top-down dithered
+  dissolve of the towers; the real town sinks and fades instead. |
+  | clarice | "Shuffle Clarice" | 3.6 to 5.5 | The verdigris tone barely shows;
+  the sky reads mostly amber-brown. Fragments are small from the default camera
+  (I boosted their emissive so they stand out). No crumble-to-dust or
+  glass-shard particles during the shuffle. |
+  | irene | "Go down to Irene" | 4.4 to 5.9 | Brief's camera of (0,14,30) can't
+  see over the rim; moved to (0,19,23) and shifted the city to z=-6. Watchers
+  are 0.4 tall, not 0.25, and carry small lantern glows so they read at the rim.
+  The sky does not deepen during the lamp-lighting loop. |
+
+  What each city shows by default, and what the toggle does:
+
+  - **aglaura:** A gilt name-city stands on seven floating letters,
+  A-G-L-A-U-R-A, with scrolling glyph bands on its walls. Below it is a faded,
+  dithered sprawl of 300 random houses. A wandering light-break opens iridescent
+  marvels, and gilt glyph ribbons cage each one and press it into a stock
+  house. The toggle fades the upper city to wire outlines, makes the ground
+  houses opaque and tinted, and doubles the glimpse rate; marvels then dissolve
+  into motes instead of being caged.
+  - **leandra:** Night dollhouse cutaways (10 houses, 2 palaces, 6 shacks), a
+  50-kitchen honeycomb block and a vacant lot with a glowing can. About 7,000
+  GPU motes: cyan Penates by the doors, ember Lares in the kitchens, and mixed
+  files strolling along cornices and pipes that fade to white. One family moves
+  house every 25 s, and its Penates trail behind it while the Lares stay. The
+  toggle sends every family moving at once, as rivers of silver light along the
+  ring street. To make interiors readable from the camera I made floors taller
+  and houses shallower than the brief (floor height 0.82, not 0.6).
+  - **pyrrha:** A dusty plain with a dune and five long draped streets, house
+  clumps, lumber lots, sawmills with spinning blades, and 12 windpumps whose
+  rotors whirl and vanes veer. It has 4,000 dust particles and a gilt PYRRHA
+  plaque. The small lapis cup-city floats above the dune with four name-glints
+  around it. The toggle morphs the terrain into a hill above a bay, grows the
+  cup-city to full size, fades in a blue dream sky and glides the plaque onto
+  its gate.
+  - **clarice:** A travertine plinth with the name round its rim, the chrysalis
+  hut city, and 35 instanced fragments: 9 capitals, 12 urns, 8 grilles and 6
+  brocades. In this state they have basil in the urns, grilles over fires,
+  brocade on beds and lines, and one capital holding the egg basket in the
+  chicken run. It also has rats, birds and smoke. A gold line-drawing of the
+  "first Clarice" pulses each time the star dome completes its 40 s turn. The
+  toggle is the shuffle: the fragments lift, orbit, swap and are dealt into the
+  butterfly city's Museum of Capitals, bell jars and vitrines.
+  - **irene:** Plateau watchers (traveller, shepherd with a flock of 18,
+  bird-catcher with swaying nets, hermit by a stone hut) look down over fluted
+  clay gullies at a rose of 9,000 window lights with 55 brighter clusters. It
+  has 7 towers with signal fires, gardens and switchback roads. The 90 s
+  lamp-lighting loop alternates festival and war, and the first loop is always a
+  festival. The toggle flies down while the lights rearrange into an ordinary
+  grid city and the IRENE letters scatter.
+
+  Two notes for anyone else running shots:
+  - **Shared dev server hung:** a `shot.mjs` run against http://127.0.0.1:5173
+  hung for over 20 minutes while many other agents were shooting. Running with
+  `SHOT_BASE=http://127.0.0.1:1` forces a private Vite server and worked
+  reliably.
+  - **Possible kit bug:** an instanced mesh with one axis scaled to zero
+  produced NaN normals and turned the whole frame black. I worked around it in
+  my file by scaling those instances to zero on all three axes.
+
+● All 55 cities are built. Final pass: thumbnails for the last Names cities,
+  full typecheck, production build, sweep and end-to-end flow.
+  Ran 1 shell command (ctrl+o to expand)
+
+● Agent "Build Names cities" finished · 41m 54s
+
+● Typecheck and production build pass; all 55 cities clean. Last check: the
+  end-to-end flow against the production build.
+
+  Read 2 files, ran 1 shell command (ctrl+o to expand)
+
+● The atlas now shows every city as a medallion. In shot 04 the scripted click
+  missed because the board was auto-rotating, so I'll confirm city navigation
+  from the next shot.
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● The atlas is finished. All 55 of Calvino's cities are built as procedural
+  three.js dioramas, plus Venice as a bonus scene. The typecheck and production
+  build pass, every city loads in headless Chromium without errors, and the
+  scripted tour (intro → atlas → city → next city → transformation → index →
+  Venice → epilogue) ran with no console errors.
+
+  Run it with pnpm install && pnpm dev, then open http://localhost:5173. pnpm
+  build makes a portable dist/.
+
+  - The cities: each is a self-contained, lazy-loaded diorama built from code
+    alone, with no models or image textures. Each has its own sky, light and
+    animation, and a toggle that acts out the city's idea: Valdrada's mirror
+    lake, Zemrude looking up or down, Moriana flipping over to its rusted back,
+    Ersilia's strings without houses, Beersheba weighing its two doubles,
+    Berenice's nested just and unjust cities.
+  - The atlas: a lacquered board shaped like a rose window. The 11 series are
+    sectors and the 5 appearances of each are rings growing outward. A golden
+    thread follows the order of the telling, and its nine chapters wind across
+    the board as spiral arms. Each city is a medallion showing a rendered
+    thumbnail of it. The chessboard at the centre leads to Venice, "the city
+    never named".
+  - Getting around: hover a medallion to read it, click to dive in. Arrow keys
+    move between cities, Space triggers the transformation, J starts the journey
+    through all 55 in book order with chapter interludes, ending in an epilogue
+    where the cities sink to embers and only the Hidden Cities stay lit. I
+    opens an index, Esc returns to the atlas.
+  - Sound: an optional generative ambient score, made in the browser, that
+    changes with each series and with day or night. It's off until you turn it
+    on in the top bar. I only checked that it compiles and loads; I haven't
+    listened to it.
+  - Performance: on this machine's GTX 1060, a frame takes 4 to 8 ms per city,
+    and the heaviest city, Leonia, has about 1.1 million triangles.
+  - Texts: every caption, motto and interlude is an original paraphrase, with no
+    quotations from the book.
+
+  What happened during the build:
+  - The first session hit the account's API rate limit after I ran about 45
+    agents at once. Most in-progress city work was lost, and the research for
+    the last four series and the frame texts never finished.
+  - I resumed with 11 agents, each building a whole series, and wrote the
+    missing captions, chapter interludes and epilogue myself.
+  - That smaller run produced compact cities with one review-and-fix round each,
+    not the planned extra critique and refinement pass.
+
+  Weakest results:
+  - Argia reads as a dark box from its default view.
+  - Leandra is overly bright.
+  - A few cities have small details that are hard to see from the default
+    camera: Fedora's globe miniatures, Marozia's swallows, Esmeralda's route
+    trails.
+  - Several cities can't change their sky or fog while their transformation
+    plays, so a day/night switch is faked with extra lights. Euphemia's fake
+    daylight, for example, keeps a dusky fog.
+  - Venice is my own first version; the agent I sent to refine it was cut off by
+    the rate limit.
+
+  Housekeeping:
+  - I deleted the 365 MB shots/ folder of review screenshots. node
+    scripts/sweep.mjs and node scripts/thumbs.mjs regenerate them.
+  - docs/CITY_GUIDE.md describes how a city module works. The briefs/ folder
+    holds the research notes the city builders worked from.
+
+✻ Churned for 45m 54s · done 14.53
+
+※ recap: The goal was a three.js atlas of all 55 Invisible Cities, and it's finished: every city builds and loads cleanly. Next, run `pnpm dev` and look at the weakest cities, Argia and Leandra. (disable recaps in /config)
+  ⎿  Read scripts/thumbs.mjs (61 lines)
+  ⎿  Read src/data/frame.ts (69 lines)
+  ⎿  Referenced file src/ui/styles.css
+  ⎿  Referenced file src/app/app.ts
+  ⎿  Referenced file src/ui/ui.ts
+
+● Task "Build Names cities" completed in background
+
+● Task "Build Dead cities" completed in background
+
+● Task "Build Sky cities" completed in background
+
+● Task "Start Vite dev server in background" still running in background
+
+● Compacted while idle, before the prompt cache expired
+
+● Agent "Build Sky cities" finished · 2h 1m 2s
+
+● That message is a late notice from the "Build Sky cities" agent, which
+  finished hours ago. Its five cities were already part of the final checks.
+  Nothing is running and nothing needs doing.
+
+✻ Cogitated for 2s · done 16.10
+
+● Agent "Build Dead cities" finished · 2h 1m 2s
+
+● Another late notice, this time from "Build Dead cities", which also finished
+  long ago. Its cities are already in the final build, so there's nothing to do.
+
+✻ Worked for 24s · done 16.10

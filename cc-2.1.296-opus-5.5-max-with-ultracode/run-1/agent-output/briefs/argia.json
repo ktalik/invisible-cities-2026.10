@@ -1,0 +1,38 @@
+{
+  "id": "argia",
+  "essence": "Argia is a city with earth where its air should be: its streets, rooms and stairwells are packed solid, rock hangs over its roofs instead of sky, and from the surface nothing of it can be seen, though at night a door can sometimes be heard slamming below.",
+  "textDetails": [
+    "Argia differs from other cities in having earth where the air should be.",
+    "Its streets are filled entirely with dirt.",
+    "Its rooms are packed with clay right up to the ceilings.",
+    "Each staircase has a second staircase, in negative, resting on its steps.",
+    "Above the roofs hang strata of rocky ground, like skies full of clouds.",
+    "Whether the inhabitants can move around, by enlarging the worm tunnels and the cracks where roots twist, is unknown.",
+    "The damp wears down the inhabitants' bodies and leaves them weak, so they do best to remain motionless, lying prone.",
+    "It is dark down there in any case.",
+    "From the surface nothing of Argia is visible; some say it lies below, and one can only take their word for it.",
+    "The place above is deserted.",
+    "At night, with an ear pressed to the ground, one sometimes hears a door slam.",
+    "Note: the text never states that the inhabitants are dead; only the series title implies it."
+  ],
+  "visualConcept": "Argia is presented as a museum specimen: a great square monolith of earth floating in a night void, its top a bare, deserted field and its two front faces cut clean like an architectural section, revealing a whole city buried inside with no air anywhere. In the section you read house walls and floors as pale lime lines, every room packed with red-brown clay, every street with darker loose dirt, doors and arched windows plugged, and a grand stair whose pale steps carry, fitted on top of them, a second staircase in darker clay that is their exact negative. Over the roofs, instead of sky, hang horizontal strata of slate-blue rock in which rounded chalk-white boulders billow like cumulus clouds: a petrified sky. Worm tunnels and twisting roots thread through everything, water beads on the cut faces, and here and there a pale figure lies prone and motionless in the clay like a plaster cast. On the surface there is nothing at all, only dry grass, a few stones and two tiny visitors near one corner, one pointing at the ground and one kneeling with an ear to the earth beside a small lantern. The idea reads at a glance: a city with every void filled, visible only because the earth has been sliced.",
+  "layout": "Monolith: square plan 34 x 34 (x and z from -17 to 17), surface at y 0, clean section faces on the two camera-facing sides (z = +17 and x = +17), rough crumbling faces on the other two, ragged underside to y -23. Vertical zoning: topsoil with grass roots y 0 to -0.6; rock-sky strata y -0.6 to -4.0 (6-8 bands of slate-blue and grey-violet rock holding about 25 cloud-shaped chalk inclusions 1-3 wide, flat-bottomed and billowing on top); the city y -4.0 to -14.5; cellars and foundations y -14.5 to -18; bedrock to -20. City: about 60 houses in an irregular grid of 3 x 3 blocks on two street levels, a lower town at y -14.5 (houses of 3 storeys, storey height 2.6, gable roofs peaking near y -5.5) and an upper terrace at y -10.1 (2 storeys, roofs peaking near y -4.0); walls 0.25 thick, floors 0.15; streets 2-3 wide; a domed church near the centre; a grand exterior stair of 11 steps (tread 0.6, riser 0.4) climbing from the lower street to the upper terrace, set parallel to and just behind the front cut face, plus interior stairs in several houses, every one capped by its clay negative. Materials: walls pale lime, room fill wet red-brown clay, street fill dark loose dirt with pebbles, negative stairs a deeper oxblood clay. About 40 worm tunnels (0.08 wide), root systems descending from 5 points on the surface, about 60 prone figures (0.25 long) embedded in rooms and streets, about 120 small doors. Surface: about 20,000 instanced dry grass blades, 30 stones, a faint footpath; 2 figures and a lantern near the front-right corner. Implementation hint: compute the section colours in a shader from a procedural 3D city field (material by world position) so any cut position stays consistent, and also build the city's edges as line geometry inside the block for the listening mode.",
+  "signatureMotion": "1) Door slams: every 7-15 s a random buried door slams: a small amber flash at the doorway, then a spherical sound-shell expands at about 6 units per second; where it crosses the cut faces it draws a thin bright ring that for a moment lights the edges of walls, steps and sleepers, like sonar; when it reaches the surface a circular ripple runs through the grass, a ring of dust lifts and settles, and the kneeling listener's head twitches. 2) The slow slice: the front cut face drifts in and out by about 4 units over a 90 s cycle, so the section scrolls through the buried city like the slices of a scan, showing different rooms, stairs and sleepers; crumbs of soil trickle down the moving face. 3) Damp life: water beads glisten and slide down the cut faces, worms inch along their tunnels, root tips creep; nothing human moves.",
+  "interactionLabel": "Ear to the Ground",
+  "interactionDescription": "Trades seeing for hearing. Off: the lit specimen with its cut faces. On: all light fails; the monolith becomes a near-black mass and the camera sinks to the surface beside the kneeling listener, at the height of the grass; the earth turns into a dark translucent medium in which the city has no visible form, and each door slam becomes the only light: its expanding shell sweeps through the whole block and, wherever it passes, briefly draws the entire buried city in faint amber lines (walls, roofs, negative stairs, roots, the prone sleepers) before darkness closes again. The city can be heard but never seen.",
+  "mood": "Night, cold and damp. A pale low moon in a starless slate sky, a thin mist over the dead grass, the field utterly empty. The cut faces are lit by a low, cool raking light that brings out the grain of the clay and the glisten of moisture, with deep shadow everywhere else. Silence is the main material; the only warmth is the brief amber of a door slamming far below and the listener's small lantern.",
+  "palette": {
+    "skyTop": "#0a0d13",
+    "skyHorizon": "#252b37",
+    "fog": "#14181f",
+    "ground": "#3d3a2c",
+    "primary": "#7b4931",
+    "secondary": "#4d5a6c",
+    "accent": "#d5cab4",
+    "glow": "#f2c48d"
+  },
+  "caption": "Argia has kept every wall, room and stair and given up only its air. Earth fills the streets to the eaves, clay has filled every parlour to the beams, and over the roofs, in place of sky, hang strata of stone with boulders drifting in them like clouds. Whoever lives there lies still in the damp and the dark. From above you see a bare field. Only at night, cheek to the turf, do you sometimes catch a door slamming far beneath.",
+  "motto": "Nothing shows above; somewhere below, a door still slams.",
+  "camera": "Three-quarter view onto the corner where the two cut faces meet: azimuth 45 degrees between them, distance 44 from target (0, -8, 0), elevation 18 degrees, field of view 35. The empty field fills the top quarter and the two sections fill the rest, with the negative stair near the centre of the front face. In listening mode the camera glides down to about (9, 0.5, 13), at grass height, looking past the kneeling listener across the field.",
+  "series": "dead"
+}

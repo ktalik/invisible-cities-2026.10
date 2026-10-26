@@ -1,0 +1,42 @@
+{
+  "id": "zaira",
+  "essence": "Zaira is made not of its stones but of the bonds between the dimensions of its spaces and the events of its history, a past it never recounts but keeps inscribed in every edge, like the lines of a palm.",
+  "textDetails": [
+    "A city of high bastions.",
+    "Its streets rise like stairways, and the number of their steps could be stated.",
+    "Its arcades have arches of a measurable curvature.",
+    "Its roofs are covered with zinc scales.",
+    "Listing such features would say nothing: the city consists of relations between the dimensions of its spaces and the events of its history.",
+    "Lamppost height, set against how far above the ground a hanged usurper's feet swung.",
+    "The line running from that lamppost to the railing across the way, set against the festoons once hung along the route of the queen's wedding procession.",
+    "The railing's height, set against the jump of the adulterer who climbed over it at daybreak.",
+    "The slope of a gutter, set against a cat walking along it and slipping in at the same window.",
+    "The firing line of a gunboat that appeared without warning from behind the cape, set against the bomb that wrecked that gutter.",
+    "The tears in a fishing net, set against three old men sitting on the dock mending nets while retelling, for the hundredth time, the tale of the usurper's gunboat.",
+    "Some say that usurper was the queen's illegitimate child, left as a swaddled infant on that same dock.",
+    "As memories flow back in a wave, the city absorbs them like a sponge and swells.",
+    "To describe present-day Zaira one would have to include its entire past.",
+    "It does not recount its past but holds it like the lines of a palm, inscribed in street corners, window gratings, stair banisters, lightning-rod antennae and flagpoles.",
+    "Each of those segments is itself scored with scratches, notches and scrolls."
+  ],
+  "visualConcept": "A steep harbour city of high bastions climbing a promontory out of a calm dawn sea, with stairway streets, a quayside arcade of evenly curved arches, and tall narrow houses roofed in overlapping zinc scales that shine pewter-blue. A rocky cape curls around the harbour, a living cat pads along a tilted gutter toward a window, and on the dock three old men sit mending a torn fishing net. In a piazza halfway up, facing the sea, stand the props of the city's memory: a cast-iron lamppost, a balcony railing across the lane, that tilted gutter, each already carrying a faint hairline dimension with end ticks and small numerals, like an architect's survey drawn in light. When the past is read, every measurement fills with a translucent pale-gold ghost of the event it holds: the hanged usurper's swaying feet under the lamp, festoons and the queen's nuptial procession along the line strung from lamp to railing, the adulterer's dawn leap over the railing, a ghost gunboat nosing out from behind the cape whose arcing shot shatters a ghost of the gutter, and on the dock a swaddled foundling beside the old men. Seen from above, these lines and trajectories sweep across the hill like the main creases of a palm (a design device, not in the text). Every corner, window grating, banister, lightning-rod antenna and flagpole is etched with fine scratches, notches and scroll-like curls that catch the raking dawn light. Periodically a wave of memory rolls in from the sea and the city drinks it like a sponge, darkening as if soaked and swelling very slightly.",
+  "layout": "Plan convention: +X east, -Z north, y up. Round sea disc radius 24 at y=0 with gentle waves. Promontory: a conical hill centred at (-4, 0, 0), base radius 15, summit 8.5, with a small citadel square on top. A rocky cape arm (2-3 wide, 1-3 high) curves from (6, 0, -12) round to its tip at (15, 0, -5), enclosing a harbour basin on the east. Quay along the hill's east foot at y 0.6 with an arcade of 14 identical round arches (span 0.6, height 0.8); a dock 6 long x 1.2 wide projecting east from (4, 0, 4). Bastions: two rings of battered walls following the contours, a sea wall 2.5 high and an upper wall 2.0 high at about y 4.5, each with 5 arrow-head bastions projecting 1.5; 6 flagpoles with small flags on the bastion points. Streets: 6 radial stairway streets (width 0.7, steps of rise 0.06 and tread 0.12) from quay to summit, crossed by 3 contour lanes. Houses: about 110 tall narrow houses (footprint 0.8-1.2 x 0.8, height 1.2-2.6) stepped up the terraces, ochre and faded-white walls, zinc fish-scale roofs (procedural scale pattern, metalness 0.7), a gutter on every eave, iron window gratings, balconies with railings; 4 lightning rods with antennae on the highest roofs. Hero piazza at mid-height around (2, 3.2, 3), facing the harbour: cast-iron lamppost 0.9 tall with a side arm; balcony railing 0.65 above the lane on the house opposite, 3 units away; a line strung from lamp top to railing; on the same house a gutter tilted 12 deg ending at a window. Dock: a net spread 2 x 1.2 with 3 rips, three seated old men. Ghost gunboat: 2.2 long, single funnel, bow gun, emerging from behind the cape tip toward (18, 0, -2). Memory layer: dimension lines as thin line segments with end ticks and canvas-sprite numerals; ghost figures and ghost gutter in an additive pale-gold material.",
+  "signatureMotion": "1) The memory tide, every 35 s: a band of pale gold light rolls in across the sea, through the harbour mouth, up the quay and the stairway streets; surfaces it touches darken and gloss as if soaked, then the whole city swells uniformly by about 1.5 percent over 3 s and eases back over 20 s, a few new hairline scratches remaining behind. 2) With the past read, the six relationships replay as staggered ghost loops, each beginning with its dimension line brightening: feet swaying under the lamppost; festoons fluttering as a tiny procession passes beneath; the adulterer vaulting the railing at dawn; the gunboat appearing beyond the cape, its shot tracing a slow parabola until the ghost gutter bursts (restored when the loop restarts) while the real cat keeps slipping into the same window; the old men's hands working the netting needle beside the swaddled bundle. 3) A slow raking light glides across the hill so the etched marks on banisters, gratings, rods and flagpoles glint in sequence, like creases catching the light.",
+  "interactionLabel": "Read its past",
+  "interactionDescription": "Default: Zaira as it shows itself, stone, zinc and sea, with only the faint etched marks and the hairline measurements of lamppost, railing, gutter and net visible: dimensions without stories. On: each measurement fills with the event it holds; the ghost vignettes play, the etchings brighten, the gunboat appears beyond the cape, and from a high angle the lines resolve into the creases of a palm. Off again: the ghosts fade, but the measurements and marks remain, because the city still contains what it will not tell.",
+  "mood": "First light after a calm night: cool silver-blue air, a peach streak low on the eastern horizon, a thin sea mist lying on the harbour, zinc roofs mirroring the pale sky, stone still damp. Quiet, attentive and archival, a city that keeps its counsel.",
+  "palette": {
+    "skyTop": "#45556e",
+    "skyHorizon": "#eac6a1",
+    "fog": "#a7b1b9",
+    "ground": "#b39a7a",
+    "primary": "#8e9aa6",
+    "secondary": "#3c5860",
+    "accent": "#b4433a",
+    "glow": "#f5e6bf"
+  },
+  "caption": "You could count the steps of Zaira's stairway streets, measure the curve of every arcade, name the zinc that scales its roofs, and still have said nothing. The city is made of distances between things and what once happened to them: a lamppost and a hanged usurper's feet, a railing and a lover's leap at dawn, a gutter and the cat that walks it. Zaira never narrates its history; it wears it, as a palm wears its creases.",
+  "motto": "Every distance in the city is the length of an event.",
+  "camera": "From the south-east over the harbour, distance 38, elevation 22 deg, target the hero piazza (2, 3.2, 3): dock and old men in the lower foreground, the lamppost, railing and gutter ensemble at centre, cape and gunboat waters to the right, citadel above. A secondary near-top-down view (elevation 80 deg) reveals the palm-crease composition when the past is read.",
+  "series": "memory"
+}

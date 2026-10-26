@@ -1,0 +1,37 @@
+{
+  "id": "zoe",
+  "essence": "A city without differences, where every activity can happen at every point and any roof could shelter anything, so that its parts cannot be told apart and not even the line between city and wilderness can be found.",
+  "textDetails": [
+    "A traveler approaching an unknown city wonders what its palace, barracks, mill, theater and bazaar will be like.",
+    "In every city of the empire each building is different and set in a different order.",
+    "On arrival the stranger's eye pierces the 'pine cone' cluster of pagodas, garrets and haymows and follows the scrawl of canals, gardens and rubbish heaps.",
+    "In such cities he at once tells apart the princes' palaces, the high priests' temples, the tavern, the prison, the slum.",
+    "Some say this proves that each person carries in mind a city made only of differences, without figures or form, which actual cities fill up.",
+    "Not so in Zoe: at every point of the city one can, in turn, sleep, make tools, cook, accumulate gold, undress, reign, sell, question oracles.",
+    "Any one of its pyramid roofs could cover the leprosarium or the odalisques' baths; pyramid roofs are the only architectural feature of Zoe that is named.",
+    "The traveler roams everywhere with nothing but doubts; he cannot distinguish the city's features, and even the features he keeps distinct in his mind begin to mingle.",
+    "He infers that if existence in all its moments is wholly itself, Zoe is the place of indivisible existence.",
+    "He then asks why the city exists at all, and what line could divide inside from outside, the rumble of wheels from the howling of wolves.",
+    "Not in the text: size, colours, materials, walls or gates; wheels and wolves appear only as sounds, implying carts within and wilderness close by."
+  ],
+  "visualConcept": "Zoe is a perfectly uniform lattice of identical houses, each a small limewashed cube under the same pyramid roof with a door on every side, spaced evenly in all directions: no main street, no square, no landmark, no centre, no wall. Every doorway glows, and inside each house a tiny tableau keeps changing (a bed, an anvil throwing sparks, a pot over a fire, a heap of gold, a hanging robe, a throne, a market awning, an oracle's tripod with violet fumes, bath steam, the pale lamps of a leprosarium), each with its own muted hue. These functions migrate continuously from house to house in slow overlapping waves, so any roof is a palace, a kitchen and a sickhouse in turn, and from a distance the colours blend into one even amber. The second idea is the missing edge: toward the rim the houses thin out while their pyramid roofs grow taller and darker and turn into conical firs on the same lattice points, then into pyramidal hills, so the city becomes forest and mountain without any line where one ends. Cart lanterns roll inward and outward through that zone, and pairs of wolves' eyes glint between roofs and trunks alike. The base is a broad, flat, misty plain whose ground colour is identical inside and outside the settlement, and the whole lattice dissolves into fog in every direction. Nothing should draw the eye more than anything else: the one unmistakable thing is the sameness.",
+  "layout": "Ground: one uniform earth-toned plain to the fog horizon with faint lane lines and no edge treatment. City lattice: square grid, pitch 1.9, rotated 45 degrees to the default camera so no lane reads as a main axis; about 21 x 21 cells clipped to a circle of radius 15 (about 340 houses), all identical: walls 1.1 x 1.1 x 0.85, pyramid roof 0.8 high, four doors. Build roofs and firs from the same primitive (ConeGeometry with 4 radial segments) so a roof and a stylised fir are literally one shape at different proportions and colours. Transition ring from radius 13 to 21: house probability falls off linearly while a second instanced set of firs (1.4 to 3.0 tall) rises in density on the same lattice points, so house and tree are interchangeable in position; beyond radius 19, pyramidal hills (3 to 8 high) continue at a coarser pitch and vanish into fog by radius 30. Activity tableaux: 10 types, each an instanced miniature 0.15 to 0.3 in size plus an emissive interior card in a muted hue (sleep indigo, tools spark orange, cook ember red, gold yellow, undress rose, reign crimson, sell green, oracle violet, baths aqua, leprosarium pale lime); each house shows one at a time, reassigned by a travelling noise field. Carts: about 25 tiny carts with lanterns moving along lanes, some leaving into the forest ring, some arriving. Wolves: about 12 pairs of glowing eyes plus a few 0.3-long wolf silhouettes in the transition ring, some slipping between houses.",
+  "signatureMotion": "1) Function drift: activities flow across the lattice like slow weather, interior glows crossfading from house to house, so the same doorway is a forge, then a bedroom, then a throne room; at a distance the shimmer averages into one even warmth. 2) The breathing edge: in the outer ring a house occasionally sinks and a fir grows in its place, or a fir lowers into a house, while lantern carts cross the non-border and wolves' eyes drift in among the roofs. 3) An even mist moves slowly across the whole plain, never revealing a boundary.",
+  "interactionLabel": "Any other city",
+  "interactionDescription": "Shows what the traveler expected: an ordinary city of the empire, made of differences. In a staggered wave from the centre, the identical houses reshape into distinct forms: princes' palaces with gilded domes, high priests' temples, a lantern-lit tavern, a walled prison, a crowded slum, plus the palace, barracks, mill, theater and bazaar he wondered about, with pagodas, garrets and haymows threaded by a scrawl of canals, gardens and rubbish heaps; a wall rises to draw a hard line against the forest, and each activity snaps into its one proper building. Toggle back and every form melts into the same pyramid roof, the wall sinks among the trees, and the activities begin to wander again.",
+  "mood": "A soft, overcast dusk with flat, shadowless light from a pearl-grey sky, as if the sun were everywhere and nowhere; mist lying evenly over the plain and thickening outward into the forest; doorway lamps lit in every house at once. Quiet and hypnotic, slightly uncanny: peaceful from afar, restless up close.",
+  "palette": {
+    "skyTop": "#4a526b",
+    "skyHorizon": "#c9bba7",
+    "fog": "#aba496",
+    "ground": "#8b8273",
+    "primary": "#d0c4ad",
+    "secondary": "#6e6357",
+    "accent": "#3f6a5c",
+    "glow": "#f0b25e"
+  },
+  "caption": "In other cities you know the palace by its height, the prison by its walls, the slum by its crowding. In Zoe every pyramid roof is the same roof, and beneath any of them you might find a bed, a forge, a heap of gold, an oracle, a throne or a ward of lepers. The traveler stops sorting and starts doubting. Life here is all of a piece, so seamless that no one can say where the city ends and the wolves begin.",
+  "motto": "Without differences, a city cannot tell itself from the wilderness.",
+  "camera": "High oblique view, distance about 36 units, elevation about 52 degrees, looking along a lattice diagonal so lanes cross the frame obliquely; target at the lattice origin, which is deliberately unmarked. The frame must include the rim on all visible sides so the houses can be seen becoming firs and then hills, with fog swallowing the corners.",
+  "series": "signs"
+}
