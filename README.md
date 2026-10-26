@@ -2,7 +2,16 @@
 
 [Piotr Migdał is right in his post.](https://quesma.com/blog/invisible-cities-one-shot/) As a [data vis specialist](https://p.migdal.pl/), Piotr asks himself the question: _What is my place in creating interactive media?_ And, after following his **call to action** (see post), I have one simple answer: yes.
 
-My results of Piotr's experiment are here.
+My results of Piotr's experiment are here. I wrote about them, and about why this feels like an identity crisis for programmers, in my post [Opus 5.5 causing an identity crisis is real](https://www.kondz.io/blog/opus-5-5-causing-identity-crisis-is-real/).
+
+## Open the interactive versions
+
+Both results run in the browser, served from this repository on GitHub Pages:
+
+- [Run 1: medium effort, no Ultracode](https://ktalik.github.io/invisible-cities-2026.10/cc-2.1.296-opus-5.5-medium-no-ultracode/) (55 islands on a dusk lagoon)
+- [Run 2: max effort, Ultracode on](https://ktalik.github.io/invisible-cities-2026.10/cc-2.1.296-opus-5.5-max-with-ultracode/) (55 dioramas on the Khan's atlas). Only keyboard controls are available: `Left`/`Right` previous/next city, `Esc` back to the atlas, `H` hide text, `M` sound, `F` fullscreen.
+
+They are the production builds exactly as the agents left them, with nothing fixed or rebuilt afterwards. They need a browser with WebGL.
 
 ## The experiment
 
